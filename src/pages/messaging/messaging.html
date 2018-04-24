@@ -1,20 +1,27 @@
 <ion-header>
-    <ion-navbar color="senyumDifabel">
-        <ion-grid no-padding>          
-            <ion-row no-padding>
-              <ion-col col-10 no-padding text-center>
-                <ion-searchbar (ionInput)="getItems($event)" placeholder="Search message..."></ion-searchbar>
-              </ion-col>
-              <ion-col col-2 text-center no-padding>
-                <ion-icon color="dark" class="ButtonRight" name="md-person-add"></ion-icon>
-              </ion-col>
-            </ion-row>
-      </ion-grid>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar color="senyumDifabel">
+      <ion-grid no-padding>          
+          <ion-row no-padding>
+            <ion-col col-10 no-padding text-center>
+              <ion-searchbar (ionInput)="getItems($event)" placeholder="Search message..."></ion-searchbar>
+            </ion-col>
+            <ion-col col-2 text-center no-padding>
+              <ion-icon color="dark" class="ButtonRight" name="md-person-add"></ion-icon>
+            </ion-col>
+          </ion-row>
+    </ion-grid>
+  </ion-navbar>
+</ion-header>
 
 
 <ion-content>
+
+  <ion-fab right bottom>
+    <button ion-fab mini color="senyumDifabel">
+      <ion-icon name="ios-text-outline"></ion-icon>
+    </button>
+  </ion-fab>
+
   <div class="messageCard">
     <ion-grid no-padding>          
       <ion-row no-padding>
