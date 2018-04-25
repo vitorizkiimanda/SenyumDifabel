@@ -122,4 +122,25 @@ page-profile {
         font-size: 1.5em;
     }
 
+    .tabProfile{
+        margin-top: 2vw;
+        
+    }
+
+    .textTabActive{
+        font-size: 0.9em;
+        font-weight: 500;
+        color: #2c384e;
+        // margin: 0 ;
+        border-bottom: solid 5px #2c384e;
+    }
+
+    .textTab{
+        font-size: 0.9em;
+        font-weight: 500;
+        color: gray;
+        // margin: 0 ;
+        border-bottom: solid 5px gray;
+    }
+
 }

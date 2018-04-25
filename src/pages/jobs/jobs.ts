@@ -25,7 +25,9 @@ export class JobsPage {
       this.bookmark = true;
       let toast = this.toastCtrl.create({
         message: 'Bookmark success',
-        duration: 3000
+        duration: 3000,
+        showCloseButton: true,
+        closeButtonText: 'Ok'
       });
       toast.present();
     }
@@ -33,6 +35,8 @@ export class JobsPage {
       this.bookmark = false;
       let toast = this.toastCtrl.create({
         message: 'Remove bookmark success',
+        showCloseButton: true,
+        closeButtonText: 'Ok',
         duration: 3000
       });
       toast.present();

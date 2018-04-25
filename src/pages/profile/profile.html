@@ -56,8 +56,11 @@
     <div text-center class="buttonDiv">
       <button ion-button block color="senyumDifabel" class="buttonCustom"><span class="buttonWord">Generate Your CV</span></button>
     </div>
-    <span>tabs again maybe ._.</span>
 
+    <div class="tabProfile" text-center>
+        <span [hidden]="experience == false" class="textTabActive">Experience</span><span [hidden]="experience == true" class="textTab" (click)="activeExperience()">Experience</span><span [hidden]="education == false" class="textTabActive">&nbsp;&nbsp;Education&nbsp;&nbsp;</span><span [hidden]="education == true" class="textTab" (click)="activeEducation()">&nbsp;&nbsp;Education&nbsp;&nbsp;</span><span [hidden]="skill == false" class="textTabActive">Featured Skill</span><span [hidden]="skill == true" class="textTab" (click)="activeSkill()">Featured Skill</span><span [hidden]="accomplishment == false" class="textTabActive">&nbsp;&nbsp;Accomplishment&nbsp;&nbsp;</span><span [hidden]="accomplishment == true" class="textTab" (click)="activeAccomplishment()">&nbsp;&nbsp;Accomplishment&nbsp;&nbsp;</span><span [hidden]="contact == false" class="textTabActive">Contact</span><span [hidden]="contact == true" class="textTab" (click)="activeContact()">Contact</span>      
+    </div>
+    
   </div>
 
 </ion-content>
