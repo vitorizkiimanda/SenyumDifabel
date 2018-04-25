@@ -51,9 +51,10 @@ page-jobs {
     }
 
     .headerJob{
-        padding: 1vw 3vw;
+        padding: 2vw 3vw;
         background-color: #2c384e;
         border-bottom: solid 3px #e06e76; 
+        height: 10vw !important;
     }
 
     .headerText{
@@ -65,6 +66,8 @@ page-jobs {
     .buttonCustom{
         color: white;
         float: right;
+        font-size: 1.5em;
+        font-weight: 200;
     }
 
     .company{
