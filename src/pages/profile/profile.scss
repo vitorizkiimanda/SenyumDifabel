@@ -123,7 +123,7 @@ page-profile {
     }
 
     .tabProfile{
-        margin-top: 2vw;
+        margin-top: 4vw;
         
     }
 
@@ -143,4 +143,38 @@ page-profile {
         border-bottom: solid 5px gray;
     }
 
+    .tabsProfileContent{
+        margin-top: 3vw;
+        padding: 0 2vw;
+    }
+
+    .pictContent{
+        width: 100vw;
+    }
+
+    .wordContent{
+        padding-left: 1vw;
+    }
+
+    .headContent{
+        font-size: 0.9em;
+        font-weight: 700;
+        color: #222;
+    }
+
+    .subheadContent{
+        font-size: 0.9em;
+        font-weight: 500;
+        color: #222;
+    }
+
+    .time{
+        font-size: 0.8em;
+        font-weight: 300;
+        color: gray;
+    }
+
+    .marginBottom{
+        margin-bottom: 2vw;
+    }
 }
