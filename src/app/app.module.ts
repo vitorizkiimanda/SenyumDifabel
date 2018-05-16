@@ -17,6 +17,8 @@ import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { ProfilePage } from '../pages/profile/profile';
 import { RegisterPage } from '../pages/register/register';
 import { NotificationPage } from '../pages/notification/notification';
+import { PostPage } from '../pages/post/post';
+import { Autosize } from '../directives/autosize/autosize';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,10 @@ import { NotificationPage } from '../pages/notification/notification';
     ProfilePage,
     RegisterPage,
     NotificationPage,
-    TabsPage
+    PostPage,
+    TabsPage,
+    
+    Autosize
   ],
   imports: [
     BrowserModule,
@@ -50,6 +55,7 @@ import { NotificationPage } from '../pages/notification/notification';
     ProfilePage,
     RegisterPage,
     NotificationPage,
+    PostPage,
     TabsPage
   ],
   providers: [

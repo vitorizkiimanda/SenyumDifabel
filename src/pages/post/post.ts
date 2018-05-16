@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-
 @Component({
-  selector: 'page-notification',
-  templateUrl: 'notification.html',
+  selector: 'page-post',
+  templateUrl: 'post.html',
 })
-export class NotificationPage {
+export class PostPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad NotificationPage');
+    console.log('ionViewDidLoad PostPage');
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NotificationPage } from '../notification/notification';
+import { PostPage } from '../post/post';
 
 @Component({
   selector: 'page-home',
@@ -14,6 +15,10 @@ export class HomePage {
 
   openNotification(){
     this.navCtrl.push(NotificationPage);
+  }
+
+  openNewPost(){
+    this.navCtrl.push(PostPage);
   }
 
 }
