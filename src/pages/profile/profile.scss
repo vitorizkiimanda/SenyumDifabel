@@ -7,9 +7,13 @@ page-profile {
     .ButtonRight{
         color: white;
         font-size: 2em;
-        position: relative;
-        top: 0vw;
-        right: 4vw;
+        margin-top: 1vw;
+    }
+
+    .pictLogo{
+        width: 20vw;
+        margin-top: 1vw;
+        margin-left: 2vw;
     }
 
     .pictCover{

@@ -16,6 +16,7 @@ import { LoginPage } from '../pages/login/login';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { ProfilePage } from '../pages/profile/profile';
 import { RegisterPage } from '../pages/register/register';
+import { NotificationPage } from '../pages/notification/notification';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RegisterPage } from '../pages/register/register';
     OnboardingPage,
     ProfilePage,
     RegisterPage,
+    NotificationPage,
     TabsPage
   ],
   imports: [
@@ -47,6 +49,7 @@ import { RegisterPage } from '../pages/register/register';
     OnboardingPage,
     ProfilePage,
     RegisterPage,
+    NotificationPage,
     TabsPage
   ],
   providers: [
