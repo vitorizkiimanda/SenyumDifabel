@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { SettingPage } from '../setting/setting';
+import { ProfileEditPage } from '../profile-edit/profile-edit';
 
 @Component({
   selector: 'page-profile',
@@ -20,6 +22,17 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
   }
 
+  openSetting(){
+    this.navCtrl.push(SettingPage);
+  }
+
+  openProfileEdit(){
+    this.navCtrl.push(ProfileEditPage);
+  }
+
+
+  //algo for dynamic tabs
+  
   activeExperience(){
     this.experience = true;
     this.education = false;

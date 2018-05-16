@@ -6,7 +6,7 @@
                 <img src="assets/imgs/logotrans.png" class="pictLogo"/>
               </ion-col>
               <ion-col col-2 text-center no-padding>
-                <ion-icon (click)="openNotification()" color="dark" class="ButtonRight" name="md-settings"></ion-icon>
+                <ion-icon (click)="openSetting()" color="dark" class="ButtonRight" name="md-settings"></ion-icon>
               </ion-col>
             </ion-row>
       </ion-grid>
@@ -17,7 +17,7 @@
 <ion-content class="backgroundColor">
   <img  class="pictCover" src="assets/imgs/bukalapakCover.jpg" />
   <div class="mainProfile">
-    <ion-icon color="dark" class="editIcon" name="md-create"></ion-icon>
+    <ion-icon (click)="openProfileEdit()" color="dark" class="editIcon" name="md-create"></ion-icon>
     <img  class="pictProfile" src="assets/imgs/alamanda.jpg" />
     <div class="textProfile" text-center>
       <span class="name">Alamanda Shantika</span>

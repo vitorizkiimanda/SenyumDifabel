@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { JobDetailPage } from '../job-detail/job-detail';
 
 @Component({
   selector: 'page-jobs',
@@ -41,6 +42,10 @@ export class JobsPage {
       });
       toast.present();
     }
+  }
+
+  openJobDetail(){
+    this.navCtrl.push(JobDetailPage);
   }
 
 }

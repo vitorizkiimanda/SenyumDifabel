@@ -19,6 +19,12 @@ import { RegisterPage } from '../pages/register/register';
 import { NotificationPage } from '../pages/notification/notification';
 import { PostPage } from '../pages/post/post';
 import { Autosize } from '../directives/autosize/autosize';
+import { MessagePersonalPage } from '../pages/message-personal/message-personal';
+import { MessageGroupPage } from '../pages/message-group/message-group';
+import { CreateGroupPage } from '../pages/create-group/create-group';
+import { JobDetailPage } from '../pages/job-detail/job-detail';
+import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
+import { SettingPage } from '../pages/setting/setting';
 
 @NgModule({
   declarations: [
@@ -34,6 +40,15 @@ import { Autosize } from '../directives/autosize/autosize';
     RegisterPage,
     NotificationPage,
     PostPage,
+    ContactPage,
+    MessagePersonalPage,
+    MessageGroupPage,
+    CreateGroupPage,
+    JobDetailPage,
+    ProfileEditPage,
+    SettingPage,
+    LoginPage,
+    RegisterPage,
     TabsPage,
     
     Autosize
@@ -56,6 +71,15 @@ import { Autosize } from '../directives/autosize/autosize';
     RegisterPage,
     NotificationPage,
     PostPage,
+    ContactPage,
+    MessagePersonalPage,
+    MessageGroupPage,
+    CreateGroupPage,
+    JobDetailPage,
+    ProfileEditPage,
+    SettingPage,
+    LoginPage,
+    RegisterPage,
     TabsPage
   ],
   providers: [
