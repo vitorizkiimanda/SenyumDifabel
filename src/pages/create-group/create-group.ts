@@ -7,11 +7,18 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class CreateGroupPage {
 
+  groupName:any;
+  count:number = 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateGroupPage');
+  }
+
+  counter(data:any){
+    this.count = data.length;
   }
 
 }

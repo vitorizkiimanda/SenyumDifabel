@@ -57,7 +57,7 @@ export class MessagePersonalPage {
       console.log(this.message);
     }
     else if(keyCode != 13 && (regex.test(this.message) == false)){
-
+      
     }
     else{
       this.message=null;
