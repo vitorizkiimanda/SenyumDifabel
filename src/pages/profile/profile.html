@@ -54,7 +54,7 @@
       <button ion-button block color="senyumDifabel" class="buttonCustom"><span class="buttonWord">Generate Your CV</span></button>
     </div>
 
-    <super-tabs  id="mainTabs" selectedTabIndex="0" toolbarColor="senyumDifabel" toolbarBackground="white" indicatorColor="senyumDifabel" (tabSelect)="onTabSelect($event)">
+    <super-tabs  class="tabProfile" id="mainTabs" selectedTabIndex="0" toolbarColor="senyumDifabel" toolbarBackground="white" indicatorColor="senyumDifabel" (tabSelect)="onTabSelect($event)">
         <super-tab tabsHideOnSubPages="true" [root]="tab1Root" title="Experience" ></super-tab>
         <super-tab tabsHideOnSubPages="true" [root]="tab2Root" title="Education" ></super-tab>
         <super-tab tabsHideOnSubPages="true" [root]="tab3Root" title="Skill" ></super-tab>
