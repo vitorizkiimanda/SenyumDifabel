@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
   selector: 'page-profile-edit',
@@ -15,11 +16,27 @@ export class ProfileEditPage {
   experience:any="lorem ipsum dolor sir amet lorem ipsum dolor sir amet lorem ipsum dolor sir amet lorem ipsum dolor sir amet lorem ipsum dolor sir amet lorem ipsum dolor sir amet"
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private superTabsCtrl: SuperTabsController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfileEditPage');
+  ionViewWillEnter() {
+    this.hideToolbar();
+  }
+
+  ionViewWillLeave(){
+    this.showToolbar();
+  }
+
+  showToolbar() {
+    this.superTabsCtrl.showToolbar(true);
+  }
+
+
+  hideToolbar() {
+    this.superTabsCtrl.showToolbar(false);
   }
 
 }

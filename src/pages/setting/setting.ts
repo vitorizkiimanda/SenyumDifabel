@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
   selector: 'page-setting',
@@ -7,11 +8,27 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class SettingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private superTabsCtrl: SuperTabsController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingPage');
+  ionViewWillEnter() {
+    this.hideToolbar();
+  }
+
+  ionViewWillLeave(){
+    this.showToolbar();
+  }
+
+  showToolbar() {
+    this.superTabsCtrl.showToolbar(true);
+  }
+
+
+  hideToolbar() {
+    this.superTabsCtrl.showToolbar(false);
   }
 
 }

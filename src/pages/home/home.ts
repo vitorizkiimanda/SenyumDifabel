@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { NotificationPage } from '../notification/notification';
 import { PostPage } from '../post/post';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
   selector: 'page-home',
@@ -9,8 +10,18 @@ import { PostPage } from '../post/post';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    private superTabsCtrl: SuperTabsController) {
 
+  }
+  
+  IonViewDidLoad(){
+    this.showToolbar();
+  }
+
+  showToolbar() {
+    this.superTabsCtrl.showToolbar(true);
   }
 
   openNotification(){

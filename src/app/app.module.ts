@@ -25,6 +25,7 @@ import { CreateGroupPage } from '../pages/create-group/create-group';
 import { JobDetailPage } from '../pages/job-detail/job-detail';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { SettingPage } from '../pages/setting/setting';
+import { SuperTabsModule } from 'ionic2-super-tabs';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { SettingPage } from '../pages/setting/setting';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    SuperTabsModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

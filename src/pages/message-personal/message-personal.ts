@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, Content  } from 'ionic-angular';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
   selector: 'page-message-personal',
@@ -17,6 +18,7 @@ export class MessagePersonalPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    private superTabsCtrl: SuperTabsController
     // public data: Data,
     // public authHttp: AuthHttp,
     // public http: Http
@@ -35,8 +37,24 @@ export class MessagePersonalPage {
     console.log('ionViewDidLoad ChatDetailPage');
 
     // this.scrollToBottom();
+    this.hideToolbar();
 
   }
+
+
+  ionViewWillLeave(){
+    this.showToolbar();
+  }
+
+  showToolbar() {
+    this.superTabsCtrl.showToolbar(true);
+  }
+
+
+  hideToolbar() {
+    this.superTabsCtrl.showToolbar(false);
+  }
+
 
   scrollToBottom() {
     setTimeout(() => {

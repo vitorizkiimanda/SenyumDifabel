@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
   selector: 'page-job-detail',
@@ -12,7 +13,26 @@ export class JobDetailPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    private superTabsCtrl: SuperTabsController) {
+  }
+
+
+  ionViewWillEnter() {
+    this.hideToolbar();
+  }
+
+  ionViewWillLeave(){
+    this.showToolbar();
+  }
+
+  showToolbar() {
+    this.superTabsCtrl.showToolbar(true);
+  }
+
+
+  hideToolbar() {
+    this.superTabsCtrl.showToolbar(false);
   }
 
   ionViewDidLoad() {

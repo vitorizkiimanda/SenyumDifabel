@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
   selector: 'page-contact',
@@ -7,11 +8,27 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ContactPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private superTabsCtrl: SuperTabsController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ContactPage');
+  ionViewWillEnter() {
+    this.hideToolbar();
+  }
+
+  ionViewWillLeave(){
+    this.showToolbar();
+  }
+
+  showToolbar() {
+    this.superTabsCtrl.showToolbar(true);
+  }
+
+
+  hideToolbar() {
+    this.superTabsCtrl.showToolbar(false);
   }
 
 }
