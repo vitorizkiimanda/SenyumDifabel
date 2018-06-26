@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { JobApplyPage } from '../job-apply/job-apply';
 
 @Component({
   selector: 'page-job-detail',
@@ -54,6 +55,10 @@ export class JobDetailPage {
       });
       toast.present();
     }
+  }
+
+  apply(){
+    this.navCtrl.push(JobApplyPage);
   }
 
 }

@@ -26,6 +26,7 @@ import { JobDetailPage } from '../pages/job-detail/job-detail';
 import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { SettingPage } from '../pages/setting/setting';
 import { SuperTabsModule } from 'ionic2-super-tabs';
+import { JobApplyPage } from '../pages/job-apply/job-apply';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
     HomePage,
     MessagingPage,
     JobsPage,
+    JobApplyPage,
     LoginPage,
     OnboardingPage,
     ProfilePage,
@@ -67,6 +69,7 @@ import { SuperTabsModule } from 'ionic2-super-tabs';
     HomePage,
     MessagingPage,
     JobsPage,
+    JobApplyPage,
     LoginPage,
     OnboardingPage,
     ProfilePage,
