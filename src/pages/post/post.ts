@@ -17,11 +17,14 @@ export class PostPage {
   ionViewWillEnter() {
     console.log('ionViewDidLoad PostPage');
 
+    this.superTabsCtrl.enableTabsSwipe(false);
+
     this.hideToolbar();
   }
 
   ionViewWillLeave(){
     this.superTabsCtrl.showToolbar(true);
+    this.superTabsCtrl.enableTabsSwipe(true);
   }
 
   showToolbar() {

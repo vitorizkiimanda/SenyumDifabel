@@ -18,20 +18,13 @@ export class CreateGroupPage {
   }
 
   ionViewWillEnter() {
-    this.hideToolbar();
+    this.superTabsCtrl.enableTabsSwipe(false);
+    this.superTabsCtrl.showToolbar(false);
   }
 
   ionViewWillLeave(){
-    this.showToolbar();
-  }
-
-  showToolbar() {
     this.superTabsCtrl.showToolbar(true);
-  }
-
-
-  hideToolbar() {
-    this.superTabsCtrl.showToolbar(false);
+    this.superTabsCtrl.enableTabsSwipe(true);
   }
 
   counter(data:any){
