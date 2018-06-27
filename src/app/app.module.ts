@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+import { Camera } from '@ionic-native/camera';
+
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
@@ -27,6 +29,9 @@ import { ProfileEditPage } from '../pages/profile-edit/profile-edit';
 import { SettingPage } from '../pages/setting/setting';
 import { SuperTabsModule } from 'ionic2-super-tabs';
 import { JobApplyPage } from '../pages/job-apply/job-apply';
+import { IonicStorageModule } from '@ionic/storage';
+import { Data } from '../providers/data';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -59,7 +64,9 @@ import { JobApplyPage } from '../pages/job-apply/job-apply';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    SuperTabsModule.forRoot()
+    SuperTabsModule.forRoot(),
+    IonicStorageModule.forRoot(),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -90,6 +97,8 @@ import { JobApplyPage } from '../pages/job-apply/job-apply';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
+    Data,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

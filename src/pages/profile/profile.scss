@@ -31,8 +31,7 @@ page-profile {
         margin: auto;
 
         position: relative;
-        z-index:2000; 
-        left: 3vw;
+        z-index:2000;
     }
 
     .mainProfile{
@@ -119,6 +118,13 @@ page-profile {
 
     .buttonCustom{
         height: 2.5em !important;
+    }
+
+    .buttonAdd{
+        height: 2.5em !important;
+        border: solid 2px #2c384e;
+        position: relative;
+        bottom: 2vw;
     }
 
     .buttonWord{

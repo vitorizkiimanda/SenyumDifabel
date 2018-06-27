@@ -19,8 +19,9 @@
 
 
 <ion-content padding>
-  <ion-icon (click)="changePict()" color="dark" class="editIcon" name="md-camera"></ion-icon>
-  <img  class="pictProfile" src="assets/imgs/alamanda.jpg" />
+  <ion-icon (click)="updatePicture()" color="dark" class="editIcon" name="md-camera"></ion-icon>
+  <img [src]="image" *ngIf="image" class="pictProfile"/>
+  <img src="assets/imgs/alamanda.jpg" *ngIf="!image" class="pictProfile"/>
   <br />
   <div>
     <ion-item>

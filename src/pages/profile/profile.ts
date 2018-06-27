@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SettingPage } from '../setting/setting';
 import { ProfileEditPage } from '../profile-edit/profile-edit';
 import { HomePage } from '../home/home';
@@ -26,7 +26,10 @@ export class ProfilePage {
   tab4Root = AboutPage;
   tab5Root = AboutPage;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -91,6 +94,89 @@ export class ProfilePage {
     this.skill = false;
     this.accomplishment = false;
     this.contact = true;
+  }
+
+  option(data){
+    // let dataJob = data;
+    // let date = data.duedate.substring(8,10)+'-'+ data.duedate.substring(5,7) + '-' + data.duedate.substring(0,4);
+    let prompt = this.alertCtrl.create({
+      title: "UX Researcher",
+      subTitle:"Bukalapak<br>2016-2018",
+      buttons: [
+        {
+          text: 'Delete',
+          handler: data => {
+            // this.deleteJob(dataJob);
+          }
+        },
+        {
+          text: 'Edit',
+          handler: data => {
+            // this.navCtrl.push(EditJobPage, dataJob);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  add() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Choose Field');
+
+    alert.addInput(
+      {
+      type: 'radio',
+      label: 'Experience',
+      value: 'experience',
+      checked: true
+      },
+    );
+
+    alert.addInput(
+      {
+      type: 'radio',
+      label: 'Education',
+      value: 'education'
+      },
+    );
+
+    alert.addInput(
+      {
+      type: 'radio',
+      label: 'Skill',
+      value: 'skill'
+      },
+    );
+
+    alert.addInput(
+      {
+      type: 'radio',
+      label: 'Achivement',
+      value: 'achivement'
+      },
+    );
+
+    alert.addInput(
+      {
+      type: 'radio',
+      label: 'Contact',
+      value: 'contact'
+      },
+    );
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        if(data=="experience") console.log("experience choosen");
+        if(data=="education") console.log("education choosen");
+        if(data=="skill") console.log("skill choosen");
+        if(data=="achivement") console.log("achivement choosen");
+        if(data=="contact") console.log("contact choosen");
+      }
+    });
+    alert.present();
   }
 
 }
