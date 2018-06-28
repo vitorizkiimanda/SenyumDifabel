@@ -33,6 +33,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Data } from '../providers/data';
 import { HttpModule } from '@angular/http';
 import { InterviewPage } from '../pages/interview/interview';
+import { InterviewVideoPage } from '../pages/interview-video/interview-video';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { InterviewPage } from '../pages/interview/interview';
     LoginPage,
     RegisterPage,
     InterviewPage,
+    InterviewVideoPage,
     TabsPage,
     
     Autosize
@@ -95,6 +97,7 @@ import { InterviewPage } from '../pages/interview/interview';
     LoginPage,
     RegisterPage,
     InterviewPage,
+    InterviewVideoPage,
     TabsPage
   ],
   providers: [
