@@ -36,6 +36,7 @@ import { InterviewPage } from '../pages/interview/interview';
 import { InterviewVideoPage } from '../pages/interview-video/interview-video';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { ProfileOtherPage } from '../pages/profile-other/profile-other';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     CreateGroupPage,
     JobDetailPage,
     ProfileEditPage,
+    ProfileOtherPage,
     SettingPage,
     LoginPage,
     RegisterPage,
@@ -95,6 +97,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     CreateGroupPage,
     JobDetailPage,
     ProfileEditPage,
+    ProfileOtherPage,
     SettingPage,
     LoginPage,
     RegisterPage,

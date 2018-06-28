@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { ProfileOtherPage } from '../profile-other/profile-other';
 
 @Component({
   selector: 'page-contact',
@@ -22,6 +23,10 @@ export class ContactPage {
   ionViewWillLeave(){
     this.superTabsCtrl.showToolbar(true);
     this.superTabsCtrl.enableTabsSwipe(true);
+  }
+
+  openProfile(){
+    this.navCtrl.push(ProfileOtherPage);
   }
 
 }
