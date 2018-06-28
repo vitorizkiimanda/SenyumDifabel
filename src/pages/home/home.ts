@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { NotificationPage } from '../notification/notification';
 import { PostPage } from '../post/post';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { Data } from '../../providers/data';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'page-home',
@@ -18,7 +20,12 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    private superTabsCtrl: SuperTabsController) {
+    private superTabsCtrl: SuperTabsController,
+    private data : Data,
+    public navParams: NavParams,
+    public loadCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public http: Http) {
   }
 
   ionViewWillEnter() {

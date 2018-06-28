@@ -32,6 +32,7 @@ import { JobApplyPage } from '../pages/job-apply/job-apply';
 import { IonicStorageModule } from '@ionic/storage';
 import { Data } from '../providers/data';
 import { HttpModule } from '@angular/http';
+import { InterviewPage } from '../pages/interview/interview';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { HttpModule } from '@angular/http';
     SettingPage,
     LoginPage,
     RegisterPage,
+    InterviewPage,
     TabsPage,
     
     Autosize
@@ -92,6 +94,7 @@ import { HttpModule } from '@angular/http';
     SettingPage,
     LoginPage,
     RegisterPage,
+    InterviewPage,
     TabsPage
   ],
   providers: [

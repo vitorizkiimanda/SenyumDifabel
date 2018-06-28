@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
+import { Data } from '../../providers/data';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'page-login',
@@ -22,6 +24,10 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController, 
     public formBuilder: FormBuilder,
+    private data : Data,
+    public loadCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public http: Http
     ) {
     this.authForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")])],

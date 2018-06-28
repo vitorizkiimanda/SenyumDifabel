@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validator, Validators, AbstractControl } from '@angular/forms';
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
 import { TabsPage } from '../tabs/tabs';
+import { Data } from '../../providers/data';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'page-register',
@@ -24,7 +26,13 @@ export class RegisterPage {
   status: string;
   mismatch: boolean = false;
 
-  constructor(public navCtrl: NavController, public formBuilder: FormBuilder) {
+  constructor(
+    public navCtrl: NavController, 
+    public formBuilder: FormBuilder,
+    private data : Data,
+    public loadCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public http: Http) {
     this.registerForm = formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
       email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")])],
