@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { DomSanitizer } from '@angular/platform-browser';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 @Component({
   selector: 'page-interview-video',
@@ -10,16 +11,29 @@ import { SuperTabsController } from 'ionic2-super-tabs';
 export class InterviewVideoPage {
 
   url:any;
+  loading: any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     private sanitizer: DomSanitizer,
+    public loadingCtrl: LoadingController,
+    private youtube: YoutubeVideoPlayer,
     private superTabsCtrl: SuperTabsController) {
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/2uFsk4UEfYU')
+
   }
 
   ionViewWillEnter() {
+    
+    this.url = 'https://www.youtube.com/embed/2uFsk4UEfYU';
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
+
+    this.loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+    });
+
+    this.loading.present();
+
     this.superTabsCtrl.enableTabsSwipe(false);
     this.superTabsCtrl.showToolbar(false);
   }
@@ -28,5 +42,9 @@ export class InterviewVideoPage {
     this.superTabsCtrl.showToolbar(true);
     this.superTabsCtrl.enableTabsSwipe(true);
   }
+
+  handleIFrameLoadEvent(): void {
+    this.loading.dismiss();
+}
 
 }

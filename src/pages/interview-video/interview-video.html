@@ -8,14 +8,14 @@
 
 
 <ion-content>
-  <iframe
-      width="100%"
-      height="auto"
-      frameborder="0"
-      webkitallowfullscreen
-      mozallowfullscreen
-      allowfullscreen
-      src="https://www.youtube.com/embed/2uFsk4UEfYU">
+
+  <iframe 
+    width="100%"
+    height="auto"
+    [src]="url ? url : null"
+    (load)="url ? handleIFrameLoadEvent() : null"
+    frameborder="0"
+    allowfullscreen>
   </iframe>
   
 </ion-content>

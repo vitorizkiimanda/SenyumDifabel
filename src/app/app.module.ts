@@ -34,6 +34,7 @@ import { Data } from '../providers/data';
 import { HttpModule } from '@angular/http';
 import { InterviewPage } from '../pages/interview/interview';
 import { InterviewVideoPage } from '../pages/interview-video/interview-video';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 @NgModule({
   declarations: [
@@ -104,6 +105,7 @@ import { InterviewVideoPage } from '../pages/interview-video/interview-video';
     StatusBar,
     SplashScreen,
     Camera,
+    YoutubeVideoPlayer,
     Data,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
