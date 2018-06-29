@@ -55,6 +55,8 @@ export class LoginPage {
     else {
         console.log("success!")
         console.log(this.authForm.value);
+        this.data.logout(); //cleaning local storage
+        this.data.login(this.authForm.value,"user");//save to local
         this.navCtrl.setRoot(TabsPage);
     }
   }
