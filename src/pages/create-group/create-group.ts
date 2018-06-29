@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { CreateGroupAddMemberPage } from '../create-group-add-member/create-group-add-member';
 
 @Component({
   selector: 'page-create-group',
@@ -14,6 +15,7 @@ export class CreateGroupPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     private superTabsCtrl: SuperTabsController) {
   }
 
@@ -29,6 +31,10 @@ export class CreateGroupPage {
 
   counter(data:any){
     this.count = data.length;
+  }
+
+  addMember() {
+    this.navCtrl.push(CreateGroupAddMemberPage);
   }
 
 }

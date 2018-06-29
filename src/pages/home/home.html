@@ -14,14 +14,12 @@
 </ion-header>
 
 <ion-content class="backgroundColor">
-
+  <ion-fab *ngIf="!statusSearch" right bottom>
+    <button (click)="openNewPost()" ion-fab color="senyumDifabel">
+      <ion-icon name="ios-create-outline"></ion-icon>
+    </button>
+  </ion-fab>
   <div *ngIf="!statusSearch">
-    <ion-fab right bottom>
-      <button (click)="openNewPost()" ion-fab color="senyumDifabel">
-        <ion-icon name="ios-create-outline"></ion-icon>
-      </button>
-    </ion-fab>
-
     <div class="homeCard">
       <div class="cardHeader">
         <ion-grid no-padding>          

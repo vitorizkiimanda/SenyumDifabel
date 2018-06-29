@@ -37,6 +37,7 @@ import { InterviewVideoPage } from '../pages/interview-video/interview-video';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { ProfileOtherPage } from '../pages/profile-other/profile-other';
+import { CreateGroupAddMemberPage } from '../pages/create-group-add-member/create-group-add-member';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ProfileOtherPage } from '../pages/profile-other/profile-other';
     MessagePersonalPage,
     MessageGroupPage,
     CreateGroupPage,
+    CreateGroupAddMemberPage,
     JobDetailPage,
     ProfileEditPage,
     ProfileOtherPage,
@@ -95,6 +97,7 @@ import { ProfileOtherPage } from '../pages/profile-other/profile-other';
     MessagePersonalPage,
     MessageGroupPage,
     CreateGroupPage,
+    CreateGroupAddMemberPage,
     JobDetailPage,
     ProfileEditPage,
     ProfileOtherPage,

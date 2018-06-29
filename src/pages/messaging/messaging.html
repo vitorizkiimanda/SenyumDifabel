@@ -16,13 +16,12 @@
 
 <ion-content>
 
+  <ion-fab *ngIf="!statusSearch" right bottom>
+    <button (click)="openContact()" ion-fab color="senyumDifabel">
+      <ion-icon name="ios-text-outline"></ion-icon>
+    </button>
+  </ion-fab>
   <div *ngIf="!statusSearch">
-    <ion-fab right bottom>
-      <button (click)="openContact()" ion-fab color="senyumDifabel">
-        <ion-icon name="ios-text-outline"></ion-icon>
-      </button>
-    </ion-fab>
-
     <div class="messageCard" (click)="openMessage(1)">
       <ion-grid no-padding>          
         <ion-row no-padding>
