@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
-import { ProfileOtherPage } from '../profile-other/profile-other';
-import { MessagePersonalPage } from '../message-personal/message-personal';
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html',
+  selector: 'page-follow',
+  templateUrl: 'follow.html',
 })
-export class ContactPage {
+export class FollowPage {
+
+  choosed:any;
+  statusFollow : boolean = true;
   
   people:any;
   list_search: any;
@@ -17,7 +18,10 @@ export class ContactPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     private superTabsCtrl: SuperTabsController) {
+      let temp = this.navParams.data;
+      this.choosed = temp;
   }
 
   ionViewWillEnter() {
@@ -30,11 +34,32 @@ export class ContactPage {
     this.superTabsCtrl.enableTabsSwipe(true);
   }
 
-  openChat(){
-    this.navCtrl.push(MessagePersonalPage);
+  follow(){
+    this.statusFollow = false;
   }
 
-  
+  unfollow(){
+    let prompt = this.alertCtrl.create({
+      subTitle:"Unfollow NamaOrangnya?",
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            // this.deleteJob(dataJob);
+          }
+        },
+        {
+          text: 'Unfollow',
+          handler: data => {
+            this.statusFollow = true;
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+
   //Fungsi Searchbar
   getItems(ev) {
     this.statusSearch=true;

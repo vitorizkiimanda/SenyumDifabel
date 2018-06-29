@@ -39,6 +39,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { ProfileOtherPage } from '../pages/profile-other/profile-other';
 import { CreateGroupAddMemberPage } from '../pages/create-group-add-member/create-group-add-member';
 import { JobExtendedPage } from '../pages/job-extended/job-extended';
+import { FollowPage } from '../pages/follow/follow';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { JobExtendedPage } from '../pages/job-extended/job-extended';
     RegisterPage,
     InterviewPage,
     InterviewVideoPage,
+    FollowPage,
     TabsPage,
     
     Autosize
@@ -109,6 +111,7 @@ import { JobExtendedPage } from '../pages/job-extended/job-extended';
     RegisterPage,
     InterviewPage,
     InterviewVideoPage,
+    FollowPage,
     TabsPage
   ],
   providers: [

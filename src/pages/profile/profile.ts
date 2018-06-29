@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { MessagingPage } from '../messaging/messaging';
 import { JobsPage } from '../jobs/jobs';
 import { AboutPage } from '../about/about';
+import { FollowPage } from '../follow/follow';
 
 @Component({
   selector: 'page-profile',
@@ -42,6 +43,10 @@ export class ProfilePage {
 
   openProfileEdit(){
     this.navCtrl.push(ProfileEditPage);
+  }
+
+  open(data){
+    this.navCtrl.push(FollowPage, data);
   }
 
 

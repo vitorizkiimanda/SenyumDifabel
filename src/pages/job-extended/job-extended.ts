@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 
 @Component({
@@ -10,10 +11,11 @@ export class JobExtendedPage {
 
   choosed:any;
   bookmark = false;
-
+  
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
+    private superTabsCtrl: SuperTabsController,
     public toastCtrl: ToastController) {
 
     
@@ -23,9 +25,15 @@ export class JobExtendedPage {
     console.log(this.choosed)
 
   }
+  
+  ionViewWillEnter() {
+    this.superTabsCtrl.enableTabsSwipe(false);
+    this.superTabsCtrl.showToolbar(false);
+  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad JobExtendedPage');
+  ionViewWillLeave(){
+    this.superTabsCtrl.showToolbar(true);
+    this.superTabsCtrl.enableTabsSwipe(true);
   }
 
   changeBookmark(){
@@ -51,5 +59,4 @@ export class JobExtendedPage {
       toast.present();
     }
   }
-
 }
