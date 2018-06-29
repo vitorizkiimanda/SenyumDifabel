@@ -16,9 +16,7 @@ export class HomePage {
 
   
   people:any;
-
   list_search: any;
-
   statusSearch : boolean = false;
 
   constructor(

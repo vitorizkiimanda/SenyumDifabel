@@ -9,11 +9,6 @@ import { AboutPage } from '../about/about';
 })
 export class ProfileOtherPage {
 
-  experience = true;
-  education = false;
-  skill = false;
-  accomplishment = false;
-  contact = false;
   statusFollow : boolean = true;
 
   constructor(
