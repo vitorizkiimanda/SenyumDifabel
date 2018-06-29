@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { AboutPage } from '../about/about';
+import { FollowPage } from '../follow/follow';
+import { MessagePersonalPage } from '../message-personal/message-personal';
 
 @Component({
   selector: 'page-profile-other',
@@ -26,6 +28,14 @@ export class ProfileOtherPage {
   ionViewWillLeave(){
     this.superTabsCtrl.showToolbar(true);
     this.superTabsCtrl.enableTabsSwipe(true);
+  }
+  
+  open(data){
+    this.navCtrl.push(FollowPage, data);
+  }
+
+  openMessage(){
+    this.navCtrl.push(MessagePersonalPage);
   }
 
   follow(){
