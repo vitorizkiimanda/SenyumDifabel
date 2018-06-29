@@ -5,6 +5,8 @@ import { PostPage } from '../post/post';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { Data } from '../../providers/data';
 import { Http } from '@angular/http';
+import { ProfileOtherPage } from '../profile-other/profile-other';
+import { JobDetailPage } from '../job-detail/job-detail';
 
 @Component({
   selector: 'page-home',
@@ -16,7 +18,8 @@ export class HomePage {
   people:any;
 
   list_search: any;
-  search = false;
+
+  statusSearch : boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -28,11 +31,6 @@ export class HomePage {
     public http: Http) {
   }
 
-  ionViewWillEnter() {
-    this.superTabsCtrl.enableTabsSwipe(true);
-    this.superTabsCtrl.showToolbar(true);
-  }
-
   openNotification(){
     this.navCtrl.push(NotificationPage);
   }
@@ -41,9 +39,13 @@ export class HomePage {
     this.navCtrl.push(PostPage);
   }
 
+  openProfile(){
+    this.navCtrl.push(ProfileOtherPage);
+  }
+
   //Fungsi Searchbar
   getItems(ev) {
-    this.search=true;
+    this.statusSearch=true;
 
     // Reset items back to all of the items
     this.list_search = this.people;
@@ -61,17 +63,17 @@ export class HomePage {
       // })
 
 
-      this.list_search = this.list_search.filter((data) => {
-        return ((data.nama_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1) || (data.oleh_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1));
-      })
+      // this.list_search = this.list_search.filter((data) => {
+      //   return ((data.nama_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1) || (data.oleh_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1));
+      // })
     }
     else {
-      this.search=false;
+      this.statusSearch=false;
       // this.getInvitation();
     }
 
     console.log(this.list_search);
-    console.log("search="+this.search);
+    console.log("search="+this.statusSearch);
   }
   //Fungsi Searchbar^^^^^
 

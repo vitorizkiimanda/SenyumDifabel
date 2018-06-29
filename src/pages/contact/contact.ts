@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { ProfileOtherPage } from '../profile-other/profile-other';
+import { MessagePersonalPage } from '../message-personal/message-personal';
 
 @Component({
   selector: 'page-contact',
@@ -25,8 +26,8 @@ export class ContactPage {
     this.superTabsCtrl.enableTabsSwipe(true);
   }
 
-  openProfile(){
-    this.navCtrl.push(ProfileOtherPage);
+  openChat(){
+    this.navCtrl.push(MessagePersonalPage);
   }
 
 }

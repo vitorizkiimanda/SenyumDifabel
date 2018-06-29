@@ -6,6 +6,7 @@ import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { Data } from '../../providers/data';
 import { Http } from '@angular/http';
+import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
   selector: 'page-login',
@@ -27,7 +28,8 @@ export class LoginPage {
     private data : Data,
     public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
-    public http: Http
+    public http: Http,
+    private superTabsCtrl: SuperTabsController
     ) {
     this.authForm = formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")])],
@@ -37,6 +39,11 @@ export class LoginPage {
 
   ionViewWillEnter(){
     this.status = "password";
+  }
+
+  ionViewWillLeave() {
+    this.superTabsCtrl.enableTabsSwipe(true);
+    this.superTabsCtrl.showToolbar(true);
   }
 
   login(){
