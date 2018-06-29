@@ -27,21 +27,21 @@
 <div class="detailProfile">
   <ion-grid no-padding>          
     <ion-row no-padding text-center>
-      <ion-col (click)="open('follower')" col-4 no-padding class="contentHeader">
+      <ion-col (click)="open('follower')" col-6 no-padding class="contentHeader">
         <span class="numberHeader">2980</span>
         <br />
         <span class="textHeader">Followers</span>            
       </ion-col>
-      <ion-col (click)="open('following')" col-4 no-padding class="contentHeader contentCenter">
+      <ion-col (click)="open('following')" col-6 no-padding class="contentHeader contentCenter">
         <span class="numberHeader">387</span>
         <br />
         <span class="textHeader">Following</span>            
       </ion-col>
-      <ion-col (click)="open('company')" col-4 no-padding class="contentHeader">
+      <!-- <ion-col (click)="open('company')" col-4 no-padding class="contentHeader">
         <span class="numberHeader">2</span>
         <br />
         <span class="textHeader">Company</span>            
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
   <div *ngIf="statusFollow" text-center class="buttonDiv">
@@ -74,8 +74,6 @@
   <div class="tabsProfileContent">
     <div>
       <div text-center>
-        <hr >
-        <hr >
         <h4>Experience</h4>
         <hr >
       </div>
@@ -137,8 +135,6 @@
   <div class="tabsProfileContent">
     <div>
       <div text-center>
-        <hr >
-        <hr >
         <h4>Education</h4>
         <hr >
       </div>
@@ -200,8 +196,6 @@
   <div class="tabsProfileContent">
     <div>
       <div text-center>
-        <hr >
-        <hr >
         <h4>Skill</h4>
         <hr >
       </div>
@@ -231,8 +225,6 @@
   <div class="tabsProfileContent">
     <div>
       <div text-center>
-        <hr >
-        <hr >
         <h4>Achivement</h4>
         <hr >
       </div>
@@ -262,8 +254,6 @@
   <div class="tabsProfileContent">
     <div>
       <div text-center>
-        <hr >
-        <hr >
         <h4>Contact</h4>
         <hr >
       </div>
