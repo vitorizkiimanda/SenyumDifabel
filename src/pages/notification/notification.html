@@ -13,13 +13,13 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>invited</b> you to interview</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>invited</b> you to interview</span>
             <br />
             <img  class="word descriptionImage" src="assets/imgs/bukalapak.png" /><span class="description"> Vice President Interview</span>
           </ion-col>
@@ -31,16 +31,20 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>following</b> you</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>following</b> you</span>
             <br />
-            <button class="buttonNotification" class="buttonNotification" ion-button color="dark" small outline>
-              <span class="buttonWord">Follow Back</span>
+            <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small>
+              <span class="buttonWord">Follow</span>
+            </button>
+            
+            <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small outline>
+              <span class="buttonWord">Following</span>
             </button>  
           </ion-col>
         </ion-row>
@@ -51,7 +55,7 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
@@ -71,17 +75,21 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>following</b> you</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>following</b> you</span>
             <br />
-            <button class="buttonNotification" ion-button color="dark" small outline>
-              <span class="buttonWord">Follow Back</span>
-            </button>  
+            <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small>
+              <span class="buttonWord">Follow</span>
+            </button>
+            
+            <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small outline>
+              <span class="buttonWord">Following</span>
+            </button>    
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -91,13 +99,13 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>invited</b> you to interview</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>invited</b> you to interview</span>
             <br />
             <img  class="word descriptionImage" src="assets/imgs/bukalapak.png" /><span class="description"> Vice President Interview</span>
           </ion-col>
@@ -109,16 +117,20 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>following</b> you</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>following</b> you</span>
             <br />
-            <button class="buttonNotification" ion-button color="dark" small outline>
-              <span class="buttonWord">Follow Back</span>
+            <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small>
+              <span class="buttonWord">Follow</span>
+            </button>
+            
+            <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small outline>
+              <span class="buttonWord">Following</span>
             </button>  
           </ion-col>
         </ion-row>
@@ -129,7 +141,7 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
@@ -149,16 +161,20 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>following</b> you</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>following</b> you</span>
             <br />
-            <button class="buttonNotification" ion-button color="dark" small outline>
-              <span class="buttonWord">Follow Back</span>
+            <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small>
+              <span class="buttonWord">Follow</span>
+            </button>
+            
+            <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small outline>
+              <span class="buttonWord">Following</span>
             </button>  
           </ion-col>
         </ion-row>
@@ -169,13 +185,13 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>invited</b> you to interview</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>invited</b> you to interview</span>
             <br />
             <img  class="word descriptionImage" src="assets/imgs/bukalapak.png" /><span class="description"> Vice President Interview</span>
           </ion-col>
@@ -187,16 +203,20 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>following</b> you</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>following</b> you</span>
             <br />
-            <button class="buttonNotification" ion-button color="dark" small outline>
-              <span class="buttonWord">Follow Back</span>
+            <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small>
+              <span class="buttonWord">Follow</span>
+            </button>
+            
+            <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small outline>
+              <span class="buttonWord">Following</span>
             </button>  
           </ion-col>
         </ion-row>
@@ -207,7 +227,7 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
@@ -227,16 +247,20 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding text-center>
-            <div>
+            <div (click)="openProfile()">
               <img  class="pict" src="assets/imgs/alamanda.jpg" />
             </div>
             <span class="time">20h</span>                  
           </ion-col>
           <ion-col col-10 no-padding class="words">
-            <span class="word">Annisa Ramadhani <b>following</b> you</span>
+            <span class="word"><span (click)="openProfile()">Annisa Ramadhani</span> <b>following</b> you</span>
             <br />
-            <button class="buttonNotification" ion-button color="dark" small outline>
-              <span class="buttonWord">Follow Back</span>
+            <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small>
+              <span class="buttonWord">Follow</span>
+            </button>
+            
+            <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" class="buttonNotification" ion-button color="senyumDifabel" small outline>
+              <span class="buttonWord">Following</span>
             </button>  
           </ion-col>
         </ion-row>
