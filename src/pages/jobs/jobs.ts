@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { JobDetailPage } from '../job-detail/job-detail';
 import { InterviewPage } from '../interview/interview';
+import { JobExtendedPage } from '../job-extended/job-extended';
 
 @Component({
   selector: 'page-jobs',
@@ -54,6 +55,10 @@ export class JobsPage {
 
   openInterview(){
     this.navCtrl.push(InterviewPage);
+  }
+
+  open(data){
+    this.navCtrl.push(JobExtendedPage, data);
   }
 
 

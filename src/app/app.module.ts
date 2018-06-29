@@ -38,6 +38,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { ProfileOtherPage } from '../pages/profile-other/profile-other';
 import { CreateGroupAddMemberPage } from '../pages/create-group-add-member/create-group-add-member';
+import { JobExtendedPage } from '../pages/job-extended/job-extended';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { CreateGroupAddMemberPage } from '../pages/create-group-add-member/creat
     CreateGroupPage,
     CreateGroupAddMemberPage,
     JobDetailPage,
+    JobExtendedPage,
     ProfileEditPage,
     ProfileOtherPage,
     SettingPage,
@@ -99,6 +101,7 @@ import { CreateGroupAddMemberPage } from '../pages/create-group-add-member/creat
     CreateGroupPage,
     CreateGroupAddMemberPage,
     JobDetailPage,
+    JobExtendedPage,
     ProfileEditPage,
     ProfileOtherPage,
     SettingPage,

@@ -19,17 +19,17 @@
   <div *ngIf="!statusSearch">
     <ion-grid no-padding class="headerContent">          
       <ion-row no-padding text-center>
-        <ion-col col-4 no-padding class="contentHeader">
+        <ion-col (click)="open('saved')" col-4 no-padding class="contentHeader">
           <span class="numberHeader">2</span>
           <br />
           <span class="textHeader">Saved Jobs</span>            
         </ion-col>
-        <ion-col col-4 no-padding class="contentHeader contentCenter">
+        <ion-col (click)="open('applied')" col-4 no-padding class="contentHeader contentCenter">
           <span class="numberHeader">1</span>
           <br />
           <span class="textHeader">Applied Jobs</span>            
         </ion-col>
-        <ion-col col-4 no-padding class="contentHeader">
+        <ion-col (click)="open('attended')" col-4 no-padding class="contentHeader">
           <span class="numberHeader">1</span>
           <br />
           <span class="textHeader">Interview Attended</span>            
