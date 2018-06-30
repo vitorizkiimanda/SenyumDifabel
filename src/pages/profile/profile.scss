@@ -163,6 +163,10 @@ page-profile {
 
     .wordContent{
         padding-left: 1vw;
+        
+        text-overflow: ellipsis; 
+        overflow: hidden; 
+        white-space: nowrap;
     }
 
     .headContent{

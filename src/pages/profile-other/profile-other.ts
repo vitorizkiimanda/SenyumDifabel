@@ -63,4 +63,21 @@ export class ProfileOtherPage {
     prompt.present();
   }
 
+  seeDetail(){
+    console.log("awwww")
+    let detail = this.alertCtrl.create({
+      title: "UX Researcher",
+      subTitle:"Bukalapak<br>2016-2018",
+      buttons: [
+        {
+          text: 'Close',
+          handler: data => {
+            // this.deleteJob(dataJob);
+          }
+        }
+      ]
+    });
+    detail.present();
+  }
+
 }

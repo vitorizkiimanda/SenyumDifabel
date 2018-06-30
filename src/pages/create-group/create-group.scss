@@ -92,7 +92,8 @@ page-create-group {
         color: rgba(128, 128, 128, 0.8);
     }
 
-    .listName{text-overflow: ellipsis; 
+    .listName{
+        text-overflow: ellipsis; 
         overflow: hidden; 
         white-space: nowrap;
     }
