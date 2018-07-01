@@ -49,6 +49,27 @@ export class ProfilePage {
     this.navCtrl.push(FollowPage, data);
   }
 
+  more(){
+    let prompt = this.alertCtrl.create({
+      subTitle:"kutipan dari postingannya...",
+      buttons: [
+        {
+          text: 'Delete',
+          handler: data => {
+            // this.deleteJob(dataJob);
+          }
+        },
+        {
+          text: 'Edit',
+          handler: data => {
+            // this.navCtrl.push(EditJobPage, dataJob);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
 
   //algo for dynamic tabs
 

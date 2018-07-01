@@ -196,5 +196,80 @@ page-profile {
         text-transform: capitalize;
         font-size: 0.85em;
     }
-    
+
+
+
+
+    //my timeline
+
+    .ButtonRight{
+        color: white;
+        font-size: 2em;
+        position: relative;
+        top: 0.35em;
+    }
+
+    .homeCard{
+        background-color: white;
+        margin-bottom: 2vw;
+        padding : 2vw 4vw;
+    }
+
+    .pictHeader{
+        border-radius: 100%;
+        width: 100vw;
+    }
+
+    .wordHeader{
+        margin-top: 1vw;
+        margin-left: 2vw;
+    }
+
+    .nameHeader{
+        font-size: 1.2em;
+        font-weight: 700;
+        color: #222;
+    }
+
+    .elseHeader{
+        font-size: 1em;
+        color: gray;
+    }
+
+    .wordContent{
+        font-size: 1em;
+        color: #222;
+    }
+
+    .pictContentTimeline{
+        max-width: 90vw;
+    }
+
+    .cardFooter{
+        margin-top: 2vw;
+        font-size: 1em;
+        font-weight: 700;
+        color: gray;
+    }
+
+    .buttonWord{
+        text-transform: capitalize;
+        font-size: 1.2em;
+        font-weight: 700;
+        color: gray;
+    }
+
+    .buttonCustom{
+         height: 2.5em !important;
+    }
+
+    .buttonMore{
+        font-size: 1.5em;
+        color: gray;
+
+        position: absolute;
+        right: -1em;
+
+    }
+
 }
