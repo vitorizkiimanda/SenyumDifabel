@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { CvPage } from '../cv/cv';
 
 
 @Component({
@@ -28,6 +29,10 @@ export class JobApplyPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JobApplyPage');
+  }
+
+  openCV(){
+    this.navCtrl.push(CvPage);
   }
 
 }
