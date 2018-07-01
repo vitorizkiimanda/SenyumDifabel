@@ -5,8 +5,9 @@
         <ion-col col-10 no-padding text-center>
           <ion-searchbar (ionInput)="getItems($event)" placeholder="Search people..."></ion-searchbar>
         </ion-col>
-        <ion-col col-2 text-center no-padding>
-          <ion-icon (click)="openNotification()" color="dark" class="ButtonRight" name="notifications"></ion-icon>
+        <ion-col col-2 (click)="openNotification()" text-center no-padding>
+          <ion-icon color="dark" class="ButtonRight" name="notifications"></ion-icon>
+          <span *ngIf="counter" class="counter">3</span>
         </ion-col>
       </ion-row>
     </ion-grid>

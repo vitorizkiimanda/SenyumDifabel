@@ -36,6 +36,8 @@ export class MessagePersonalPage {
   ionViewWillEnter() {
     this.superTabsCtrl.enableTabsSwipe(false);
     this.superTabsCtrl.showToolbar(false);
+
+    this.scrollToBottom();
   }
 
   ionViewWillLeave(){
@@ -46,7 +48,7 @@ export class MessagePersonalPage {
 
   scrollToBottom() {
     setTimeout(() => {
-        this.content.scrollToBottom(0);
+        this.content.scrollToBottom(200);
     });
   }
 

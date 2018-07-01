@@ -19,6 +19,7 @@ export class HomePage {
   people:any;
   list_search: any;
   statusSearch : boolean = false;
+  counter:any = 1;
 
   constructor(
     public navCtrl: NavController,

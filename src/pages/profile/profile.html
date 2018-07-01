@@ -6,7 +6,7 @@
                 <img src="assets/imgs/logotrans.png" class="pictLogo"/>
               </ion-col>
               <ion-col col-2 text-center no-padding>
-                <ion-icon (click)="openSetting()" color="dark" class="ButtonRight" name="md-settings"></ion-icon>
+                <ion-icon (click)="openSetting()" color="dark" class="ButtonSetting" name="md-settings"></ion-icon>
               </ion-col>
             </ion-row>
       </ion-grid>
@@ -51,7 +51,8 @@
       </ion-row>
     </ion-grid>
     <div text-center class="buttonDiv">
-      <button ion-button block color="senyumDifabel" class="buttonCustom"><span class="buttonWord">Upload Your CV</span></button>
+      <button ion-button block color="senyumDifabel" class="buttonCustom"><span class="buttonWordCV">Upload Your CV</span></button>
+      <button (click)="openCV()" ion-button block color="senyumDifabel" class="buttonCustom" outline><span class="buttonWordCV">Open Your CV</span></button>
     </div>
 
     <super-tabs  class="tabProfile" id="mainTabs" selectedTabIndex="0" toolbarColor="senyumDifabel" toolbarBackground="white" indicatorColor="senyumDifabel" (tabSelect)="onTabSelect($event)">

@@ -41,6 +41,7 @@ import { CreateGroupAddMemberPage } from '../pages/create-group-add-member/creat
 import { JobExtendedPage } from '../pages/job-extended/job-extended';
 import { FollowPage } from '../pages/follow/follow';
 import { CommentPage } from '../pages/comment/comment';
+import { CvPage } from '../pages/cv/cv';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { CommentPage } from '../pages/comment/comment';
     InterviewVideoPage,
     FollowPage,
     CommentPage,
+    CvPage,
     TabsPage,
     
     Autosize
@@ -115,6 +117,7 @@ import { CommentPage } from '../pages/comment/comment';
     InterviewVideoPage,
     FollowPage,
     CommentPage,
+    CvPage,
     TabsPage
   ],
   providers: [

@@ -7,6 +7,7 @@ import { MessagingPage } from '../messaging/messaging';
 import { JobsPage } from '../jobs/jobs';
 import { AboutPage } from '../about/about';
 import { FollowPage } from '../follow/follow';
+import { CvPage } from '../cv/cv';
 
 @Component({
   selector: 'page-profile',
@@ -68,6 +69,10 @@ export class ProfilePage {
       ]
     });
     prompt.present();
+  }
+
+  openCV(){
+    this.navCtrl.push(CvPage);
   }
 
 

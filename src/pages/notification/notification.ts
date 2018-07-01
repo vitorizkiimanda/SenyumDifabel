@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { ProfileOtherPage } from '../profile-other/profile-other';
+import { CommentPage } from '../comment/comment';
 
 
 @Component({
@@ -57,6 +58,10 @@ export class NotificationPage {
       ]
     });
     prompt.present();
+  }
+
+  openPost(){
+    this.navCtrl.push(CommentPage);
   }
 
 }

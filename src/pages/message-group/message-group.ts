@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, Content } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
 
 @Component({
@@ -7,6 +7,8 @@ import { SuperTabsController } from 'ionic2-super-tabs';
   templateUrl: 'message-group.html',
 })
 export class MessageGroupPage {
+
+  @ViewChild(Content) content:Content;
 
   constructor(
     public navCtrl: NavController, 
@@ -17,11 +19,19 @@ export class MessageGroupPage {
   ionViewWillEnter() {
     this.superTabsCtrl.enableTabsSwipe(false);
     this.superTabsCtrl.showToolbar(false);
+
+    this.scrollToBottom();
   }
 
   ionViewWillLeave(){
     this.superTabsCtrl.showToolbar(true);
     this.superTabsCtrl.enableTabsSwipe(true);
+  }
+
+  scrollToBottom() {
+    setTimeout(() => {
+        this.content.scrollToBottom(200);
+    });
   }
 
 
