@@ -40,6 +40,7 @@ import { ProfileOtherPage } from '../pages/profile-other/profile-other';
 import { CreateGroupAddMemberPage } from '../pages/create-group-add-member/create-group-add-member';
 import { JobExtendedPage } from '../pages/job-extended/job-extended';
 import { FollowPage } from '../pages/follow/follow';
+import { CommentPage } from '../pages/comment/comment';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { FollowPage } from '../pages/follow/follow';
     InterviewPage,
     InterviewVideoPage,
     FollowPage,
+    CommentPage,
     TabsPage,
     
     Autosize
@@ -112,6 +114,7 @@ import { FollowPage } from '../pages/follow/follow';
     InterviewPage,
     InterviewVideoPage,
     FollowPage,
+    CommentPage,
     TabsPage
   ],
   providers: [

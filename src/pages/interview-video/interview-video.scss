@@ -32,7 +32,23 @@ page-interview-video {
     }
 
     iframe{
-        height: 90vh;
+        height: 100vh;
         width: 100vw;
+    }
+
+    .caption{
+        position: absolute;
+        top: 0;
+
+        padding: 0.5em;
+        color: white;
+        background-color: rgba(34, 34, 34, 0.5);
+        border-radius: 0px 50px 15px  0px; 
+    }
+
+    .closeButton{
+        position: absolute;
+        top: 0.5em;
+        right: 0.5em;
     }
 }

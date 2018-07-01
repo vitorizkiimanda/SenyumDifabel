@@ -1,5 +1,9 @@
-page-home {
-
+page-comment {
+    
+    .invisibleButton {
+        height:10px;
+        width:60px;
+    }
     .backgroundColor{
         background-color:#d2d3d4; 
     }
@@ -69,12 +73,55 @@ page-home {
          height: 2.5em !important;
     }
 
+    //inputChat
+    .inputText{
+        
+        font-size: 1em;
+    }
 
+    .IconSend{
+        position: absolute;
+        bottom: 3vw;     
 
-    //contact
+        border-radius: 100%;
+        padding: 0.5em;
+        color: white;
+        background-color: #2c384e;
+    }
+
+    .IconSendSize{
+        font-size: 1.5em;
+    }
+
+    .IconCamera{
+        position: absolute;
+        bottom: 3.5vw;     
+
+        color: gray;
+        font-size: 1.5em;
+    }
+
+    .inputArea{
+        padding: 0 2vw;
+
+        position: relative;
+        top: 2vw;
+    }
+
+    .footerBackground{
+        line-height: 1em;
+        background-color: white;
+    }
+
+    #chatMessages{
+        padding-top: 1em;
+        background-color: white;
+    }
+
+    //comment
     .cardContact{
         background-color: white;
-        padding : 2vw 4vw;
+        padding : 1vw 2vw;
     }
     
     .pictHeader{
@@ -83,14 +130,20 @@ page-home {
     }
 
     .wordHeader{
-        margin-top: 2.5vw;
         margin-left: 2vw;
+    }
+
+    .nameHeader{
+        font-size: 1em;
+        color: #222;
+        
+        text-overflow: ellipsis; 
+        overflow: hidden; 
+        white-space: nowrap;
     }
 
     .elseHeader{
         font-size: 1em;
         color: gray;
     }
-
-
 }

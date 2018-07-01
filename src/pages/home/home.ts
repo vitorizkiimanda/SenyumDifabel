@@ -7,6 +7,7 @@ import { Data } from '../../providers/data';
 import { Http } from '@angular/http';
 import { ProfileOtherPage } from '../profile-other/profile-other';
 import { JobDetailPage } from '../job-detail/job-detail';
+import { CommentPage } from '../comment/comment';
 
 @Component({
   selector: 'page-home',
@@ -39,6 +40,10 @@ export class HomePage {
 
   openProfile(){
     this.navCtrl.push(ProfileOtherPage);
+  }
+
+  openComment(){
+    this.navCtrl.push(CommentPage);
   }
 
   //Fungsi Searchbar

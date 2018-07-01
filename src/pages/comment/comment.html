@@ -1,0 +1,114 @@
+<ion-header>
+    <ion-navbar color="senyumDifabel">
+        <ion-title text-center>Comment<button ion-button clear class="invisibleButton"></button></ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content class="backgroundColor">
+    <div class="homeCard">
+      <div class="cardHeader">
+        <ion-grid no-padding>          
+          <ion-row no-padding>
+            <ion-col col-2 no-padding>
+              <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
+              <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
+            </ion-col>
+            <ion-col col-9 no-padding class="wordHeader">
+              <span class="nameHeader">Alamanda Shantika</span>
+              <br />
+              <span class="elseHeader">VP Gojek Indonesia</span>
+              <br />
+              <span class="elseHeader">20h</span>                  
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+      <div class="cardContent">
+        <span class="wordContent">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        <br />
+
+        <!-- pakai slider aja kalau gambar lebih dari satu -->
+        <img  class="pictContent" src="assets/imgs/cardContent.jpg" />
+      </div>
+      <div class="cardFooter">
+        <span>600 likes </span>
+        <span>.</span>
+        <span> 40 comment</span>
+        <hr>
+        <ion-grid no-padding>          
+            <ion-row no-padding>
+              <ion-col col-4 no-padding>
+                <button ion-button color="gray" clear icon-left block class="buttonCustom">
+                  <ion-icon name="md-thumbs-up"></ion-icon>
+                  <span class="buttonWord">&nbsp;Like</span>
+                </button>  
+                <button ion-button color="senyumDifabel" clear icon-left block class="buttonCustom">
+                  <ion-icon name="md-thumbs-up"></ion-icon>
+                  <span class="buttonWord">&nbsp;Like</span>
+                </button>            
+              </ion-col>
+              <ion-col col-4 no-padding>
+                <button ion-button color="gray" clear icon-left block class="buttonCustom">
+                  <ion-icon name="md-text"></ion-icon>
+                  <span class="buttonWord">&nbsp;Comment</span>
+                </button>   
+                <button ion-button color="senyumDifabel" clear icon-left block class="buttonCustom">
+                  <ion-icon name="md-text"></ion-icon>
+                  <span class="buttonWord">&nbsp;Comment</span>
+                </button>         
+              </ion-col>
+              <ion-col col-4 no-padding>
+                <button ion-button color="gray" clear icon-left block class="buttonCustom">
+                  <ion-icon name="md-share"></ion-icon>
+                  <span class="buttonWord">&nbsp;Share</span>
+                </button>    
+                <button ion-button color="senyumDifabel" clear icon-left block class="buttonCustom">
+                  <ion-icon name="md-share"></ion-icon>
+                  <span class="buttonWord">&nbsp;Share</span>
+                </button>                    
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </div>
+    </div>
+
+    <div class="cardContact">
+      <ion-grid no-padding>          
+        <ion-row no-padding (click)="openProfile()">
+          <ion-col col-1 no-padding>
+            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
+            <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
+          </ion-col>
+          <ion-col col-10 no-padding class="wordHeader">
+            <span class="nameHeader">Alamanda Shantika</span>
+            <br />
+            <span class="elseHeader">Commentarrrnya ini mahh ;asdf ;fdas;l fd;lasf ;dasf dsf ds;fld fds ;d;sl df dasf dasf jdasfkljds ;lds a;l fj fds f;ldsf sdfkl dsfj dasfkldas ;fldas; f;dlas f;l</span>                
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12 text-right>
+              <span class="elseHeader">15:38, 2 Juni 2018</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  
+  
+  </ion-content>
+  
+  <ion-footer class="footerBackground" no-padding>
+
+    <ion-row no-padding>
+      <ion-col col-1 no-padding text-center>
+        <span class="IconCamera"><ion-icon name="md-camera"></ion-icon></span>
+      </ion-col>
+      <ion-col col-9 no-padding class="inputArea">
+        <ion-textarea (keypress)="sendChat($event.keyCode)" class="inputText" [(ngModel)]="message" name="message" placeholder="Text message.." type="text" #pesan="ngModel" required autosize></ion-textarea>
+      </ion-col>
+      <ion-col col-1 no-padding text-center>
+        <span class="IconSend"><ion-icon (click)="sendChat(13)" name="md-send" class="IconSendSize"></ion-icon></span>
+      </ion-col>
+    </ion-row>
+      
+      
+  </ion-footer>

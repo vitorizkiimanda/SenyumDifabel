@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
-import { InterviewVideoPage } from '../interview-video/interview-video';
 
 @Component({
-  selector: 'page-interview',
-  templateUrl: 'interview.html',
+  selector: 'page-comment',
+  templateUrl: 'comment.html',
 })
-export class InterviewPage {
+export class CommentPage {
 
   constructor(
     public navCtrl: NavController, 
@@ -23,14 +22,6 @@ export class InterviewPage {
   ionViewWillLeave(){
     this.superTabsCtrl.showToolbar(true);
     this.superTabsCtrl.enableTabsSwipe(true);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad InterviewPage');
-  }
-
-  openVideo(data){
-    this.navCtrl.push(InterviewVideoPage, data);
   }
 
 }
