@@ -65,13 +65,14 @@ export class ProfileEditPage {
   async takePicture(){
     try {
       const options : CameraOptions = {
-        quality: 50, //to reduce img size
+        quality: 20, //to reduce img size
         targetHeight: 600,
         targetWidth: 600,
         destinationType: this.camera.DestinationType.DATA_URL, //to make it base64 image
-        encodingType: this.camera.EncodingType.JPEG,
+        encodingType: this.camera.EncodingType.PNG,
         mediaType:this.camera.MediaType.PICTURE,
-        correctOrientation: true
+        correctOrientation: true,
+        allowEdit: true 
       }
 
       const result =  await this.camera.getPicture(options);
@@ -93,7 +94,8 @@ export class ProfileEditPage {
         destinationType: this.camera.DestinationType.DATA_URL,
         sourceType     : this.camera.PictureSourceType.PHOTOLIBRARY,
         targetWidth: 600,
-        targetHeight: 600
+        targetHeight: 600,
+        allowEdit: true 
     }).then((imageData) => {
       // this.base64Image = imageData;
       // this.uploadFoto();
