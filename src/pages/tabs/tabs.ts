@@ -7,6 +7,7 @@ import { ProfilePage } from '../profile/profile';
 import { MessagingPage } from '../messaging/messaging';
 import { JobsPage } from '../jobs/jobs';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-tabs',
@@ -22,8 +23,10 @@ export class TabsPage {
   tab4Root = ProfilePage;
 
   constructor(
-    private superTabsCtrl: SuperTabsController
+    private superTabsCtrl: SuperTabsController,
+    public navParams: NavParams
   ) {
+    let temp = this.navParams.data;
   }
 
   ngAfterViewInit() {

@@ -70,7 +70,7 @@ export class LoginPage {
         console.log(this.authForm.value);
         this.data.logout(); //cleaning local storage
         this.data.login(this.authForm.value,"user");//save to local
-        window.location.reload();
+        this.navCtrl.setRoot(TabsPage);
     }
   }
 
