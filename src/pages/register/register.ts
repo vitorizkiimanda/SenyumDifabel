@@ -41,7 +41,7 @@ export class RegisterPage {
     public http: Http) {
     this.registerForm = formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32)])],
       confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32)])]
     }, {validator: this.passMismatch('password', 'confirmPassword')});

@@ -9,7 +9,7 @@
           
           <ion-item class="form-input first-input" no-lines>
             <ion-label><ion-icon class="icon-size" ios="ios-mail" md="md-mail"></ion-icon></ion-label>
-            <ion-input class="text-input" formControlName="email" type="text" placeholder="Email" required></ion-input>
+            <ion-input class="text-input" formControlName="email" type="email" placeholder="Email" required></ion-input>
           </ion-item>
   
           <ion-item class="alert" *ngIf="!authForm.controls.email.valid  && (authForm.controls.email.dirty || submitAttempt)">
