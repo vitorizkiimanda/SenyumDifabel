@@ -5,9 +5,8 @@ import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { Data } from '../../providers/data';
+import { Http, Headers } from '@angular/http';
 import { SuperTabsController } from 'ionic2-super-tabs';
-import { Http, Headers , RequestOptions,HttpModule } from "@angular/http";
-import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'page-login',
@@ -51,14 +50,27 @@ export class LoginPage {
     this.submitAttempt = true;
 
     if(!this.authForm.valid){
-      // this.navCtrl.setRoot(RegisterPage);
+      
     }
     else {
+
+        //api
+        // let headers = new Headers({'Authorization':'Basic ' +  btoa(this.authForm.value.email + ':' +this.authForm.value.password) });
+        // this.http.get(this.data.BASE_URL+"login",{ headers: headers }).subscribe(data => {
+        //   let response = data.json();
+        //   console.log(response);
+    
+        // }, err => {     
+        //   console.log("error :",err);
+          
+        // });
+        //^^api
+
         console.log("success!")
         console.log(this.authForm.value);
         this.data.logout(); //cleaning local storage
         this.data.login(this.authForm.value,"user");//save to local
-        this.navCtrl.setRoot(TabsPage);
+        window.location.reload();
     }
   }
 

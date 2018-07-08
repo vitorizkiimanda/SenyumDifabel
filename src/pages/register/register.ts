@@ -72,6 +72,13 @@ export class RegisterPage {
         };
       }
     }
+    // if(this.password != this.confirmPassword)
+    // {
+    //   this.mismatch = true;
+    // }    
+    // else{
+    //   this.mismatch = false;      
+    // }
   }
 
   register(){
@@ -83,30 +90,30 @@ export class RegisterPage {
     else {
 
       
-    this.loading = this.loadingCtrl.create({
-        content: 'Please wait...'
-    });
+      this.loading = this.loadingCtrl.create({
+          content: 'Please wait...'
+      });
 
-    this.loading.present();
+      this.loading.present();
 
-    let input = {
-      user_name: this.registerForm.value.username, 
-      user_email: this.registerForm.value.email,
-      user_password:this.registerForm.value.password
-    };
-    this.http.post(this.data.BASE_URL+"register", input).timeout(5000).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.data.logout(); //cleaning local storage
-      this.data.login(response,"user");//save to local
-      if(response.user_name!="email sudah ada") window.location.reload();
-      else{
-        let alert = this.alertCtrl.create({
-          subTitle: 'Email has been used',      
-          });
-        alert.present();
-      }
-      this.loading.dismiss();
+      let input = {
+        user_name: this.registerForm.value.username, 
+        user_email: this.registerForm.value.email,
+        user_password:this.registerForm.value.password
+      };
+      this.http.post(this.data.BASE_URL+"register", input).timeout(5000).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.data.logout(); //cleaning local storage
+        this.data.login(response,"user");//save to local
+        if(response.user_name!="email sudah ada") window.location.reload();
+        else{
+          let alert = this.alertCtrl.create({
+            subTitle: 'Email has been used',      
+            });
+          alert.present();
+        }
+        this.loading.dismiss();
 
       }, err => {     
         this.loading.dismiss();
@@ -165,3 +172,4 @@ export class RegisterPage {
   }
 
 }
+
