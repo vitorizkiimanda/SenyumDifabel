@@ -4,15 +4,19 @@ import { FormBuilder, FormGroup, Validator, Validators, AbstractControl } from '
 import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
 import { ProfilePage } from '../profile/profile';
-import { TabsPage } from '../tabs/tabs';
 import { Data } from '../../providers/data';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/timeout';
+import { SuperTabsController } from 'ionic2-super-tabs';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
 })
 export class RegisterPage {
+
+  loading: any;
 
   submitAttempt: boolean = false;
   registerForm: FormGroup;
@@ -29,8 +33,10 @@ export class RegisterPage {
   constructor(
     public navCtrl: NavController, 
     public formBuilder: FormBuilder,
+    public loadingCtrl: LoadingController,
     private data : Data,
     public loadCtrl: LoadingController,
+    private superTabsCtrl: SuperTabsController,
     public alertCtrl: AlertController,
     public http: Http) {
     this.registerForm = formBuilder.group({
@@ -43,6 +49,11 @@ export class RegisterPage {
 
   ionViewWillEnter(){
     this.status = "password";
+  }
+
+  ionViewWillLeave(){
+    this.superTabsCtrl.showToolbar(true);
+    this.superTabsCtrl.enableTabsSwipe(true);
   }
 
   confirmPass(){
@@ -61,13 +72,6 @@ export class RegisterPage {
         };
       }
     }
-    // if(this.password != this.confirmPassword)
-    // {
-    //   this.mismatch = true;
-    // }    
-    // else{
-    //   this.mismatch = false;      
-    // }
   }
 
   register(){
@@ -77,10 +81,55 @@ export class RegisterPage {
       // this.navCtrl.setRoot(RegisterPage);
     }
     else {
-        console.log("success!")
-        console.log(this.registerForm.value);
-        this.navCtrl.setRoot(TabsPage);
+
+      
+    this.loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+    });
+
+    this.loading.present();
+
+    let input = {
+      user_name: this.registerForm.value.username, 
+      user_email: this.registerForm.value.email,
+      user_password:this.registerForm.value.password
+    };
+    this.http.post(this.data.BASE_URL+"register", input).timeout(5000).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.data.logout(); //cleaning local storage
+      this.data.login(response,"user");//save to local
+      if(response.user_name!="email sudah ada") window.location.reload();
+      else{
+        let alert = this.alertCtrl.create({
+          subTitle: 'Email has been used',      
+          });
+        alert.present();
+      }
+      this.loading.dismiss();
+
+      }, err => {     
+        this.loading.dismiss();
+        this.runTimeError();
+        
+      });
     }
+  }
+
+  runTimeError(){
+    let alert = this.alertCtrl.create({
+      title: 'Failed',
+      subTitle: 'Please try again',      
+      buttons: [
+        {
+          text: 'Refresh',
+          handler: data => {
+            this.register();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   showPassword(){
@@ -116,4 +165,3 @@ export class RegisterPage {
   }
 
 }
-
