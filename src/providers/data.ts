@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class Data {
-  public BASE_URL = 'http://sisuper.codepanda.web.id/backend';
+  public BASE_URL = 'http://senyumdifabel.codepanda.web.id/';
   
   public HAS_LOGGED_IN = 'status_login';
   

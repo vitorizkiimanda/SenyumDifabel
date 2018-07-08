@@ -8,38 +8,38 @@
       
         <ion-item class="form-input first-input" no-lines>
           <ion-label><ion-icon class="icon-size" md="md-person"></ion-icon></ion-label>
-          <ion-input class="text-input" type="text" formControlName="username" placeholder="Name"></ion-input>
+          <ion-input class="text-input" type="text" formControlName="user_name" placeholder="Name"></ion-input>
         </ion-item>
   
-        <ion-item class="alert" *ngIf="!registerForm.controls.username.valid  && (registerForm.controls['username'].errors?.minlength || submitAttempt)">
+        <ion-item class="alert" *ngIf="!registerForm.controls.user_name.valid  && (registerForm.controls['user_name'].errors?.minlength || submitAttempt)">
           <p class="text-error">Please enter minimum 3 Digits</p>
         </ion-item>
   
-        <ion-item class="alert" *ngIf="!registerForm.controls.username.valid  && (registerForm.controls['username'].errors?.maxlength || submitAttempt)">
+        <ion-item class="alert" *ngIf="!registerForm.controls.user_name.valid  && (registerForm.controls['user_name'].errors?.maxlength || submitAttempt)">
           <p class="text-error">Please enter maximum 32 Digits</p>
         </ion-item>
         
         <ion-item class="form-input" no-lines>
           <ion-label><ion-icon class="icon-size" ios="ios-mail" md="md-mail"></ion-icon></ion-label>
-          <ion-input class="text-input" type="text" formControlName="email" placeholder="Email"></ion-input>
+          <ion-input class="text-input" type="text" formControlName="user_email" placeholder="Email"></ion-input>
         </ion-item>
   
-        <ion-item class="alert" *ngIf="!registerForm.controls.email.valid  && (registerForm.controls.email.dirty || submitAttempt)">
+        <ion-item class="alert" *ngIf="!registerForm.controls.user_email.valid  && (registerForm.controls.user_email.dirty || submitAttempt)">
           <p class="text-error">Please enter a valid email.</p>
         </ion-item>
   
         <ion-item class="form-input" no-lines>
           <ion-label><ion-icon class="icon-size" ios="ios-lock" md="md-lock"></ion-icon></ion-label>
-          <ion-input class="text-input" type="{{status}}" formControlName="password" placeholder="Password" required></ion-input>
+          <ion-input class="text-input" type="{{status}}" formControlName="user_password" placeholder="Password" required></ion-input>
           <button class="tombol" [hidden]="lihatPassword == false" (click)="showPassword()" ion-button clear type="button" item-right><ion-icon name="md-eye" class='icon-size'></ion-icon> </button>
           <button class="tombol" [hidden]="lihatPassword == true" (click)="hidePassword()" ion-button clear type="button" item-right><ion-icon name="md-eye-off" class='icon-size'></ion-icon> </button>
         </ion-item>
   
-        <ion-item class="alert" *ngIf="!registerForm.controls.password.valid  && (registerForm.controls['password'].errors?.minlength || submitAttempt)">
+        <ion-item class="alert" *ngIf="!registerForm.controls.user_password.valid  && (registerForm.controls['user_password'].errors?.minlength || submitAttempt)">
           <p class="text-error">Please enter minimum 8 Digits</p>
         </ion-item>
   
-        <ion-item class="alert" *ngIf="!registerForm.controls.password.valid  && (registerForm.controls['password'].errors?.maxlength || submitAttempt)">
+        <ion-item class="alert" *ngIf="!registerForm.controls.user_password.valid  && (registerForm.controls['user_password'].errors?.maxlength || submitAttempt)">
           <p class="text-error">Please enter maximum 32 Digits</p>
         </ion-item>
   
