@@ -8,6 +8,7 @@ import { Http, RequestOptions, Headers  } from '@angular/http';
 import { ProfileOtherPage } from '../profile-other/profile-other';
 import { JobDetailPage } from '../job-detail/job-detail';
 import { CommentPage } from '../comment/comment';
+import 'rxjs/add/operator/timeout';
 
 @Component({
   selector: 'page-home',
@@ -15,6 +16,7 @@ import { CommentPage } from '../comment/comment';
 })
 export class HomePage {
 
+  user_id:any;
   
   people:any;
   list_search: any;
@@ -32,7 +34,17 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    // this.getusers();
+    this.data.getData().then((data) => {
+      
+      this.user_id = data.user_id;
+      console.log(this.user_id);
+    })
+    this.getusers();
+    this.getTimeline(this.user_id);
+  }
+
+  getTimeline(data){
+
   }
 
   getusers(){
@@ -40,12 +52,21 @@ export class HomePage {
     this.http.get(this.data.BASE_URL+"auth/getusers",{ headers: headers }).subscribe(data => {
       let response = data.json();
       console.log(response);
-      alert(response)
+      // alert(response)
+      this.people = response;
 
     }, err => {     
       console.log("error cui :",err);
       
     });
+  }
+
+  runTimeError(){
+    let alert = this.alertCtrl.create({
+      title: 'Failed',
+      subTitle: 'Please try again',      
+    });
+    alert.present();
   }
 
   openNotification(){
@@ -79,9 +100,9 @@ export class HomePage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      // this.list_search = this.list_search.filter((item) => {
-      //   return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      // })
+      this.list_search = this.list_search.filter((item) => {
+        return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
 
 
       // this.list_search = this.list_search.filter((data) => {
