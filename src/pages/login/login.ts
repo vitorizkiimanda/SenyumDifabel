@@ -5,8 +5,9 @@ import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 import { TabsPage } from '../tabs/tabs';
 import { Data } from '../../providers/data';
-import { Http } from '@angular/http';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { Http, Headers , RequestOptions,HttpModule } from "@angular/http";
+import {HttpClientModule, HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'page-login',
