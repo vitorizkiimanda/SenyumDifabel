@@ -4,7 +4,7 @@ import { NotificationPage } from '../notification/notification';
 import { PostPage } from '../post/post';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { Data } from '../../providers/data';
-import { Http } from '@angular/http';
+import { Http, RequestOptions, Headers  } from '@angular/http';
 import { ProfileOtherPage } from '../profile-other/profile-other';
 import { JobDetailPage } from '../job-detail/job-detail';
 import { CommentPage } from '../comment/comment';
@@ -29,6 +29,23 @@ export class HomePage {
     public loadCtrl: LoadingController,
     public alertCtrl: AlertController,
     public http: Http) {
+  }
+
+  ionViewWillEnter() {
+    // this.getusers();
+  }
+
+  getusers(){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getusers",{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      alert(response)
+
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
   }
 
   openNotification(){
