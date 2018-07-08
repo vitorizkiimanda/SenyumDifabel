@@ -17,11 +17,14 @@ import 'rxjs/add/operator/timeout';
 export class HomePage {
 
   user_id:any;
+  user_email:any;
+  user_password:any;
   
+  post:any;
   people:any;
   list_search: any;
   statusSearch : boolean = false;
-  counter:any = 1;
+  counter:any;
 
   constructor(
     public navCtrl: NavController,
@@ -35,16 +38,30 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.data.getData().then((data) => {
-      
+      this.user_password = data.user_password;
+      this.user_email = data.user_email;
       this.user_id = data.user_id;
       console.log(this.user_id);
+      
+      this.getTimeline(this.user_id);
+      this.getNotifCount(this.user_id);
     })
     this.getusers();
-    this.getTimeline(this.user_id);
   }
 
   getTimeline(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getFollowingTimeline/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      // alert(response)
+      this.post = response;
 
+    }, err => {     
+      console.log("error cui :",err);
+      this.runTimeError();
+      
+    });
   }
 
   getusers(){
@@ -58,6 +75,19 @@ export class HomePage {
     }, err => {     
       console.log("error cui :",err);
       
+    });
+  }
+
+  getNotifCount(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getCountNotification/"+data,{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      // alert(response)
+      this.counter = response;
+
+    }, err => {     
+      console.log("error cui :",err);      
     });
   }
 
@@ -109,7 +139,7 @@ export class HomePage {
     }
     else {
       this.statusSearch=false;
-      this.getTimeline(this.user_id);
+      this.ionViewWillEnter();
     }
 
     console.log(this.list_search);

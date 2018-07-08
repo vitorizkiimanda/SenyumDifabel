@@ -149,9 +149,9 @@
   </div>
 
   <div *ngIf="statusSearch">
-    <div class="cardContact">
+    <div class="cardContact" *ngFor="let data of list_search" no-padding (click)="openProfile(data)">
       <ion-grid no-padding>          
-        <ion-row *ngFor="let data of list_search" no-padding (click)="openProfile(data)">
+        <ion-row >
           <ion-col col-2 no-padding>
             <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
             <img  class="pictHeader" src="assets/imgs/profile.png" />             
