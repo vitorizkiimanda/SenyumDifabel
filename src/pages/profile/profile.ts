@@ -31,7 +31,9 @@ export class ProfilePage {
   post: any;
   user_name:any;
   user_address:any;
+  user_photo:any;
   description:any;
+  user_email:any;
 
   
   tab1Root = AboutPage;
@@ -53,8 +55,10 @@ export class ProfilePage {
     this.data.getData().then((data) =>{
       this.user_id = data.user_id;
       this.user_name = data.user_name;
+      this.user_email = data.user_email;
       this.user_address = data.user_address;
       this.description = data.user_contact;
+      this.user_photo = data.user_photo;
       console.log(data);
     
       this.countFollow(this.user_id);
@@ -71,29 +75,36 @@ export class ProfilePage {
   }
 
   countFollow(data){
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/countFollow/"+data,{ headers: headers }).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.follower=response.follower;
-      this.following=response.following;
-      // alert(response)
-    }, err => {     
-      console.log("error cui :",err);
-      
-    });
+    
+    this.data.getOriginalPassword().then((password) =>{
+      console.log(password);
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/countFollow/"+data,{ headers: headers }).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.follower=response.follower;
+        this.following=response.following;
+        // alert(response)
+      }, err => {     
+        console.log("error cui :",err);
+        
+      });
+    }) 
   }
 
   getMyTimeline(data){
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/getMyTimeline/"+data,{ headers: headers }).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.post = response;
-      // alert(response)
-    }, err => {     
-      console.log("error cui :",err);
-      
+    this.data.getOriginalPassword().then((password) =>{
+
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/getMyTimeline/"+data,{ headers: headers }).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.post = response;
+        // alert(response)
+      }, err => {     
+        console.log("error cui :",err);
+        
+      });
     });
   }
 

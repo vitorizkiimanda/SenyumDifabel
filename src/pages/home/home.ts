@@ -40,10 +40,8 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.data.getData().then((data) => {
-      this.user_password = data.user_password;
       this.user_email = data.user_email;
       this.user_id = data.user_id;
-      console.log(this.user_id);
 
       this.getTimeline(this.user_id);
       this.getNotifCount(this.user_id);
@@ -52,18 +50,22 @@ export class HomePage {
   }
 
   getTimeline(data){
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/getFollowingTimeline/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      // alert(response)
-      this.post = response;
+    this.data.getOriginalPassword().then((password) =>{
+      console.log(password);
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/getFollowingTimeline/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        // alert(response)
+        this.post = response;
 
-    }, err => {     
-      console.log("error cui :",err);
-      this.runTimeError();
-      
-    });
+      }, err => {     
+        console.log("error cui :",err);
+        this.runTimeError();
+        
+      });
+    })
+    
   }
 
   getusers(){

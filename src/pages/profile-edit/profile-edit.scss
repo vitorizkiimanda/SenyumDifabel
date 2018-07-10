@@ -51,4 +51,11 @@ page-profile-edit {
         color: #2c384e;
         font-weight: 500;
     }
+
+    .spinner{
+        position: absolute;
+        top: 20vw;
+
+        z-index: 1000000;
+    }
 }

@@ -15,10 +15,11 @@
 
 
 <ion-content class="backgroundColor">
-  <img  class="pictCover" src="assets/imgs/bukalapakCover.jpg" />
+  <img  class="pictCover" src="assets/imgs/cover.JPG" />
   <div class="mainProfile">
     <ion-icon (click)="openProfileEdit()" color="dark" class="editIcon" name="md-create"></ion-icon>
-    <img  class="pictProfile" src="assets/imgs/alamanda.jpg" />
+    <img  class="pictProfile" *ngIf="user_photo" [src]="user_photo" />    
+    <img  class="pictProfile" *ngIf="!user_photo" src="assets/imgs/profile.png" />  
     <div class="textProfile" text-center>
       <span class="name">{{user_name}}</span>
       <!-- <br />
@@ -36,11 +37,13 @@
       <ion-row no-padding text-center>
         <ion-col (click)="open('follower')" col-6 no-padding class="contentHeader">
           <span class="numberHeader">{{follower}}</span>
+          <ion-spinner *ngIf="!follower && follower!=0"></ion-spinner>
           <br />
           <span class="textHeader">Followers</span>            
         </ion-col>
         <ion-col (click)="open('following')" col-6 no-padding class="contentHeader contentCenter">
           <span class="numberHeader">{{following}}</span>
+          <ion-spinner *ngIf="!following && following!=0"></ion-spinner>
           <br />
           <span class="textHeader">Following</span>            
         </ion-col>
@@ -260,7 +263,11 @@
         <span class="buttonWord"><ion-icon  name="md-add-circle"></ion-icon></span>
     </button>
   </div>
-  
+
+  <div *ngIf="!post" text-center>
+    <ion-spinner></ion-spinner>
+  </div>
+
   <div *ngFor="let data of post" class="homeCard">
     <div class="cardHeader">
       <ion-grid no-padding>          

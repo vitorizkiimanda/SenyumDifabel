@@ -107,6 +107,7 @@ export class RegisterPage {
         if(response.user_name!="email sudah ada"){
           this.data.logout(); //cleaning local storage
           this.data.login(response,"user");//save to local
+          this.data.saveOriginalPassword(this.registerForm.value.password);
           this.navCtrl.setRoot(TabsPage);
         } 
         else{
