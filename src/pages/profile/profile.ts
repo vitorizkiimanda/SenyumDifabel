@@ -8,6 +8,8 @@ import { JobsPage } from '../jobs/jobs';
 import { AboutPage } from '../about/about';
 import { FollowPage } from '../follow/follow';
 import { CvPage } from '../cv/cv';
+import { Data } from '../../providers/data';
+import { Http, RequestOptions, Headers  } from '@angular/http';
 
 @Component({
   selector: 'page-profile',
@@ -21,6 +23,12 @@ export class ProfilePage {
   accomplishment = false;
   contact = false;
 
+  user_id: any;
+  follower: any;
+  following: any;
+
+  // variabel Output
+  post: any;
   
   tab1Root = AboutPage;
   tab2Root = AboutPage;
@@ -31,11 +39,20 @@ export class ProfilePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    private data: Data,
+    public http: Http,) {
   }
 
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     console.log('ionViewDidLoad ProfilePage');
+    this.data.getData().then((data) =>{
+      this.user_id = data.user_id;
+      console.log(this.user_id);
+    
+      this.countFollow(this.user_id);
+      this.getMyTimeline(this.user_id);
+    })    
   }
 
   openSetting(){
@@ -44,6 +61,33 @@ export class ProfilePage {
 
   openProfileEdit(){
     this.navCtrl.push(ProfileEditPage);
+  }
+
+  countFollow(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/countFollow/"+data,{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.follower=response.follower;
+      this.following=response.following;
+      // alert(response)
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
+  }
+
+  getMyTimeline(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getMyTimeline/"+data,{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.post = response;
+      // alert(response)
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
   }
 
   open(data){
