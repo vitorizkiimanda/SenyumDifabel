@@ -20,7 +20,7 @@ export class HomePage {
   user_id:any;
   user_email:any;
   user_password:any;
-  nothing:any=true;
+  nothing:any=false;
   
   post:any;
   people:any;
