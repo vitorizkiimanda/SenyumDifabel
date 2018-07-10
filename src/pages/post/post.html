@@ -12,7 +12,9 @@
           <img  class="pict" src="assets/imgs/alamanda.jpg" />
         </div>             
       </ion-col>
-      <ion-col col-10 no-padding class="words">      
+      <ion-col col-10 no-padding class="words">     
+        
+        <img *ngIf="image" class="pictContent" [src]="image" /> 
         <ion-textarea type="text" [(ngModel)]="description" autosize placeholder="share an article, post, or information" maxlength="1000"></ion-textarea>
       </ion-col>
     </ion-row>
@@ -26,7 +28,7 @@
         <!-- <button class="buttonNotification" ion-button clear color="senyumDifabel" small>
           <ion-icon class="buttonIcon" name="ios-at-outline"></ion-icon>
         </button> -->
-        <button class="buttonNotification" ion-button clear color="senyumDifabel" small>
+        <button (click)="updatePicture()" class="buttonNotification" ion-button clear color="senyumDifabel" small>
           <ion-icon class="buttonIcon" name="md-image"></ion-icon>
         </button>
       </ion-col>
