@@ -3,6 +3,9 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { JobDetailPage } from '../job-detail/job-detail';
 import { InterviewPage } from '../interview/interview';
 import { JobExtendedPage } from '../job-extended/job-extended';
+import { Data } from '../../providers/data';
+import { Http, RequestOptions, Headers  } from '@angular/http';
+
 
 @Component({
   selector: 'page-jobs',
@@ -15,14 +18,38 @@ export class JobsPage {
   list_search: any;
   statusSearch : boolean = false;
 
+  user_id: any;
+  
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    private data: Data,
+    public http: Http) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JobsPage');
+    this.data.getData().then((data) =>{
+      this.user_id = data.user_id;
+      console.log(this.user_id);
+    
+      this.getJobs(this.user_id);
+    })
+  }
+
+  getJobs(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getjobs",{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.jobs = response;
+      // alert(response)
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
   }
 
   changeBookmark(){
