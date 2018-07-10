@@ -20,6 +20,7 @@ export class HomePage {
   user_id:any;
   user_email:any;
   user_password:any;
+  nothing:any=true;
   
   post:any;
   people:any;
@@ -58,6 +59,10 @@ export class HomePage {
         console.log(response);
         // alert(response)
         this.post = response;
+        if(this.post.length){
+          this.nothing = false;
+          console.log("pret")
+        }
 
       }, err => {     
         console.log("error cui :",err);
@@ -98,7 +103,15 @@ export class HomePage {
   runTimeError(){
     let alert = this.alertCtrl.create({
       title: 'Failed',
-      subTitle: 'Please try again',      
+      subTitle: 'Please try again',     
+      buttons: [
+        {
+          text: 'Refresh',
+          handler: data => {
+            this.ionViewWillEnter();
+          }
+        }
+      ] 
     });
     alert.present();
   }
