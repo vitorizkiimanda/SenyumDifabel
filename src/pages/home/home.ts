@@ -9,6 +9,7 @@ import { ProfileOtherPage } from '../profile-other/profile-other';
 import { JobDetailPage } from '../job-detail/job-detail';
 import { CommentPage } from '../comment/comment';
 import 'rxjs/add/operator/timeout';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
   selector: 'page-home',
@@ -32,6 +33,7 @@ export class HomePage {
     private data : Data,
     public navParams: NavParams,
     public loadCtrl: LoadingController,
+    private socialSharing: SocialSharing,
     public alertCtrl: AlertController,
     public http: Http) {
   }
@@ -42,7 +44,7 @@ export class HomePage {
       this.user_email = data.user_email;
       this.user_id = data.user_id;
       console.log(this.user_id);
-      
+
       this.getTimeline(this.user_id);
       this.getNotifCount(this.user_id);
     })
@@ -113,6 +115,25 @@ export class HomePage {
 
   openComment(){
     this.navCtrl.push(CommentPage);
+  }
+
+  share(data){
+    let loading = this.loadCtrl.create({
+      content: 'berbagi..'
+    });
+
+    console.log(data.name);
+
+    loading.present();
+    
+    setTimeout(() => {
+      loading.dismiss();
+    }, 5000);
+    
+
+    // this.socialSharing.share(data.name, data.user, "http://156.67.218.250:81"+data.picture, data.youtube)
+    this.socialSharing.share(data.timeline_description, null,data.timeline_photo , null);
+
   }
 
   //Fungsi Searchbar

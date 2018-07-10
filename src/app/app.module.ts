@@ -42,6 +42,8 @@ import { JobExtendedPage } from '../pages/job-extended/job-extended';
 import { FollowPage } from '../pages/follow/follow';
 import { CommentPage } from '../pages/comment/comment';
 import { CvPage } from '../pages/cv/cv';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @NgModule({
   declarations: [
@@ -126,6 +128,9 @@ import { CvPage } from '../pages/cv/cv';
     Camera,
     ScreenOrientation,
     YoutubeVideoPlayer,
+    FileTransfer,
+    FileTransferObject,
+    SocialSharing,
     Data,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

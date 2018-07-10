@@ -20,13 +20,14 @@
     <ion-icon (click)="openProfileEdit()" color="dark" class="editIcon" name="md-create"></ion-icon>
     <img  class="pictProfile" src="assets/imgs/alamanda.jpg" />
     <div class="textProfile" text-center>
-      <span class="name">Alamanda Shantika</span>
+      <span class="name">{{user_name}}</span>
+      <!-- <br />
+      <span class="position">VP Gojek Indonesia</span> -->
       <br />
-      <span class="position">VP Gojek Indonesia</span>
-      <br />
-      <span class="location">South Jakarta, Indonesia</span>
+      <span *ngIf="!user_address || !description" class="location">Complete Your Profile!</span>
+      <span class="location">{{user_address}}</span>
       <div class="description">
-        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </span>
+        <span>{{description}}</span>
       </div>
     </div>
   </div>
@@ -286,7 +287,7 @@
       <br />
 
       <!-- pakai slider aja kalau gambar lebih dari satu -->
-      <img  class="pictContentTimeline" src="assets/imgs/cardContent.jpg" />
+      <img  class="pictContentTimeline" *ngIf="data.timeline_photo" [src]="data.timeline_photo" />
     </div>
     <div class="cardFooter">
       <span>{{data.like}} likes </span>

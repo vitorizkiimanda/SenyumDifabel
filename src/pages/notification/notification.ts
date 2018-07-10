@@ -37,14 +37,13 @@ export class NotificationPage {
     this.data.getData().then((data) => {
       this.user_id = data.user_id;
       console.log(this.user_id);
+      this.getNotif(this.user_id);
     })
   }
 
   ionViewWillEnter() {
     this.superTabsCtrl.enableTabsSwipe(false);
     this.superTabsCtrl.showToolbar(false);
-
-    this.getNotif();
   }
 
   ionViewWillLeave(){
@@ -85,22 +84,16 @@ export class NotificationPage {
     this.navCtrl.push(CommentPage);
   }
 
-  getNotif(){
-    
-  }
-
-  getNotifComment(){
+  getNotif(data){
 
     this.loading = this.loadCtrl.create({
         content: 'Please wait...'
     });
 
     this.loading.present();
-    let input = {
-      user_id : this.user_id
-    };
+    
     let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.post(this.data.BASE_URL+"/auth/pushNotification/comment",input,{ headers: headers }).timeout(5000).subscribe(data => {
+    this.http.get(this.data.BASE_URL+"auth/getNotification/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
       let response = data.json();
       console.log(response);
       // alert(response)
@@ -112,18 +105,6 @@ export class NotificationPage {
       this.runTimeError();
       this.loading.dismiss();
     });
-  }
-
-  getNotifLike(){
-
-  }
-
-  getNotifFollow(){
-
-  }
-
-  getNotifProposal(){
-
   }
 
   runTimeError(){
