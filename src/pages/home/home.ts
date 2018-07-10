@@ -40,10 +40,8 @@ export class HomePage {
 
   ionViewWillEnter() {
     this.data.getData().then((data) => {
-      this.user_password = data.user_password;
       this.user_email = data.user_email;
       this.user_id = data.user_id;
-      console.log(this.user_password);
 
       this.getTimeline(this.user_id);
       this.getNotifCount(this.user_id);
