@@ -37,7 +37,7 @@ export class JobExtendedPage {
       this.user_id = data.user_id;
       console.log(this.user_id);
 
-      if(this.choosed=="saved") this.getSaved(this.user_id);
+      if(this.choosed=="saved") this.getBookmark(this.user_id);
       else if(this.choosed=="applied") this.getApplied(this.user_id);        
       else if(this.choosed=="attended") this.getAttended(this.user_id);        
     })
@@ -57,8 +57,17 @@ export class JobExtendedPage {
     this.superTabsCtrl.enableTabsSwipe(true);
   }
 
-  getSaved(data){
-
+  getBookmark(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getBookmark/"+data,{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.saves = response;
+      // alert(response)
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
   }
 
   getApplied(data){
