@@ -18,8 +18,6 @@ export class NotificationPage {
   user_id:any;
   user_email:any;
 
-  statusFollow : boolean = true;
-
   notifications:any;
 
   constructor(
@@ -34,6 +32,7 @@ export class NotificationPage {
       
     this.data.getData().then((data) => {
       this.user_id = data.user_id;
+      this.user_email = data.user_email;
       console.log(this.user_id);
       this.getNotif(this.user_id);
     })
@@ -49,15 +48,41 @@ export class NotificationPage {
     this.superTabsCtrl.enableTabsSwipe(true);
   }
 
-  openProfile(){
+  openProfile(data){
     this.navCtrl.push(ProfileOtherPage);
   }
 
-  follow(){
-    this.statusFollow = false;
+  follow(data){
+    this.loading = this.loadCtrl.create({
+      content: 'Please wait...'
+    });
+    this.loading.present();
+    
+    let input = {
+      user_id: this.user_id,
+      follow: data.forward_id
+    };
+
+    console.log(input)
+
+    
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.post(this.data.BASE_URL+"auth/following",input,{ headers: headers }).timeout(5000).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.notifications = null;
+        this.ionViewWillEnter();
+        this.loading.dismiss();
+      }, err => {     
+        console.log("error cui :",err);
+        this.runTimeError();
+        this.loading.dismiss();      
+      }); 
+    });
   }
 
-  unfollow(){
+  unfollow(dataNotif){
     let prompt = this.alertCtrl.create({
       subTitle:"Unfollow NamaOrangnya?",
       buttons: [
@@ -70,7 +95,25 @@ export class NotificationPage {
         {
           text: 'Unfollow',
           handler: data => {
-            this.statusFollow = true;
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+            
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.delete(this.data.BASE_URL+"auth/deleteFollowing/"+dataNotif.id,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                console.log(response);
+                this.notifications = null;
+                this.ionViewWillEnter();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
           }
         }
       ]
@@ -78,8 +121,10 @@ export class NotificationPage {
     prompt.present();
   }
 
-  openPost(){
-    this.navCtrl.push(CommentPage);
+  openPost(data){
+    data.origin = "notifications";
+    console.log(data)
+    this.navCtrl.push(CommentPage, data);
   }
 
   getNotif(data){
@@ -110,7 +155,7 @@ export class NotificationPage {
   runTimeError(){
     let alert = this.alertCtrl.create({
       title: 'Failed',
-      subTitle: 'Please try again',      
+      subTitle: 'Please try again',   
     });
     alert.present();
   }
