@@ -32,7 +32,7 @@ export class LoginPage {
     private superTabsCtrl: SuperTabsController
     ) {
     this.authForm = formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32)])]
     });
   }
@@ -70,7 +70,7 @@ export class LoginPage {
         console.log(this.authForm.value);
         this.data.logout(); //cleaning local storage
         this.data.login(this.authForm.value,"user");//save to local
-        window.location.reload();
+        this.navCtrl.setRoot(TabsPage);
     }
   }
 
