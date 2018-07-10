@@ -31,6 +31,7 @@ export class ProfilePage {
   post: any;
   user_name:any;
   user_address:any;
+  user_photo:any;
   description:any;
 
   
@@ -55,6 +56,7 @@ export class ProfilePage {
       this.user_name = data.user_name;
       this.user_address = data.user_address;
       this.description = data.user_contact;
+      this.user_photo = data.user_photo;
       console.log(data);
     
       this.countFollow(this.user_id);

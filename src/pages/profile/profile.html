@@ -15,10 +15,11 @@
 
 
 <ion-content class="backgroundColor">
-  <img  class="pictCover" src="assets/imgs/bukalapakCover.jpg" />
+  <img  class="pictCover" src="assets/imgs/cover.JPG" />
   <div class="mainProfile">
     <ion-icon (click)="openProfileEdit()" color="dark" class="editIcon" name="md-create"></ion-icon>
-    <img  class="pictProfile" src="assets/imgs/alamanda.jpg" />
+    <img  class="pictProfile" *ngIf="data.user_photo" [src]="user_photo" />    
+    <img  class="pictProfile" *ngIf="!data.user_photo" src="assets/imgs/profile.png" />  
     <div class="textProfile" text-center>
       <span class="name">{{user_name}}</span>
       <!-- <br />
