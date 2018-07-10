@@ -10,6 +10,8 @@ import { Http, Headers } from '@angular/http';
   templateUrl: 'post.html',
 })
 export class PostPage {
+  dateNow : any = new Date().toISOString();
+  timeNow: any = new Date().toLocaleTimeString();
 
   description:any;
   user_id:any;
@@ -38,6 +40,9 @@ export class PostPage {
     this.superTabsCtrl.enableTabsSwipe(false);
 
     this.hideToolbar();
+    this.dateNow = String(this.dateNow).substr(0,10)
+    console.log("date :", this.dateNow);
+    console.log("time :", this.timeNow);
   }
 
   ionViewWillLeave(){
@@ -64,8 +69,8 @@ export class PostPage {
 
       this.loading.present();
       let input = {
-        timeline_date: Date.now(), 
-        timeline_time: Date.now(),
+        timeline_date: this.dateNow, 
+        timeline_time: this.timeNow,
         timeline_photo:null,
         timeline_description: this.description ,
         user_id : this.user_id
