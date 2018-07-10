@@ -41,10 +41,6 @@ export class JobExtendedPage {
       else if(this.choosed=="applied") this.getApplied(this.user_id);        
       else if(this.choosed=="attended") this.getAttended(this.user_id);        
     })
-
-
-    console.log(this.choosed)
-
   }
   
   ionViewWillEnter() {
@@ -84,7 +80,16 @@ export class JobExtendedPage {
   }
 
   getAttended(data){
-
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getInterview/"+data,{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.attendies = response;
+      // alert(response)
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
   }
 
   changeBookmark(){
