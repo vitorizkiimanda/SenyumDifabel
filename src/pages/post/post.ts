@@ -17,6 +17,7 @@ export class PostPage {
 
   description:any;
   user_id:any;
+  user_email:any;
   image:any;
   imageFinal:any;
 
@@ -36,6 +37,7 @@ export class PostPage {
 
       this.data.getData().then((data) => {
         this.user_id = data.user_id;
+        this.user_email = data.user_email;
         console.log(this.user_id);
       })
 
@@ -86,18 +88,21 @@ export class PostPage {
 
       console.log(input)
 
-      let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-      this.http.post(this.data.BASE_URL+"auth/postTimeline",input,{ headers: headers }).timeout(5000).subscribe(data => {
-        let response = data.json();
-        console.log(response);
-        this.description=null;
-        this.navCtrl.pop();
-        this.loading.dismiss();
-      }, err => {     
-        console.log("error cui :",err);
-        this.runTimeError();
-        this.loading.dismiss();      
-      }); 
+      
+      this.data.getOriginalPassword().then((password) =>{
+        let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+        this.http.post(this.data.BASE_URL+"auth/postTimeline",input,{ headers: headers }).timeout(5000).subscribe(data => {
+          let response = data.json();
+          console.log(response);
+          this.description=null;
+          this.navCtrl.pop();
+          this.loading.dismiss();
+        }, err => {     
+          console.log("error cui :",err);
+          this.runTimeError();
+          this.loading.dismiss();      
+        }); 
+      });
     }
     else {
       this.loading = this.loadCtrl.create({
@@ -114,18 +119,20 @@ export class PostPage {
 
       console.log(input)
 
-      let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-      this.http.post(this.data.BASE_URL+"auth/postTimeline",input,{ headers: headers }).timeout(5000).subscribe(data => {
-        let response = data.json();
-        console.log(response);
-        this.description=null;
-        this.navCtrl.pop();
-        this.loading.dismiss();
-      }, err => {     
-        console.log("error cui :",err);
-        this.runTimeError();
-        this.loading.dismiss();      
-      }); 
+      this.data.getOriginalPassword().then((password) =>{
+        let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+        this.http.post(this.data.BASE_URL+"auth/postTimeline",input,{ headers: headers }).timeout(5000).subscribe(data => {
+          let response = data.json();
+          console.log(response);
+          this.description=null;
+          this.navCtrl.pop();
+          this.loading.dismiss();
+        }, err => {     
+          console.log("error cui :",err);
+          this.runTimeError();
+          this.loading.dismiss();      
+        }); 
+      });
     }
   }
 
@@ -205,23 +212,26 @@ export class PostPage {
     const fileTransfer: FileTransferObject = this.transfer.create();
 
     
-    let options: FileUploadOptions = {
-      fileKey: 'file',
-      fileName: "Post_" + Date.now() +".PNG",
-      chunkedMode: false,
-      mimeType: "image/jpeg",
-      headers: {'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito')}
-    }
+    this.data.getOriginalPassword().then((password) =>{
+      let options: FileUploadOptions = {
+        fileKey: 'file',
+        fileName: "Post_" + Date.now() +".PNG",
+        chunkedMode: false,
+        mimeType: "image/jpeg",
+        headers: {'Authorization':'Basic ' +  btoa(this.user_email + ':' +password)}
+      }
 
-    fileTransfer.upload(data, this.data.BASE_URL+"auth/uploadFile", options)
-      .then((data) => {
+      fileTransfer.upload(data, this.data.BASE_URL+"auth/uploadFile", options)
+        .then((data) => {
 
-        let response = data.response;
-        this.imageFinal = response;
+          let response = data.response;
+          this.imageFinal = response;
 
-    }, (err) => {
-      console.log(err);
-      alert( JSON.stringify(err));
+      }, (err) => {
+        console.log(err);
+        alert( JSON.stringify(err));
+      });
+      
     });
   }
 

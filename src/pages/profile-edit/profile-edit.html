@@ -7,7 +7,7 @@
             <ion-title text-center>Edit Profile</ion-title>     
           </ion-col>
           <ion-col col-2 text-right no-padding>
-            <button class="buttonSave" clear ion-button color="senyumDifabel" medium>
+            <button (click)="profileEdit()" class="buttonSave" clear ion-button color="senyumDifabel" medium>
               <span class="buttonWord">Save</span>
             </button>
           </ion-col>
@@ -20,40 +20,29 @@
 
 <ion-content padding>
   <ion-icon (click)="updatePicture()" color="dark" class="editIcon" name="md-camera"></ion-icon>
-  <img [src]="image" *ngIf="image" class="pictProfile"/>
-  <img src="assets/imgs/alamanda.jpg" *ngIf="!image" class="pictProfile"/>
+  
+  <div text-center>
+    <ion-spinner *ngIf="loadingSpinner" class="spinner"></ion-spinner>
+    <img  class="pictProfile" *ngIf="imageFinal" [src]="imageFinal" />    
+    <img  class="pictProfile" *ngIf="!imageFinal" src="assets/imgs/profile.png" />  
+  </div>
   <br />
   <div>
     <ion-item>
       <ion-label floating><p class="Head">Name</p></ion-label>
-      <ion-input class="Head2" [(ngModel)]="name" name="name"  type="text" #nama="ngModel" required>
+      <ion-input class="Head2" [(ngModel)]="user_name" name="name"  type="text" #nama="ngModel" required>
       </ion-input>
     </ion-item>
-    <!-- <ion-item>
-      <ion-label floating><p class="Head">Email</p></ion-label>
-      <ion-input class="Head2" [(ngModel)]="email" name="email"  pattern="[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" type="email" #user="ngModel" spellcheck="false" autocapitalize="off"
-        required>
-      </ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating><p class="Head">Phone Number</p></ion-label>
-      <ion-input class="Head2" [(ngModel)]="phone" name="phone"  type="number" #hp="ngModel" required>
-      </ion-input>
-    </ion-item> -->
     <ion-item>
       <ion-label floating><p class="Head">Address</p></ion-label>
-      <ion-input class="Head2" [(ngModel)]="address" name="address"  type="text" #alamat="ngModel" required>
+      <ion-input class="Head2" [(ngModel)]="user_address" name="address"  type="text" #alamat="ngModel" required>
       </ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked><p class="Head">Bio</p></ion-label>
-      <ion-textarea type="text" [(ngModel)]="biodata" autosize placeholder="about my self.."></ion-textarea>
+      <ion-textarea type="text" [(ngModel)]="description" autosize placeholder="about my self.."></ion-textarea>
     </ion-item>
     
-    <ion-item>
-      <ion-label stacked><p class="Head">Experience</p></ion-label>
-      <ion-textarea type="text" [(ngModel)]="experience" autosize placeholder="my experiences are.."></ion-textarea>
-    </ion-item>
 
   </div>
 </ion-content>
