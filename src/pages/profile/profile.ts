@@ -41,7 +41,7 @@ export class ProfilePage {
     public navParams: NavParams,
     public alertCtrl: AlertController,
     private data: Data,
-    public http: Http,) {
+    public http: Http) {
   }
 
   ionViewWillEnter() {
