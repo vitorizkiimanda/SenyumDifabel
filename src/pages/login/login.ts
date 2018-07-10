@@ -78,6 +78,7 @@ export class LoginPage {
         
         this.data.logout(); //cleaning local storage
         this.data.login(response,"user");//save to local
+        this.data.saveOriginalPassword(this.authForm.value.password);
         this.navCtrl.setRoot(TabsPage);
         this.loading.dismiss();
         

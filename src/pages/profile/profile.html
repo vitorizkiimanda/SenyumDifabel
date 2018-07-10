@@ -18,8 +18,8 @@
   <img  class="pictCover" src="assets/imgs/cover.JPG" />
   <div class="mainProfile">
     <ion-icon (click)="openProfileEdit()" color="dark" class="editIcon" name="md-create"></ion-icon>
-    <img  class="pictProfile" *ngIf="data.user_photo" [src]="user_photo" />    
-    <img  class="pictProfile" *ngIf="!data.user_photo" src="assets/imgs/profile.png" />  
+    <img  class="pictProfile" *ngIf="user_photo" [src]="user_photo" />    
+    <img  class="pictProfile" *ngIf="!user_photo" src="assets/imgs/profile.png" />  
     <div class="textProfile" text-center>
       <span class="name">{{user_name}}</span>
       <!-- <br />

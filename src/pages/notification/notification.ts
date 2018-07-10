@@ -16,6 +16,7 @@ export class NotificationPage {
 
   loading:any;
   user_id:any;
+  user_email:any;
 
   statusFollow : boolean = true;
 
@@ -89,18 +90,20 @@ export class NotificationPage {
 
     this.loading.present();
     
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/getNotification/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      // alert(response)
-      this.notifications = response;
-      this.loading.dismiss();
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/getNotification/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        // alert(response)
+        this.notifications = response;
+        this.loading.dismiss();
 
-    }, err => {     
-      console.log("error cui :",err);
-      this.runTimeError();
-      this.loading.dismiss();
+      }, err => {     
+        console.log("error cui :",err);
+        this.runTimeError();
+        this.loading.dismiss();
+      });
     });
   }
 

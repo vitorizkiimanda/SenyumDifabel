@@ -53,4 +53,14 @@ export class Data {
     });
   }
 
+  saveOriginalPassword(data){
+    this.storage.set('passwordOriginal', data);
+  }
+
+  getOriginalPassword(){
+    return this.storage.get('passwordOriginal').then((value)=>{
+      return value;
+    });
+  }
+
 }
