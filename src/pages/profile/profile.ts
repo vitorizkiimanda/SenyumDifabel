@@ -29,6 +29,10 @@ export class ProfilePage {
 
   // variabel Output
   post: any;
+  user_name:any;
+  user_address:any;
+  description:any;
+
   
   tab1Root = AboutPage;
   tab2Root = AboutPage;
@@ -48,7 +52,10 @@ export class ProfilePage {
     console.log('ionViewDidLoad ProfilePage');
     this.data.getData().then((data) =>{
       this.user_id = data.user_id;
-      console.log(this.user_id);
+      this.user_name = data.user_name;
+      this.user_address = data.user_address;
+      this.description = data.user_contact;
+      console.log(data);
     
       this.countFollow(this.user_id);
       this.getMyTimeline(this.user_id);

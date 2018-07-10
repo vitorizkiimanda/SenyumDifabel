@@ -104,9 +104,11 @@ export class RegisterPage {
       this.http.post(this.data.BASE_URL+"register", input).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
-        this.data.logout(); //cleaning local storage
-        this.data.login(response,"user");//save to local
-        if(response.user_name!="email sudah ada") this.navCtrl.setRoot(TabsPage);
+        if(response.user_name!="email sudah ada"){
+          this.data.logout(); //cleaning local storage
+          this.data.login(response,"user");//save to local
+          this.navCtrl.setRoot(TabsPage);
+        } 
         else{
           let alert = this.alertCtrl.create({
             subTitle: 'Email has been used',      
