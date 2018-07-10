@@ -20,6 +20,13 @@
       <ion-icon name="ios-create-outline"></ion-icon>
     </button>
   </ion-fab>
+
+  
+  <div *ngIf="!post" text-center>
+    <br />
+    <ion-spinner></ion-spinner>
+  </div>
+
   <div *ngIf="!statusSearch">
     <div *ngFor="let data of post" class="homeCard">
       <div class="cardHeader">

@@ -19,10 +19,7 @@ export class NotificationPage {
 
   statusFollow : boolean = true;
 
-  comments:any;
-  likes:any;
-  follows:any;
-  proposals:any;
+  notifications:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -97,7 +94,7 @@ export class NotificationPage {
       let response = data.json();
       console.log(response);
       // alert(response)
-      this.comments = response;
+      this.notifications = response;
       this.loading.dismiss();
 
     }, err => {     
