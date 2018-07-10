@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
-import { Data } from '../../providers/data';
-import { Http, RequestOptions, Headers  } from '@angular/http';
-
 
 @Component({
   selector: 'page-follow',
@@ -20,10 +17,8 @@ export class FollowPage {
 
   constructor(
     public navCtrl: NavController, 
-    private data: Data,
     public navParams: NavParams,
     public alertCtrl: AlertController,
-    public http: Http,
     private superTabsCtrl: SuperTabsController) {
       let temp = this.navParams.data;
       this.choosed = temp;
@@ -63,6 +58,7 @@ export class FollowPage {
     });
     prompt.present();
   }
+
 
   //Fungsi Searchbar
   getItems(ev) {

@@ -41,7 +41,7 @@ export class RegisterPage {
     public http: Http) {
     this.registerForm = formBuilder.group({
       username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
-      email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")])],
+      email: ['', Validators.compose([Validators.required, Validators.pattern("[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32)])],
       confirmPassword: ['', Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(32)])]
     }, {validator: this.passMismatch('password', 'confirmPassword')});
@@ -106,7 +106,7 @@ export class RegisterPage {
         console.log(response);
         this.data.logout(); //cleaning local storage
         this.data.login(response,"user");//save to local
-        if(response.user_name!="email sudah ada") window.location.reload();
+        if(response.user_name!="email sudah ada") this.navCtrl.setRoot(TabsPage);
         else{
           let alert = this.alertCtrl.create({
             subTitle: 'Email has been used',      
