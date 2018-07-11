@@ -51,6 +51,7 @@ export class HomePage {
   }
 
   doRefresh(refresher) {
+    console.log("refresh",refresher)
     console.log('Begin async operation', refresher);
     this.ionViewWillEnter();
 
