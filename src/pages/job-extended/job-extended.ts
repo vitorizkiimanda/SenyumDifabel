@@ -15,6 +15,8 @@ export class JobExtendedPage {
 
   choosed:any;
   bookmark = false;
+  user_email: any;
+  password: any;
 
   user_id: any;
   applies: any;
@@ -54,15 +56,17 @@ export class JobExtendedPage {
   }
 
   getBookmark(data){
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/getBookmark/"+data,{ headers: headers }).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.saves = response;
-      // alert(response)
-    }, err => {     
-      console.log("error cui :",err);
-      
+    this.data.getOriginalPassword().then((password) =>{      
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/getBookmark/"+data,{ headers: headers }).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.saves = response;
+        // alert(response)
+      }, err => {     
+        console.log("error cui :",err);
+        
+      });
     });
   }
 
@@ -93,7 +97,7 @@ export class JobExtendedPage {
   }
 
   openJobDetail(data){
-    this.navCtrl.push(JobDetailPage);
+    this.navCtrl.push(JobDetailPage, data);
   }
 
   changeBookmark(){

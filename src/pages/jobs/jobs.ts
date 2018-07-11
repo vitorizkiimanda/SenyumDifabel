@@ -74,16 +74,18 @@ export class JobsPage {
   }
 
   getJobs(data){
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/getjobs",{ headers: headers }).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.jobs = response;
-      // alert(response)
-    }, err => {     
-      console.log("error cui :",err);
-      
-    });
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/getjobs",{ headers: headers }).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.jobs = response;
+        // alert(response)
+      }, err => {     
+        console.log("error cui :",err);
+        
+      });
+    })
   }
 
   changeBookmark(){
