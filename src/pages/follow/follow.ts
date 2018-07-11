@@ -34,7 +34,7 @@ export class FollowPage {
         this.user_id = data.user_id;
         console.log(this.user_id);
 
-        if(this.choosed=="follower") this.getFollowing(this.user_id);
+        if(this.choosed=="following") this.getFollowing(this.user_id);
         else if(this.choosed=="follower") this.getFollower(this.user_id);        
       })
     }
