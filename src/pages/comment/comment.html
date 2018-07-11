@@ -38,14 +38,14 @@
         <ion-grid no-padding>          
             <ion-row no-padding>
               <ion-col col-4 no-padding>
-                <button ion-button color="gray" clear icon-left block class="buttonCustom">
+                <button *ngIf="allowLike" (click)="addLike()" ion-button color="gray" clear icon-left block class="buttonCustom">
                   <ion-icon name="md-thumbs-up"></ion-icon>
                   <span class="buttonWord">&nbsp;Like</span>
                 </button>  
-                <!-- <button ion-button color="senyumDifabel" clear icon-left block class="buttonCustom">
+                <button *ngIf="!allowLike" ion-button color="senyumDifabel" clear icon-left block class="buttonCustom">
                   <ion-icon name="md-thumbs-up"></ion-icon>
-                  <span class="buttonWord">&nbsp;Like</span>
-                </button>             -->
+                  <span class="buttonWordBlue">&nbsp;Like</span>
+                </button>            
               </ion-col>
               <ion-col col-4 no-padding>
                 <button ion-button color="gray" clear icon-left block class="buttonCustom">
