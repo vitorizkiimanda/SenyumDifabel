@@ -74,7 +74,7 @@
       <div [hidden]="experience == false">
         <ion-grid no-padding>          
           <ion-row no-padding>
-            <ion-col *ngFor="let data of experiences" col-6 no-padding class="marginBottom" (click)="option()">
+            <ion-col *ngFor="let data of experiences" col-6 no-padding class="marginBottom" (click)="optionExperience(data)">
               <ion-row no-padding>
                 <ion-col col-4 no-padding>
                   <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
@@ -98,7 +98,7 @@
       <div [hidden]="education == false">
         <ion-grid no-padding>          
           <ion-row no-padding>
-            <ion-col *ngFor="let data of educations" col-6 no-padding class="marginBottom">
+            <ion-col *ngFor="let data of educations" col-6 no-padding class="marginBottom" (click)="optionEducation(data)">
               <ion-row no-padding>
                 <ion-col col-4 no-padding>
                   <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
@@ -123,7 +123,7 @@
       <div [hidden]="skill == false">
         <ion-grid no-padding>          
           <ion-row no-padding>
-            <ion-col *ngFor="let data of skills" col-6 no-padding class="marginBottom">
+            <ion-col *ngFor="let data of skills" col-6 no-padding class="marginBottom" (click)="optionSkill(data)">
               <ion-row no-padding>
                 <ion-col col-4 no-padding>
                   <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
@@ -144,7 +144,7 @@
       <div [hidden]="accomplishment == false">
         <ion-grid no-padding>          
           <ion-row no-padding>
-            <ion-col *ngFor="let data of achievements" col-6 no-padding class="marginBottom">
+            <ion-col *ngFor="let data of achievements" col-6 no-padding class="marginBottom" (click)="optionAchivement(data)">
               <ion-row no-padding>
                 <ion-col col-4 no-padding>
                   <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
@@ -169,7 +169,7 @@
       <div [hidden]="contact == false">
         <ion-grid no-padding>          
           <ion-row no-padding>
-            <ion-col *ngFor="let data of contacts" col-6 no-padding class="marginBottom">
+            <ion-col *ngFor="let data of contacts" col-6 no-padding class="marginBottom" (click)="optionContact(data)">
               <ion-row no-padding>
                 <ion-col col-4 no-padding>
                   <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->

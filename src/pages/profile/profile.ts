@@ -221,30 +221,6 @@ export class ProfilePage {
     this.contact = true;
   }
 
-  option(data){
-    // let dataJob = data;
-    // let date = data.duedate.substring(8,10)+'-'+ data.duedate.substring(5,7) + '-' + data.duedate.substring(0,4);
-    let prompt = this.alertCtrl.create({
-      title: "UX Researcher",
-      subTitle:"Bukalapak<br>2016-2018",
-      buttons: [
-        {
-          text: 'Delete',
-          handler: data => {
-            // this.deleteJob(dataJob);
-          }
-        },
-        {
-          text: 'Edit',
-          handler: data => {
-            // this.navCtrl.push(EditJobPage, dataJob);
-          }
-        }
-      ]
-    });
-    prompt.present();
-  }
-
   add() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Choose Field');
@@ -302,6 +278,107 @@ export class ProfilePage {
       }
     });
     alert.present();
+  }
+
+  optionExperience(dataExperience){
+    
+    let prompt = this.alertCtrl.create({
+      title: dataExperience.title,
+      subTitle:dataExperience.description +"<br>"+dataExperience.year,
+      buttons: [
+        {
+          text: 'Delete',
+          handler: data => {
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.delete(this.data.BASE_URL+"auth/deleteExperience/"+dataExperience.id,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        },
+        {
+          text: 'Edit',
+          handler: data => {
+            this.editExperience(dataExperience);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  editExperience(dataExperience){
+    console.log("dataedit",dataExperience)
+    const prompt = this.alertCtrl.create({
+      title: 'Experience',
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title',
+          value:dataExperience.title
+        },
+        { 
+          name: 'year',
+          placeholder: 'Year',
+          value:dataExperience.year
+        },
+        {
+          name: 'description',
+          placeholder: 'Description',
+          value:dataExperience.description
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log(data);
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+
+            let input = {
+              user_id: this.user_id, 
+              title: data.title,
+              description: data.description,
+              year: data.year
+            };
+
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.put(this.data.BASE_URL+"auth/updateExperience/"+dataExperience.id,input,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   addExperience(){
@@ -363,9 +440,110 @@ export class ProfilePage {
     prompt.present();
   }
 
+  optionEducation(dataTemp){
+    
+    let prompt = this.alertCtrl.create({
+      title: dataTemp.school,
+      subTitle:dataTemp.major +"<br>"+dataTemp.year,
+      buttons: [
+        {
+          text: 'Delete',
+          handler: data => {
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.delete(this.data.BASE_URL+"auth/deleteEducation/"+dataTemp.id,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        },
+        {
+          text: 'Edit',
+          handler: data => {
+            this.editEducation(dataTemp);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  editEducation(dataTemp){
+    console.log("dataedit",dataTemp)
+    const prompt = this.alertCtrl.create({
+      title: 'Education',
+      inputs: [
+        {
+          name: 'school',
+          placeholder: 'School',
+          value: dataTemp.school
+        },
+        {
+          name: 'major',
+          placeholder: 'Major',
+          value: dataTemp.major
+        },
+        {
+          name: 'year',
+          placeholder: 'Year',
+          value: dataTemp.year
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log(data);
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+
+            let input = {
+              user_id: this.user_id, 
+              school: data.school,
+              major: data.major,
+              year: data.year
+            };
+
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.put(this.data.BASE_URL+"auth/updateEducation/"+dataTemp.id,input,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
   addEducation(){
     const prompt = this.alertCtrl.create({
-      title: 'Experience',
+      title: 'Education',
       inputs: [
         {
           name: 'school',
@@ -422,9 +600,96 @@ export class ProfilePage {
     prompt.present();
   }
 
+  optionSkill(dataTemp){
+    
+    let prompt = this.alertCtrl.create({
+      title: dataTemp.skill,
+      buttons: [
+        {
+          text: 'Delete',
+          handler: data => {
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.delete(this.data.BASE_URL+"auth/deleteSkill/"+dataTemp.id,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        },
+        {
+          text: 'Edit',
+          handler: data => {
+            this.editSkill(dataTemp);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  editSkill(dataTemp){
+    const prompt = this.alertCtrl.create({
+      title: 'Skill',
+      inputs: [
+        {
+          name: 'skill',
+          placeholder: 'Skill',
+          value: dataTemp.skill
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log(data);
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+
+            let input = {
+              user_id: this.user_id, 
+              skill: data.skill
+            };
+
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.put(this.data.BASE_URL+"auth/updateSkill/"+dataTemp.id,input,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
   addSkill(){
     const prompt = this.alertCtrl.create({
-      title: 'Experience',
+      title: 'Skill',
       inputs: [
         {
           name: 'skill',
@@ -471,9 +736,109 @@ export class ProfilePage {
     prompt.present();
   }
 
+  optionAchivement(dataTemp){
+    
+    let prompt = this.alertCtrl.create({
+      title: dataTemp.achivement,
+      subTitle:dataTemp.form +"<br>"+dataTemp.year,
+      buttons: [
+        {
+          text: 'Delete',
+          handler: data => {
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.delete(this.data.BASE_URL+"auth/deleteAchievement/"+dataTemp.id,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        },
+        {
+          text: 'Edit',
+          handler: data => {
+            this.editAchivement(dataTemp);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  editAchivement(dataTemp){
+    const prompt = this.alertCtrl.create({
+      title: 'Achivement',
+      inputs: [
+        {
+          name: 'achivement',
+          placeholder: 'Achivement',
+          value: dataTemp.achivement
+        },
+        {
+          name: 'form',
+          placeholder: 'From',
+          value: dataTemp.form
+        },
+        {
+          name: 'year',
+          placeholder: 'Year',
+          value: dataTemp.year
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log(data);
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+
+            let input = {
+              user_id: this.user_id, 
+              achivement: data.achivement,
+              form: data.form,
+              year: data.year
+            };
+
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.put(this.data.BASE_URL+"auth/updateAchievement/"+dataTemp.id,input,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
   addAchivement(){
     const prompt = this.alertCtrl.create({
-      title: 'Experience',
+      title: 'Achivement',
       inputs: [
         {
           name: 'achivement',
@@ -530,9 +895,103 @@ export class ProfilePage {
     prompt.present();
   }
 
+  optionContact(dataTemp){
+    
+    let prompt = this.alertCtrl.create({
+      title: dataTemp.contact,
+      subTitle:dataTemp.form,
+      buttons: [
+        {
+          text: 'Delete',
+          handler: data => {
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.delete(this.data.BASE_URL+"auth/deleteContact/"+dataTemp.id,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        },
+        {
+          text: 'Edit',
+          handler: data => {
+            this.editContact(dataTemp);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  editContact(dataTemp){
+    const prompt = this.alertCtrl.create({
+      title: 'Contact',
+      inputs: [
+        {
+          name: 'contact',
+          placeholder: 'Title',
+          value: dataTemp.contact
+        },
+        {
+          name: 'form',
+          placeholder: 'Id/Number',
+          value: dataTemp.form
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            console.log(data);
+            this.loading = this.loadCtrl.create({
+              content: 'Please wait...'
+            });
+            this.loading.present();
+
+            let input = {
+              user_id: this.user_id, 
+              contact: data.contact,
+              form: data.form
+            };
+
+            this.data.getOriginalPassword().then((password) =>{
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.put(this.data.BASE_URL+"auth/updateContact/"+dataTemp.id,input,{ headers: headers }).timeout(5000).subscribe(data => {
+                let response = data.json();
+                this.login();
+                this.loading.dismiss();
+              }, err => {     
+                console.log("error cui :",err);
+                this.runTimeError();
+                this.loading.dismiss();      
+              }); 
+            });
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
   addContact(){
     const prompt = this.alertCtrl.create({
-      title: 'Experience',
+      title: 'Contact',
       inputs: [
         {
           name: 'contact',
