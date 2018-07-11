@@ -49,7 +49,8 @@ export class NotificationPage {
   }
 
   openProfile(data){
-    this.navCtrl.push(ProfileOtherPage);
+    data.origin ="notification";
+    this.navCtrl.push(ProfileOtherPage,data);
   }
 
   follow(data){
@@ -148,6 +149,9 @@ export class NotificationPage {
         // alert(response)
         this.notifications = response.reverse();
         this.loading.dismiss();
+        for(let data of this.notifications){
+          if(data.enable == true ) console.log("123")
+        }
 
       }, err => {     
         console.log("error cui :",err);
