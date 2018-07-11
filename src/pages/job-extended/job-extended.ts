@@ -77,6 +77,7 @@ export class JobExtendedPage {
       // alert(response)
     }, err => {     
       console.log("error cui :",err);
+      
     });
   }
 
