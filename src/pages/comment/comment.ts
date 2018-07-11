@@ -128,7 +128,7 @@ export class CommentPage {
       this.http.get(this.data.BASE_URL+"auth/getComments/"+this.timeline_id,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
-        this.comments = response;
+        this.comments = response.reverse();
 
       }, err => {     
         console.log("error cui :",err);

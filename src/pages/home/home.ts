@@ -58,7 +58,7 @@ export class HomePage {
         let response = data.json();
         console.log(response);
         // alert(response)
-        this.post = response;
+        this.post = response.reverse();
         if(this.post.length){
           this.nothing = false;
           }
