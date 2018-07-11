@@ -16,7 +16,7 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class JobsPage {
 
-  bookmark = false;
+  bookmark: any;
   jobs:any;
   list_search: any;
   statusSearch : boolean = false;
@@ -86,10 +86,10 @@ export class JobsPage {
       });
   }
 
-  changeBookmark(){
+  changeBookmark(data){
     // ini nnti kao udah berhasil bookmark ada snackbarnya gitu 
-    if(this.bookmark == false){
-      this.bookmark = true;
+    if(data.flag_bookmark == 0){
+      this.bookmark = 1;
       let toast = this.toastCtrl.create({
         message: 'Bookmark success',
         duration: 3000,
@@ -98,30 +98,30 @@ export class JobsPage {
       });
       toast.present();
 
-    //   this.loading = this.loadingCtrl.create({
-    //     content: 'Please wait...'
-    // });
+      this.loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
 
-    // this.loading.present();
+      this.loading.present();
 
-    // let input = {
-    //   user_id: this.registerForm.value.username, 
-    //   job_id: this.registerForm.value.email,
-    // };
-    // this.http.post(this.data.BASE_URL+"addBookmark", input).timeout(5000).subscribe(data => {
-    //   let response = data.json();
-    //   console.log(response);
-    //   this.user_id
-    //   this.loading.dismiss();
+      let input = {
+        user_id: this.user_id, 
+        job_id: this.job_id,
+      };
 
-    // }, err => {     
-    //   this.loading.dismiss();
-    //   this.runTimeError();
-      
-    // });      
+      this.http.post(this.data.BASE_URL+"addBookmark", input).timeout(5000).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.user_id
+      this.loading.dismiss();
+
+      }, err => {     
+        this.loading.dismiss();
+        this.runTimeError();
+        
+      });      
     }
     else{
-      this.bookmark = false;
       let toast = this.toastCtrl.create({
         message: 'Remove bookmark success',
         showCloseButton: true,
@@ -129,6 +129,30 @@ export class JobsPage {
         duration: 3000
       });
       toast.present();
+
+      this.loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+
+      this.loading.present();
+
+      let input = {
+        user_id: this.user_id, 
+        job_id: this.job_id,
+      };
+
+      this.http.delete(this.data.BASE_URL+"deleteBookmark").timeout(5000).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.user_id
+      this.loading.dismiss();
+
+      }, err => {     
+        this.loading.dismiss();
+        this.runTimeError();
+        
+      });      
+
     }
   }
 

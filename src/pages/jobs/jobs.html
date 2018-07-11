@@ -40,8 +40,8 @@
   <div *ngFor="let data of jobs" class="jobCard">
     <div class="headerJob">
       <span class="headerText">{{data.date}}</span>
-      <ion-icon [hidden]="bookmark == true" (click)="changeBookmark(data)" name="ios-bookmark-outline" class="buttonCustom"></ion-icon>
-      <ion-icon [hidden]="bookmark == false" (click)="changeBookmark(data)" name="ios-bookmark" class="buttonCustom"></ion-icon>
+      <ion-icon [hidden]="data.flag_bookmark == 1" (click)="changeBookmark(data)" name="ios-bookmark-outline" class="buttonCustom"></ion-icon>
+      <ion-icon [hidden]="data.flag_bookmark == 0" (click)="changeBookmark(data)" name="ios-bookmark" class="buttonCustom"></ion-icon>
     </div>
     <div (click)="openJobDetail(data)">
       <img  class="pictHeader" src="assets/imgs/cardContent.jpg" />
