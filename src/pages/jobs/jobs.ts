@@ -176,7 +176,7 @@ export class JobsPage {
         {
           text: 'Refresh',
           handler: data => {
-            this.changeBookmark();
+            this.changeBookmark(data);
           }
         }
       ]
