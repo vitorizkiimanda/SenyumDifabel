@@ -14,15 +14,15 @@
       <ion-icon *ngIf="bookmark" (click)="changeBookmark()" color="dark" class="loveIconInverse" name="md-heart"></ion-icon>
       <img  class="pict" src="assets/imgs/bukalapak.png" />
       <div class="text" text-center>
-        <span class="name">Backend Engineer</span>
+        <span class="name">{{data.name}}</span>
         <br />
-        <span class="position">Bukalapak</span>
+        <span class="position">{{data.company_name}}</span>
         <br />
         <span class="topic">IT & Telekomunikasi | South Jakarta</span>
         <br />
         <span class="criteria">Tuna Rungu & Tuna Wicara</span>
         <div class="deadline">
-          <span>Deadline : 1 Mei 2018</span>
+          <span>{{data.date}}</span>
         </div>
       </div>
     </div>

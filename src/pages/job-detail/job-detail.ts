@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { JobApplyPage } from '../job-apply/job-apply';
+import { Data } from '../../providers/data';
+import { Http, RequestOptions, Headers  } from '@angular/http';
 
 @Component({
   selector: 'page-job-detail',
@@ -11,10 +13,16 @@ export class JobDetailPage {
 
   bookmark:boolean = false;
 
+  user_id: any;
+  job_id: any;
+  jobs: any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public toastCtrl: ToastController,
+    private data: Data,
+    public http: Http,    
     private superTabsCtrl: SuperTabsController) {
   }
 
@@ -22,6 +30,14 @@ export class JobDetailPage {
   ionViewWillEnter() {
     this.superTabsCtrl.enableTabsSwipe(false);
     this.superTabsCtrl.showToolbar(false);
+
+    this.data.getData().then((data) =>{
+      this.user_id = data.user_id;
+      this.job_id = data.job_id;
+      console.log(data);
+    
+      this.getJobs(this.job_id);
+    })
   }
 
   ionViewWillLeave(){
@@ -32,6 +48,20 @@ export class JobDetailPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad JobDetailPage');
   }
+
+  getJobs(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getjobs/"+data,{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.jobs = response;
+      // alert(response)
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
+  }
+  
 
   changeBookmark(){
     // ini nnti kao udah berhasil bookmark ada snackbarnya gitu 
