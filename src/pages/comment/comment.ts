@@ -27,6 +27,9 @@ export class CommentPage {
   timeline_user_id:any;
   timeline_id:any;
 
+  counterLike:any;
+  counterComments:any;
+
   comments:any;
   message:any;
   temp:any;
@@ -52,15 +55,32 @@ export class CommentPage {
     
     this.data.getData().then((data) => {
       this.user_id = data.user_id;
-      this.user_name = data.user_name;
       this.user_email = data.user_email;
-      this.user_photo = data.user_photo;
       console.log(this.user_id);
 
       if(this.temp.origin=="notifications"){
-        this.getPostData(this.temp);
-        this.getComments(this.temp);
+        this.timeline_id = this.temp.forward_id;
+        this.getPostData(this.temp.forward_id);
+        this.getComments();
       }
+      else if(this.temp.origin=="home"){
+        console.log(this.temp)
+        
+        this.user_name = this.temp.user_name;
+        this.user_photo = this.temp.user_photo;
+        this.timeline_date = this.temp.timeline_date;
+        this.timeline_description = this.temp.timeline_description;
+        this.timeline_time = this.temp.timeline_time;
+        this.timeline_photo = this.temp.timeline_photo;
+        this.timeline_user_id = this.temp.user_id;
+        this.timeline_description = this.temp.timeline_description;
+        this.counterComments =  this.temp.comments;
+        this.counterLike = this.temp.like;
+
+        this.timeline_id = this.temp.timeline_id;
+        this.getComments();
+      }
+
     })    
   }
 
@@ -78,15 +98,19 @@ export class CommentPage {
     
     this.data.getOriginalPassword().then((password) =>{
       let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
-      this.http.get(this.data.BASE_URL+"auth/getTimeline/"+data.forward_id,{ headers: headers }).timeout(5000).subscribe(data => {
+      this.http.get(this.data.BASE_URL+"auth/getTimeline/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
+        this.user_name = response.user_name;
+        this.user_photo = response.user_photo;
         this.timeline_date = response.timeline_date;
         this.timeline_description = response.timeline_description;
         this.timeline_time = response.timeline_time;
         this.timeline_photo = response.timeline_photo;
         this.timeline_user_id = response.user_id;
         this.timeline_description = response.timeline_description;
+        this.counterComments =  response.comments;
+        this.counterLike = response.like;
         // alert(response)
         this.loading.dismiss();
 
@@ -98,10 +122,10 @@ export class CommentPage {
     });
   }
 
-  getComments(data){
+  getComments(){
     this.data.getOriginalPassword().then((password) =>{
       let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
-      this.http.get(this.data.BASE_URL+"auth/getComments/"+data.forward_id,{ headers: headers }).timeout(5000).subscribe(data => {
+      this.http.get(this.data.BASE_URL+"auth/getComments/"+this.timeline_id,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
         this.comments = response;
@@ -136,7 +160,7 @@ export class CommentPage {
     
 
     // this.socialSharing.share(data.name, data.user, "http://156.67.218.250:81"+data.picture, data.youtube)
-    this.socialSharing.share(this.timeline_description, null,this.timeline_photo , null);
+    this.socialSharing.share(this.timeline_description, null,null , null);
 
   }
 
@@ -170,7 +194,7 @@ export class CommentPage {
 
     let input = {
       user_id : this.user_id,
-      timeline_id : this.temp.forward_id,
+      timeline_id : this.timeline_id,
       time: this.timeNow,
       date: this.dateNow,
       comment: data,
@@ -184,7 +208,8 @@ export class CommentPage {
       this.http.post(this.data.BASE_URL+"auth/addComment",input,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
-        this.getComments(this.temp);
+        console.log("awawawawawaw", this.timeline_id)
+        this.getComments();
         this.loading.dismiss();
       }, err => {     
         console.log("error cui :",err);
@@ -212,12 +237,12 @@ export class CommentPage {
       this.http.post(this.data.BASE_URL+"auth/pushNotification/comment",input,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
-        this.getComments(this.temp);
-        this.loading.dismiss();
+        this.getComments();
+        
       }, err => {     
         console.log("error cui :",err);
         this.runTimeError();
-        this.loading.dismiss();      
+          
       }); 
     });
   }
