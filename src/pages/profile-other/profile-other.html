@@ -80,54 +80,21 @@
       </div>
       <ion-grid no-padding>          
         <ion-row no-padding>
-          <ion-col col-6 no-padding class="marginBottom" (click)="seeDetail()">
+          <ion-col *ngFor="let data of experiences" col-6 no-padding class="marginBottom" (click)="detailExperience(data)">
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
                 <img  class="pictContent" src="assets/imgs/experience.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">UX Researcher a a a a a a aa a a a aa  aa</span>
+                <span class="headContent">{{data.title}}</span>
                 <br />
-                <span class="subheadContent">Bukalapaka a a a a a a a a a aa  a</span>
+                <span class="subheadContent">{{data.description}}</span>
                 <br />
-                <span class="time">Dec 2016 - Presents a a a a a a a a </span>                  
+                <span class="time">{{data.year}}</span>                  
               </ion-col>
             </ion-row>  
-          </ion-col>
-
-          <ion-col col-6 no-padding class="marginBottom">
-            <ion-row no-padding>
-              <ion-col col-4 no-padding>
-                <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
-              </ion-col>
-              <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">UX Researcher</span>
-                <br />
-                <span class="subheadContent">Bukalapak</span>
-                <br />
-                <span class="time">Dec 2016 - Presents</span>                  
-              </ion-col>
-            </ion-row>  
-          </ion-col>
-
-          <ion-col col-6 no-padding class="marginBottom">
-            <ion-row no-padding>
-              <ion-col col-4 no-padding>
-                <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
-              </ion-col>
-              <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">UX Researcher</span>
-                <br />
-                <span class="subheadContent">Bukalapak</span>
-                <br />
-                <span class="time">Dec 2016 - Presents</span>                  
-              </ion-col>
-            </ion-row>  
-          </ion-col>
-          
+          </ion-col>          
         </ion-row>
       </ion-grid>
     </div>
@@ -141,54 +108,21 @@
       </div>
       <ion-grid no-padding>          
         <ion-row no-padding>
-          <ion-col col-6 no-padding class="marginBottom">
+          <ion-col *ngFor="let data of educations" col-6 no-padding class="marginBottom" (click)="detailEducation(data)">
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
                 <img  class="pictContent" src="assets/imgs/education.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">IPB</span>
+                <span class="headContent">{{data.school}}</span>
                 <br />
-                <span class="subheadContent">Ilmu Komputer</span>
+                <span class="subheadContent">{{data.major}}</span>
                 <br />
-                <span class="time">2011 - 2015</span>                  
+                <span class="time">{{data.year}}</span>                  
               </ion-col>
             </ion-row>  
-          </ion-col>
-
-          <ion-col col-6 no-padding class="marginBottom">
-            <ion-row no-padding>
-              <ion-col col-4 no-padding>
-                <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
-              </ion-col>
-              <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">IPB</span>
-                <br />
-                <span class="subheadContent">Ilmu Komputer</span>
-                <br />
-                <span class="time">2011 - 2015</span>                  
-              </ion-col>
-            </ion-row>  
-          </ion-col>
-
-          <ion-col col-6 no-padding class="marginBottom">
-            <ion-row no-padding>
-              <ion-col col-4 no-padding>
-                <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
-              </ion-col>
-              <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">IPB</span>
-                <br />
-                <span class="subheadContent">Ilmu Komputer</span>
-                <br />
-                <span class="time">2011 - 2015</span>                  
-              </ion-col>
-            </ion-row>  
-          </ion-col>
-          
+          </ion-col>          
         </ion-row>
       </ion-grid>
     </div>
@@ -202,18 +136,14 @@
       </div>
       <ion-grid no-padding>          
         <ion-row no-padding>
-          <ion-col col-6 no-padding class="marginBottom">
+          <ion-col *ngFor="let data of skills" col-6 no-padding class="marginBottom" (click)="detailSkill(data)">
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
                 <img  class="pictContent" src="assets/imgs/skill.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">SKill 1</span>
-                <br />
-                <span class="subheadContent">sertifikat?</span>
-                <br />
-                <span class="time">2018</span>                  
+                <span class="headContent">{{data.skill}}</span>           
               </ion-col>
             </ion-row>  
           </ion-col>
@@ -231,18 +161,18 @@
       </div>
       <ion-grid no-padding>          
         <ion-row no-padding>
-          <ion-col col-6 no-padding class="marginBottom">
+          <ion-col *ngFor="let data of achievements" col-6 no-padding class="marginBottom" (click)="detailAchivement(data)">
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
                 <img  class="pictContent" src="assets/imgs/achivement.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">Prestation 1</span>
+                <span class="headContent">{{data.achivement}}</span>
                 <br />
-                <span class="subheadContent">sertifikat?</span>
+                <span class="subheadContent">{{data.form}}</span>
                 <br />
-                <span class="time">2018</span>                  
+                <span class="time">{{data.year}}</span>                  
               </ion-col>
             </ion-row>  
           </ion-col>
@@ -260,18 +190,16 @@
       </div>
       <ion-grid no-padding>          
         <ion-row no-padding>
-          <ion-col col-6 no-padding class="marginBottom">
+          <ion-col *ngFor="let data of contacts" col-6 no-padding class="marginBottom" (click)="detailContact(data)">
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
                 <img  class="pictContent" src="assets/imgs/contact.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
-                <span class="headContent">Contact 1</span>
+                <span class="headContent">{{data.contact}}</span>
                 <br />
-                <span class="subheadContent">email?</span>
-                <br />
-                <span class="time">2018</span>                  
+                <span class="subheadContent">{{data.form}}?</span>        
               </ion-col>
             </ion-row>  
           </ion-col>

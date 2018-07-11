@@ -31,6 +31,12 @@ export class ProfileOtherPage {
   follower:any;
   following:any;
 
+  experiences:any;
+  educations:any;
+  contacts:any;
+  achievements:any;
+  skills:any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -74,10 +80,17 @@ export class ProfileOtherPage {
         // alert(response)
         this.user = response;
         this.user_idForeign = response.user_id;
+        this.user_photo = response.user_photo;
         this.name = response.user_name;
         this.address = response.user_address;
         this.bio = response.user_contact;
         this.job = response.user_job;
+
+        this.experiences=response.experiences;
+        this.educations=response.educations;
+        this.contacts=response.contacts;
+        this.achievements=response.achievements;
+        this.skills=response.skills;
         this.loading.dismiss();
       }, err => {     
         console.log("error cui :",err);
@@ -210,17 +223,69 @@ export class ProfileOtherPage {
     prompt.present();
   }
 
-  seeDetail(){
-    console.log("awwww")
+  detailExperience(data){
     let detail = this.alertCtrl.create({
-      title: "UX Researcher",
-      subTitle:"Bukalapak<br>2016-2018",
+      title: data.title,
+      subTitle:data.description +"<br>" + data.year,
       buttons: [
         {
           text: 'Close',
-          handler: data => {
-            // this.deleteJob(dataJob);
-          }
+          handler: data => {}
+        }
+      ]
+    });
+    detail.present();
+  }
+
+  detailEducation(data){
+    let detail = this.alertCtrl.create({
+      title: data.school,
+      subTitle:data.major +"<br>" + data.year,
+      buttons: [
+        {
+          text: 'Close',
+          handler: data => {}
+        }
+      ]
+    });
+    detail.present();
+  }
+
+  detailSkill(data){
+    let detail = this.alertCtrl.create({
+      title: data.skill,
+      buttons: [
+        {
+          text: 'Close',
+          handler: data => {}
+        }
+      ]
+    });
+    detail.present();
+  }
+
+  detailAchivement(data){
+    let detail = this.alertCtrl.create({
+      title: data.achivement,
+      subTitle:data.form +"<br>" + data.year,
+      buttons: [
+        {
+          text: 'Close',
+          handler: data => {}
+        }
+      ]
+    });
+    detail.present();
+  }
+
+  detailContact(data){
+    let detail = this.alertCtrl.create({
+      title: data.contact,
+      subTitle:data.form,
+      buttons: [
+        {
+          text: 'Close',
+          handler: data => {}
         }
       ]
     });
