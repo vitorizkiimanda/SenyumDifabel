@@ -14,14 +14,12 @@ export class JobDetailPage {
   bookmark:boolean = false;
 
   user_id: any;
-  job_id: any;
   jobs: any;
 
-  
-  company_name:any;
-  date:any;
-  description:any;
-  name:any;
+  company_name: any;
+  name: any;
+  date: any;
+  description: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -29,7 +27,7 @@ export class JobDetailPage {
     public toastCtrl: ToastController,
     private data: Data,
     public http: Http,    
-    private superTabsCtrl: SuperTabsController) {
+    private superTabsCtrl: SuperTabsController) {      
   }
 
 
@@ -37,19 +35,18 @@ export class JobDetailPage {
     this.superTabsCtrl.enableTabsSwipe(false);
     this.superTabsCtrl.showToolbar(false);
 
+    let temp = this.navParams.data;      
     
-    let temp = this.navParams.data;
     this.company_name = temp.company_name;
     this.name = temp.name;
-    this.description = temp.description;
     this.date = temp.date;
-    
-    console.log(temp)
-    
+    this.description = temp.description;
+
+    console.log(temp);
+
     this.data.getData().then((data) =>{
       this.user_id = data.user_id;
       console.log(data);
-      // this.getJobs(this.job_id);
     })
   }
 
@@ -60,19 +57,6 @@ export class JobDetailPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad JobDetailPage');
-  }
-
-  getJobs(data){
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/getjobs/"+data,{ headers: headers }).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.jobs = response;
-      // alert(response)
-    }, err => {     
-      console.log("error cui :",err);
-      
-    });
   }
   
 

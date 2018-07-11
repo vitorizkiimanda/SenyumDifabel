@@ -15,6 +15,8 @@ export class JobExtendedPage {
 
   choosed:any;
   bookmark = false;
+  user_email: any;
+  password: any;
 
   user_id: any;
   applies: any;
@@ -93,7 +95,7 @@ export class JobExtendedPage {
   }
 
   openJobDetail(data){
-    this.navCtrl.push(JobDetailPage);
+    this.navCtrl.push(JobDetailPage, data);
   }
 
   changeBookmark(){
