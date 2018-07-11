@@ -53,10 +53,10 @@ export class NotificationPage {
   }
 
   follow(data){
-    this.loading = this.loadCtrl.create({
-      content: 'Please wait...'
-    });
-    this.loading.present();
+    // this.loading = this.loadCtrl.create({
+    //   content: 'Please wait...'
+    // });
+    // this.loading.present();
     
     let input = {
       user_id: this.user_id,
@@ -71,13 +71,13 @@ export class NotificationPage {
       this.http.post(this.data.BASE_URL+"auth/following",input,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
-        this.notifications = null;
-        this.ionViewWillEnter();
+        // this.notifications = null;
+        this.getNotif(this.user_id);
         this.loading.dismiss();
       }, err => {     
         console.log("error cui :",err);
         this.runTimeError();
-        this.loading.dismiss();      
+        // this.loading.dismiss();      
       }); 
     });
   }
@@ -95,23 +95,28 @@ export class NotificationPage {
         {
           text: 'Unfollow',
           handler: data => {
-            this.loading = this.loadCtrl.create({
-              content: 'Please wait...'
-            });
-            this.loading.present();
+            // this.loading = this.loadCtrl.create({
+            //   content: 'Please wait...'
+            // });
+            // this.loading.present();
+
+            let input = {
+              param1: this.user_id,
+              param2: dataNotif.forward_id
+            };
             
             this.data.getOriginalPassword().then((password) =>{
               let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
-              this.http.delete(this.data.BASE_URL+"auth/deleteFollowing/"+dataNotif.id,{ headers: headers }).timeout(5000).subscribe(data => {
+              this.http.post(this.data.BASE_URL+"auth/deleteFollowing/", input, { headers: headers }).timeout(5000).subscribe(data => {
                 let response = data.json();
                 console.log(response);
-                this.notifications = null;
-                this.ionViewWillEnter();
-                this.loading.dismiss();
+                // this.notifications = null;
+                this.getNotif(this.user_id);
+                // this.loading.dismiss();
               }, err => {     
                 console.log("error cui :",err);
                 this.runTimeError();
-                this.loading.dismiss();      
+                // this.loading.dismiss();      
               }); 
             });
           }
