@@ -3,6 +3,7 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
 import { Data } from '../../providers/data';
 import { Http, RequestOptions, Headers  } from '@angular/http';
+import { JobDetailPage } from '../job-detail/job-detail';
 
 
 
@@ -28,8 +29,7 @@ export class JobExtendedPage {
     private data: Data,
     public http: Http,
     public toastCtrl: ToastController) {
-
-    
+      
     let temp = this.navParams.data;
     this.choosed = temp;
           
@@ -90,6 +90,10 @@ export class JobExtendedPage {
       console.log("error cui :",err);
       
     });
+  }
+
+  openJobDetail(data){
+    this.navCtrl.push(JobDetailPage);
   }
 
   changeBookmark(){

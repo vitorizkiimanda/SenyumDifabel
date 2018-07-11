@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController, AlertController } from 'ionic-angular';
 import { JobDetailPage } from '../job-detail/job-detail';
 import { InterviewPage } from '../interview/interview';
 import { JobExtendedPage } from '../job-extended/job-extended';
 import { Data } from '../../providers/data';
 import { Http, RequestOptions, Headers  } from '@angular/http';
+import { LoginPage } from '../login/login';
+import { SuperTabsController } from 'ionic2-super-tabs';
+import { TabsPage } from '../tabs/tabs';
 
 
 @Component({
@@ -19,11 +22,13 @@ export class JobsPage {
   statusSearch : boolean = false;
 
   user_id: any;
+  loading: any;  
 
   saved: any;
   applied: any;
   interview: any;
   user_email:any;  
+  job_id: any;
   
 
   constructor(
@@ -31,7 +36,11 @@ export class JobsPage {
     public navParams: NavParams,
     public toastCtrl: ToastController,
     private data: Data,
+    public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
+    public loadCtrl: LoadingController,    
     public http: Http) {
+      let temp = this.navParams.data;      
   }
 
   ionViewWillEnter() {
@@ -88,6 +97,28 @@ export class JobsPage {
         closeButtonText: 'Ok'
       });
       toast.present();
+
+    //   this.loading = this.loadingCtrl.create({
+    //     content: 'Please wait...'
+    // });
+
+    // this.loading.present();
+
+    // let input = {
+    //   user_id: this.registerForm.value.username, 
+    //   job_id: this.registerForm.value.email,
+    // };
+    // this.http.post(this.data.BASE_URL+"addBookmark", input).timeout(5000).subscribe(data => {
+    //   let response = data.json();
+    //   console.log(response);
+    //   this.user_id
+    //   this.loading.dismiss();
+
+    // }, err => {     
+    //   this.loading.dismiss();
+    //   this.runTimeError();
+      
+    // });      
     }
     else{
       this.bookmark = false;
@@ -101,8 +132,8 @@ export class JobsPage {
     }
   }
 
-  openJobDetail(){
-    this.navCtrl.push(JobDetailPage);
+  openJobDetail(data){
+    this.navCtrl.push(JobDetailPage, data);
   }
 
   openInterview(){
@@ -111,6 +142,22 @@ export class JobsPage {
 
   open(data){
     this.navCtrl.push(JobExtendedPage, data);
+  }
+
+  runTimeError(){
+    let alert = this.alertCtrl.create({
+      title: 'Failed',
+      subTitle: 'Please try again',      
+      buttons: [
+        {
+          text: 'Refresh',
+          handler: data => {
+            this.changeBookmark();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
 
