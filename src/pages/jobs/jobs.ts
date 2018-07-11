@@ -38,33 +38,24 @@ export class JobsPage {
     console.log('ionViewDidLoad ProfilePage');
     this.data.getData().then((data) =>{
       this.user_id = data.user_id;
+      this.user_email = data.user_email;
       console.log(data);
     
       this.countJob(this.user_id);
-    })    
-  }
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad JobsPage');
-    this.data.getData().then((data) =>{
-      this.user_id = data.user_id;
-      console.log(this.user_id);
-    
       this.getJobs(this.user_id);
-    })
+    })    
   }
 
   countJob(data){
     this.data.getOriginalPassword().then((password) =>{
       console.log(password);
       let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
-      this.http.get(this.data.BASE_URL+"auth/countFollow/"+data,{ headers: headers }).subscribe(data => {
+      this.http.get(this.data.BASE_URL+"auth/countJob/"+data,{ headers: headers }).subscribe(data => {
         let response = data.json();
         console.log(response);
-        this.saved=response.saved;
-        this.applied=response.applied;
-        this.interview=response.interview;
+        this.saved = response.saved;
+        this.applied = response.applied;
+        this.interview = response.interview;
         // alert(response)
       }, err => {     
         console.log("error cui :",err);

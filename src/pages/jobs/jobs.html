@@ -20,17 +20,17 @@
     <ion-grid no-padding class="headerContent">          
       <ion-row no-padding text-center>
         <ion-col (click)="open('saved')" col-4 no-padding class="contentHeader">
-          <span class="numberHeader">2</span>
+          <span class="numberHeader">{{saved}}</span>
           <br />
           <span class="textHeader">Saved Jobs</span>            
         </ion-col>
         <ion-col (click)="open('applied')" col-4 no-padding class="contentHeader contentCenter">
-          <span class="numberHeader">1</span>
+          <span class="numberHeader">{{applied}}</span>
           <br />
           <span class="textHeader">Applied Jobs</span>            
         </ion-col>
         <ion-col (click)="open('attended')" col-4 no-padding class="contentHeader">
-          <span class="numberHeader">1</span>
+          <span class="numberHeader">{{interview}}</span>
           <br />
           <span class="textHeader">Interview Attended</span>            
         </ion-col>
