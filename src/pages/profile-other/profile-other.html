@@ -10,17 +10,18 @@
 
 
 <ion-content class="backgroundColor">
-<img  class="pictCover" src="assets/imgs/bukalapakCover.jpg" />
+<img  class="pictCover" src="assets/imgs/cover.JPG" />
 <div class="mainProfile">
-  <img  class="pictProfile" src="assets/imgs/alamanda.jpg" />
+  <img  class="pictProfile" *ngIf="user_photo" [src]="user_photo" />    
+  <img  class="pictProfile" *ngIf="!user_photo" src="assets/imgs/profile.png" />  
   <div class="textProfile" text-center>
-    <span class="name">Alamanda Shantika</span>
+    <span class="name">{{name}}</span>
     <br />
-    <span class="position">VP Gojek Indonesia</span>
+    <span class="position">{{job}}</span>
     <br />
-    <span class="location">South Jakarta, Indonesia</span>
+    <span class="location">{{address}}</span>
     <div class="description">
-      <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad </span>
+      <span>{{bio}}</span>
     </div>
   </div>
 </div>
@@ -28,12 +29,12 @@
   <ion-grid no-padding>          
     <ion-row no-padding text-center>
       <ion-col (click)="open('follower')" col-6 no-padding class="contentHeader">
-        <span class="numberHeader">2980</span>
+        <span class="numberHeader">{{follower}}</span>
         <br />
         <span class="textHeader">Followers</span>            
       </ion-col>
       <ion-col (click)="open('following')" col-6 no-padding class="contentHeader contentCenter">
-        <span class="numberHeader">387</span>
+        <span class="numberHeader">{{following}}</span>
         <br />
         <span class="textHeader">Following</span>            
       </ion-col>
@@ -83,7 +84,7 @@
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
+                <img  class="pictContent" src="assets/imgs/experience.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
                 <span class="headContent">UX Researcher a a a a a a aa a a a aa  aa</span>
@@ -144,7 +145,7 @@
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
+                <img  class="pictContent" src="assets/imgs/education.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
                 <span class="headContent">IPB</span>
@@ -205,7 +206,7 @@
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
+                <img  class="pictContent" src="assets/imgs/skill.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
                 <span class="headContent">SKill 1</span>
@@ -234,7 +235,7 @@
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
+                <img  class="pictContent" src="assets/imgs/achivement.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
                 <span class="headContent">Prestation 1</span>
@@ -263,7 +264,7 @@
             <ion-row no-padding>
               <ion-col col-4 no-padding>
                 <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-                <img  class="pictContent" src="assets/imgs/bukalapak.png" />             
+                <img  class="pictContent" src="assets/imgs/contact.png" />             
               </ion-col>
               <ion-col col-8 no-padding class="wordContent">
                 <span class="headContent">Contact 1</span>

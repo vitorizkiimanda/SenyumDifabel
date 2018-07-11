@@ -50,6 +50,16 @@ export class HomePage {
     this.getusers();
   }
 
+  doRefresh(refresher) {
+    console.log('Begin async operation', refresher);
+    this.ionViewWillEnter();
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
+  }
+
   getTimeline(data){
     this.data.getOriginalPassword().then((password) =>{
       console.log(password);
@@ -123,8 +133,8 @@ export class HomePage {
     this.navCtrl.push(PostPage);
   }
 
-  openProfile(){
-    this.navCtrl.push(ProfileOtherPage);
+  openProfile(data){
+    this.navCtrl.push(ProfileOtherPage, data);
   }
 
   openComment(data){
