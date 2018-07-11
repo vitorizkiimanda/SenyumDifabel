@@ -29,6 +29,7 @@ export class JobsPage {
   interview: any;
   user_email:any;  
   job_id: any;
+
   
 
   constructor(
