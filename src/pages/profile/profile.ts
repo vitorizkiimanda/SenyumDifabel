@@ -34,6 +34,7 @@ export class ProfilePage {
   user_photo:any;
   description:any;
   user_email:any;
+  user_job:any;
 
   
   tab1Root = AboutPage;
@@ -57,6 +58,7 @@ export class ProfilePage {
       this.user_name = data.user_name;
       this.user_email = data.user_email;
       this.user_address = data.user_address;
+      this.user_job = data.user_job;
       this.description = data.user_contact;
       this.user_photo = data.user_photo;
       console.log(data);

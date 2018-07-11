@@ -30,9 +30,12 @@ export class CommentPage {
   counterLike:any;
   counterComments:any;
 
+  likes:any;
   comments:any;
   message:any;
   temp:any;
+
+  allowLike:any;
 
 
   constructor(
@@ -60,8 +63,9 @@ export class CommentPage {
 
       if(this.temp.origin=="notifications"){
         this.timeline_id = this.temp.forward_id;
-        this.getPostData(this.temp.forward_id);
+        this.getPostData();
         this.getComments();
+        this.getLikes();
       }
       else if(this.temp.origin=="home"){
         console.log(this.temp)
@@ -79,6 +83,7 @@ export class CommentPage {
 
         this.timeline_id = this.temp.timeline_id;
         this.getComments();
+        this.getLikes();
       }
 
     })    
@@ -89,16 +94,11 @@ export class CommentPage {
     this.superTabsCtrl.enableTabsSwipe(true);
   }
 
-  getPostData(data){
-    this.loading = this.loadCtrl.create({
-      content: 'Please wait...'
-    });
-
-    this.loading.present();
+  getPostData(){
     
     this.data.getOriginalPassword().then((password) =>{
       let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
-      this.http.get(this.data.BASE_URL+"auth/getTimeline/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
+      this.http.get(this.data.BASE_URL+"auth/getTimeline/"+this.timeline_id,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
         this.user_name = response.user_name;
@@ -112,12 +112,10 @@ export class CommentPage {
         this.counterComments =  response.comments;
         this.counterLike = response.like;
         // alert(response)
-        this.loading.dismiss();
 
       }, err => {     
         console.log("error cui :",err);
         this.runTimeError();
-        this.loading.dismiss();
       });
     });
   }
@@ -129,6 +127,27 @@ export class CommentPage {
         let response = data.json();
         console.log(response);
         this.comments = response.reverse();
+
+      }, err => {     
+        console.log("error cui :",err);
+        this.runTimeError();
+      });
+    });
+  }
+
+  getLikes(){
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/getLikes/"+this.timeline_id,{ headers: headers }).timeout(5000).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.likes = response;
+
+        this.allowLike = true;
+
+        for(let like of this.likes){
+          if(like.user_id == this.user_id ) this.allowLike = false;
+        }
 
       }, err => {     
         console.log("error cui :",err);
@@ -208,7 +227,6 @@ export class CommentPage {
       this.http.post(this.data.BASE_URL+"auth/addComment",input,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log(response);
-        console.log("awawawawawaw", this.timeline_id)
         this.getComments();
         this.loading.dismiss();
       }, err => {     
@@ -228,9 +246,6 @@ export class CommentPage {
       data_id : this.user_id,
       data_id2: this.timeline_id
     };
-
-    console.log("comment:", input)
-
     
     this.data.getOriginalPassword().then((password) =>{
       let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
@@ -247,4 +262,49 @@ export class CommentPage {
     });
   }
 
+  addLike(){
+    let input = {
+      user_id : this.user_id,
+      timeline_id: this.timeline_id
+    };
+
+    if(this.allowLike){  
+      this.data.getOriginalPassword().then((password) =>{
+        let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+        this.http.post(this.data.BASE_URL+"auth/addLikes",input,{ headers: headers }).timeout(5000).subscribe(data => {
+          let response = data.json();
+          console.log(response);
+          this.getLikes();
+          this.getPostData();        
+        }, err => {     
+          console.log("error cui :",err);
+          this.runTimeError();
+            
+        }); 
+      });
+      
+      if(this.user_id != this.timeline_user_id) this.postLikeNotification();
+    }
+  }
+
+  postLikeNotification(){
+    let input = {
+      user_id : this.timeline_user_id,
+      data_id : this.user_id,
+      data_id2: this.timeline_id
+    };
+    
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.post(this.data.BASE_URL+"auth/pushNotification/like",input,{ headers: headers }).timeout(5000).subscribe(data => {
+        let response = data.json();
+        this.getPostData();
+        
+      }, err => {     
+        console.log("error cui :",err);
+        this.runTimeError();
+          
+      }); 
+    });
+  }
 }
