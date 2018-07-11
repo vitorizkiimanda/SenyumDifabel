@@ -14,20 +14,25 @@
       <ion-icon *ngIf="bookmark" (click)="changeBookmark()" color="dark" class="loveIconInverse" name="md-heart"></ion-icon>
       <img  class="pict" src="assets/imgs/bukalapak.png" />
       <div class="text" text-center>
-        <span class="name">{{data.name}}</span>
+        <span class="name">{{company_name}}</span>
         <br />
-        <span class="position">{{data.company_name}}</span>
+        <span class="position">{{name}}</span>
         <br />
         <span class="topic">IT & Telekomunikasi | South Jakarta</span>
         <br />
         <span class="criteria">Tuna Rungu & Tuna Wicara</span>
         <div class="deadline">
-          <span>{{data.date}}</span>
+          <span>{{date}}</span>
         </div>
       </div>
     </div>
     <div class="detail">
       <div class="description">
+
+        <div class="descriptionHeader">
+          {{description}}
+        </div>
+
         <div>
           <div class="descriptionHeader">Kriteria Umum</div>
           <ul class="descriptionList">

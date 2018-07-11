@@ -17,6 +17,12 @@ export class JobDetailPage {
   job_id: any;
   jobs: any;
 
+  
+  company_name:any;
+  date:any;
+  description:any;
+  name:any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -31,12 +37,19 @@ export class JobDetailPage {
     this.superTabsCtrl.enableTabsSwipe(false);
     this.superTabsCtrl.showToolbar(false);
 
+    
+    let temp = this.navParams.data;
+    this.company_name = temp.company_name;
+    this.name = temp.name;
+    this.description = temp.description;
+    this.date = temp.date;
+    
+    console.log(temp)
+    
     this.data.getData().then((data) =>{
       this.user_id = data.user_id;
-      this.job_id = data.job_id;
       console.log(data);
-    
-      this.getJobs(this.job_id);
+      // this.getJobs(this.job_id);
     })
   }
 
