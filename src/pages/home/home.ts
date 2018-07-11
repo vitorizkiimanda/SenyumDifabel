@@ -61,8 +61,7 @@ export class HomePage {
         this.post = response;
         if(this.post.length){
           this.nothing = false;
-          console.log("pret")
-        }
+          }
 
       }, err => {     
         console.log("error cui :",err);
