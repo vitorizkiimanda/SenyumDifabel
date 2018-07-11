@@ -58,7 +58,7 @@ export class HomePage {
         let response = data.json();
         console.log(response);
         // alert(response)
-        this.post = response;
+        this.post = response.reverse();
         if(this.post.length){
           this.nothing = false;
           }
@@ -127,8 +127,10 @@ export class HomePage {
     this.navCtrl.push(ProfileOtherPage);
   }
 
-  openComment(){
-    this.navCtrl.push(CommentPage);
+  openComment(data){
+    data.origin = "home";
+    console.log(data)
+    this.navCtrl.push(CommentPage, data);
   }
 
   share(data){
@@ -146,7 +148,7 @@ export class HomePage {
     
 
     // this.socialSharing.share(data.name, data.user, "http://156.67.218.250:81"+data.picture, data.youtube)
-    this.socialSharing.share(data.timeline_description, null,data.timeline_photo , null);
+    this.socialSharing.share(data.timeline_description, null,null , null);
 
   }
 

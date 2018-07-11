@@ -99,7 +99,7 @@ export class ProfilePage {
       this.http.get(this.data.BASE_URL+"auth/getMyTimeline/"+data,{ headers: headers }).subscribe(data => {
         let response = data.json();
         console.log(response);
-        this.post = response;
+        this.post = response.reverse();
         // alert(response)
       }, err => {     
         console.log("error cui :",err);
