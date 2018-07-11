@@ -22,6 +22,7 @@ export class FollowPage {
   people:any;
   list_search: any;
   statusSearch : boolean = false;
+  tempList:any;
 
   target_id:any;
 
@@ -86,11 +87,11 @@ export class FollowPage {
       let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
       this.http.get(this.data.BASE_URL+"auth/getFollowing/"+data,{ headers: headers }).subscribe(data => {
         let response = data.json();
-        console.log("follower baru",response);
-        this.following = response;
-        for(let data of this.following){
-          // this.data.statusFollow = this.checkFollow(data.user_id);        
+        this.people = response;
+        for(let data of this.people){
+          data.statusFollow = this.checkFollow(data.user_id);        
         }
+        console.log("follower baru",response);
         // alert(response)
       }, err => {     
         console.log("error cui :",err);
@@ -104,11 +105,13 @@ export class FollowPage {
       let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
       this.http.get(this.data.BASE_URL+"auth/getFollower/"+data,{ headers: headers }).subscribe(data => {
         let response = data.json();
-        console.log("follower baru",response);
-        this.follower = response;
-        for(let data of this.follower){
-          // this.data.statusFollow = this.checkFollow(data.user_id);        
+        this.people = response;
+        for(let data of this.people){
+          data.statusFollow = this.checkFollow(data.user_id);    
+          // data.statusFollow = true;      
+          console.log(data.statusFollow)  
         }
+        console.log("follower baru",response);
         // alert(response)
       }, err => {     
         console.log("error cui :",err);
@@ -124,10 +127,12 @@ export class FollowPage {
       let response = data.json();
       console.log(response);
       for(let data of response){
-        if(data.user_id == id_check) this.statusFollow = false;      
+        if(data.user_id == id_check){
+          this.statusFollow = false;
+          break;
+        }      
       }
-      if(!this.statusFollow) return false; //already follow
-      else return true;
+      return this.statusFollow;
       // alert(response)
     }, err => {     
       console.log("error cui :",err);
@@ -144,6 +149,7 @@ export class FollowPage {
     this.statusSearch=true;
 
     // Reset items back to all of the items
+    this.tempList = this.people;
     this.list_search = this.people;
 
     console.log('list:'+this.list_search);
@@ -154,14 +160,9 @@ export class FollowPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      // this.list_search = this.list_search.filter((item) => {
-      //   return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      // })
-
-
-      // this.list_search = this.list_search.filter((data) => {
-      //   return ((data.nama_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1) || (data.oleh_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1));
-      // })
+      this.list_search = this.list_search.filter((data) => {
+        return ((data.user_name.toLowerCase().indexOf(val.toLowerCase()) > -1));
+      })
     }
     else {
       this.statusSearch=false;
