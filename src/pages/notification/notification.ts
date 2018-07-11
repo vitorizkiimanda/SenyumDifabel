@@ -146,7 +146,7 @@ export class NotificationPage {
         let response = data.json();
         console.log(response);
         // alert(response)
-        this.notifications = response;
+        this.notifications = response.reverse();
         this.loading.dismiss();
 
       }, err => {     
