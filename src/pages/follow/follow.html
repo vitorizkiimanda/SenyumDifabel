@@ -12,14 +12,15 @@
     <h4 *ngIf='choosed=="follower"' text-center>Followers</h4>
     <h4 *ngIf='choosed=="following"' text-center>Following</h4>
     <hr>
-    <ion-grid no-padding>          
-      <ion-row no-padding>
+    <ion-grid *ngIf='choosed == "following"' no-padding> 
+
+      <ion-row *ngFor="let data of following" no-padding>
         <ion-col col-2 no-padding>
           <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
           <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
         </ion-col>
         <ion-col col-7 no-padding class="wordHeader">
-          <span class="nameHeader">Alamanda Shantika</span>
+          <span class="nameHeader">{{data.user_name}}</span>
           <br />
           <span class="elseHeader">VP Gojek Indonesia</span>                
         </ion-col>
@@ -33,106 +34,33 @@
           </button>              
         </ion-col>
       </ion-row>          
-      <ion-row no-padding>
-        <ion-col col-2 no-padding>
-          <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-          <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
-        </ion-col>
-        <ion-col col-7 no-padding class="wordHeader">
-          <span class="nameHeader">Alamanda Shantika</span>
-          <br />
-          <span class="elseHeader">VP Gojek Indonesia</span>                
-        </ion-col>
-        <ion-col col-2 no-padding>
-          <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small>
-            <span class="buttonWord">Follow</span>
-          </button>
-          
-          <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small outline>
-            <span class="buttonWord">Following</span>
-          </button>              
-        </ion-col>
-      </ion-row>          
-      <ion-row no-padding>
-        <ion-col col-2 no-padding>
-          <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-          <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
-        </ion-col>
-        <ion-col col-7 no-padding class="wordHeader">
-          <span class="nameHeader">Alamanda Shantika</span>
-          <br />
-          <span class="elseHeader">VP Gojek Indonesia</span>                
-        </ion-col>
-        <ion-col col-2 no-padding>
-          <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small>
-            <span class="buttonWord">Follow</span>
-          </button>
-          
-          <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small outline>
-            <span class="buttonWord">Following</span>
-          </button>              
-        </ion-col>
-      </ion-row>          
-      <ion-row no-padding>
-        <ion-col col-2 no-padding>
-          <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-          <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
-        </ion-col>
-        <ion-col col-7 no-padding class="wordHeader">
-          <span class="nameHeader">Alamanda Shantika</span>
-          <br />
-          <span class="elseHeader">VP Gojek Indonesia</span>                
-        </ion-col>
-        <ion-col col-2 no-padding>
-          <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small>
-            <span class="buttonWord">Follow</span>
-          </button>
-          
-          <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small outline>
-            <span class="buttonWord">Following</span>
-          </button>              
-        </ion-col>
-      </ion-row>          
-      <ion-row no-padding>
-        <ion-col col-2 no-padding>
-          <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-          <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
-        </ion-col>
-        <ion-col col-7 no-padding class="wordHeader">
-          <span class="nameHeader">Alamanda Shantika</span>
-          <br />
-          <span class="elseHeader">VP Gojek Indonesia</span>                
-        </ion-col>
-        <ion-col col-2 no-padding>
-          <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small>
-            <span class="buttonWord">Follow</span>
-          </button>
-          
-          <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small outline>
-            <span class="buttonWord">Following</span>
-          </button>              
-        </ion-col>
-      </ion-row>          
-      <ion-row no-padding>
-        <ion-col col-2 no-padding>
-          <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-          <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
-        </ion-col>
-        <ion-col col-7 no-padding class="wordHeader">
-          <span class="nameHeader">Alamanda Shantika</span>
-          <br />
-          <span class="elseHeader">VP Gojek Indonesia</span>                
-        </ion-col>
-        <ion-col col-2 no-padding>
-          <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small>
-            <span class="buttonWord">Follow</span>
-          </button>
-          
-          <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small outline>
-            <span class="buttonWord">Following</span>
-          </button>              
-        </ion-col>
-      </ion-row>
+      
     </ion-grid>
+
+    <ion-grid *ngIf='choosed == "follower"' no-padding> 
+
+      <ion-row *ngFor="let data of follower" no-padding>
+        <ion-col col-2 no-padding>
+          <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
+          <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
+        </ion-col>
+        <ion-col col-7 no-padding class="wordHeader">
+          <span class="nameHeader">{{data.user_name}}</span>
+          <br />
+          <span class="elseHeader">VP Gojek Indonesia</span>                
+        </ion-col>
+        <ion-col col-2 no-padding>
+          <button (click)="follow()" *ngIf="statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small>
+            <span class="buttonWord">Follow</span>
+          </button>
+          
+          <button (click)="unfollow()" *ngIf="!statusFollow" class="buttonNotification" ion-button color="senyumDifabel" small outline>
+            <span class="buttonWord">Following</span>
+          </button>              
+        </ion-col>
+      </ion-row>          
+      
+    </ion-grid>
+
   </div>
 </ion-content>

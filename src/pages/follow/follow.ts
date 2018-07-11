@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { Data } from '../../providers/data';
+import { Http, RequestOptions, Headers  } from '@angular/http';
 
 @Component({
   selector: 'page-follow',
@@ -10,6 +12,9 @@ export class FollowPage {
 
   choosed:any;
   statusFollow : boolean = true;
+  user_id: any;
+  following: any;
+  follower: any;
   
   people:any;
   list_search: any;
@@ -19,10 +24,20 @@ export class FollowPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public alertCtrl: AlertController,
+    private data: Data,
+    public http: Http,
     private superTabsCtrl: SuperTabsController) {
       let temp = this.navParams.data;
       this.choosed = temp;
-  }
+      
+      this.data.getData().then((data) =>{
+        this.user_id = data.user_id;
+        console.log(this.user_id);
+
+        if(this.choosed=="follower") this.getFollowing(this.user_id);
+        else if(this.choosed=="follower") this.getFollower(this.user_id);        
+      })
+    }
 
   ionViewWillEnter() {
     this.superTabsCtrl.enableTabsSwipe(false);
@@ -59,6 +74,31 @@ export class FollowPage {
     prompt.present();
   }
 
+  getFollowing(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getFollowing/"+data,{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.following = response;
+      // alert(response)
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
+  }
+
+  getFollower(data){
+    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
+    this.http.get(this.data.BASE_URL+"auth/getFollower/"+data,{ headers: headers }).subscribe(data => {
+      let response = data.json();
+      console.log(response);
+      this.follower = response;
+      // alert(response)
+    }, err => {     
+      console.log("error cui :",err);
+      
+    });
+  }
 
   //Fungsi Searchbar
   getItems(ev) {
