@@ -29,6 +29,7 @@ export class JobsPage {
   interview: any;
   user_email:any;  
   job_id: any;
+  flag_bookmark: any;
   
 
   constructor(
@@ -47,6 +48,7 @@ export class JobsPage {
     console.log('ionViewDidLoad ProfilePage');
     this.data.getData().then((data) =>{
       this.user_id = data.user_id;
+      this.job_id = data.job_id;
       this.user_email = data.user_email;
       console.log(data);
     
@@ -89,7 +91,7 @@ export class JobsPage {
   changeBookmark(data){
     // ini nnti kao udah berhasil bookmark ada snackbarnya gitu 
     if(data.flag_bookmark == 0){
-      this.bookmark = 1;
+
       let toast = this.toastCtrl.create({
         message: 'Bookmark success',
         duration: 3000,
@@ -106,20 +108,25 @@ export class JobsPage {
 
       let input = {
         user_id: this.user_id, 
-        job_id: this.job_id,
+        job_id: data.job_id,
       };
 
-      this.http.post(this.data.BASE_URL+"addBookmark", input).timeout(5000).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.user_id
-      this.loading.dismiss();
-
-      }, err => {     
+      this.data.getOriginalPassword().then((password) =>{
+        console.log(password);
+        let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });  
+        this.http.post(this.data.BASE_URL+"auth/addBookmark", input,{ headers: headers }).timeout(5000).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.getJobs(this.user_id);
+        this.countJob(this.user_id);
         this.loading.dismiss();
-        this.runTimeError();
-        
-      });      
+
+        }, err => {     
+          this.loading.dismiss();
+          this.runTimeError();
+          
+        });      
+      });
     }
     else{
       let toast = this.toastCtrl.create({
@@ -137,22 +144,28 @@ export class JobsPage {
       this.loading.present();
 
       let input = {
-        user_id: this.user_id, 
-        job_id: this.job_id,
+        param1: this.user_id, 
+        param2: data.job_id,
       };
 
-      this.http.delete(this.data.BASE_URL+"deleteBookmark").timeout(5000).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      this.user_id
-      this.loading.dismiss();
+      console.log("remove",input)
 
-      }, err => {     
+      this.data.getOriginalPassword().then((password) =>{
+        console.log(password);
+        let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+        this.http.post(this.data.BASE_URL+"auth/deleteBookmark",input,{ headers: headers }).timeout(5000).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        this.getJobs(this.user_id);
+        this.countJob(this.user_id);
         this.loading.dismiss();
-        this.runTimeError();
-        
-      });      
 
+        }, err => {     
+          this.loading.dismiss();
+          this.runTimeError();
+          
+        });      
+      });
     }
   }
 

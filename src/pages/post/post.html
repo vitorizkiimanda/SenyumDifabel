@@ -9,7 +9,8 @@
     <ion-row no-padding>
       <ion-col col-2 no-padding text-center>
         <div>
-          <img  class="pict" src="assets/imgs/alamanda.jpg" />
+          <img  class="pict" *ngIf="data.user_photo" [src]="data.user_photo" />    
+          <img  class="pict" *ngIf="!data.user_photo" src="assets/imgs/profile.png" />      
         </div>             
       </ion-col>
       <ion-col col-10 no-padding class="words">     

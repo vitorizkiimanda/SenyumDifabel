@@ -54,10 +54,10 @@
         </ion-col> -->
       </ion-row>
     </ion-grid>
-    <div text-center class="buttonDiv">
+    <!-- <div text-center class="buttonDiv">
       <button ion-button block color="senyumDifabel" class="buttonCustom"><span class="buttonWordCV">Upload Your CV</span></button>
       <button (click)="openCV()" ion-button block color="senyumDifabel" class="buttonCustom" outline><span class="buttonWordCV">Open Your CV</span></button>
-    </div>
+    </div> -->
 
     <super-tabs  class="tabProfile" id="mainTabs" selectedTabIndex="0" toolbarColor="senyumDifabel" toolbarBackground="white" indicatorColor="senyumDifabel" (tabSelect)="onTabSelect($event)">
         <super-tab tabsHideOnSubPages="true" [root]="tab1Root" title="Experience" ></super-tab>
@@ -202,7 +202,8 @@
       <ion-grid no-padding>          
         <ion-row no-padding>
           <ion-col col-2 no-padding>
-            <img  class="pictHeader" src="assets/imgs/alamanda.jpg" />             
+            <img  class="pictHeader" *ngIf="user_photo" [src]="user_photo" />    
+            <img  class="pictHeader" *ngIf="!user_photo" src="assets/imgs/profile.png" />            
           </ion-col>
           <ion-col col-8 no-padding class="wordHeader">
             <span class="nameHeader">{{data.user_name}}</span>
@@ -212,7 +213,7 @@
             <span class="elseHeader">{{data.timeline_date}}, {{data.timeline_time}}</span>         
             <!-- <ion-datetime class="elseHeader" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="data.timeline_date"></ion-datetime>          -->
           </ion-col>
-          <ion-col col-1 text-right (click)="more()">
+          <ion-col col-1 text-right (click)="more(data)">
             <span class="buttonMore"><ion-icon name="md-more"></ion-icon></span>
           </ion-col>
         </ion-row>

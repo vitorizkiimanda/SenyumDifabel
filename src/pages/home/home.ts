@@ -84,29 +84,33 @@ export class HomePage {
   }
 
   getusers(){
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/getusers",{ headers: headers }).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      // alert(response)
-      this.people = response;
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/getusers",{ headers: headers }).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        // alert(response)
+        this.people = response;
 
-    }, err => {     
-      console.log("error cui :",err);
-      
+      }, err => {     
+        console.log("error cui :",err);
+        
+      });
     });
   }
 
   getNotifCount(data){
-    let headers = new Headers({'Authorization':'Basic ' +  btoa('vitovito@gmail.com' + ':' +'vitovito') });
-    this.http.get(this.data.BASE_URL+"auth/getCountNotification/"+data,{ headers: headers }).subscribe(data => {
-      let response = data.json();
-      console.log(response);
-      // alert(response)
-      this.counter = response;
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+      this.http.get(this.data.BASE_URL+"auth/getCountNotification/"+data,{ headers: headers }).subscribe(data => {
+        let response = data.json();
+        console.log(response);
+        // alert(response)
+        this.counter = response;
 
-    }, err => {     
-      console.log("error cui :",err);      
+      }, err => {     
+        console.log("error cui :",err);      
+      });
     });
   }
 

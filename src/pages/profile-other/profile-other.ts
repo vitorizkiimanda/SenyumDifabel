@@ -6,6 +6,7 @@ import { FollowPage } from '../follow/follow';
 import { MessagePersonalPage } from '../message-personal/message-personal';
 import { Data } from '../../providers/data';
 import { Http, Headers } from '@angular/http';
+import { MessagingPage } from '../messaging/messaging';
 
 @Component({
   selector: 'page-profile-other',
@@ -158,7 +159,7 @@ export class ProfileOtherPage {
   }
 
   openMessage(){
-    this.navCtrl.push(MessagePersonalPage);
+    this.navCtrl.push(MessagingPage);
   }
 
   follow(){

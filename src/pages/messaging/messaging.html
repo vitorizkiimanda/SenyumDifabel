@@ -22,353 +22,113 @@
     </button>
   </ion-fab>
   <div *ngIf="!statusSearch">
-    <div class="messageCard" (click)="openMessage(1)">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
+    <div *ngFor="let data of chats">
+
+      <div *ngIf='data.size=="0"' class="messageCard" (click)="openMessage(data)">
+        <ion-grid no-padding>          
+          <ion-row no-padding>
+            <ion-col col-2 no-padding>
+              <img  class="pictMessage" *ngIf="data.photo" [src]="data.photo" />    
+              <img  class="pictMessage" *ngIf="!data.photo" src="assets/imgs/profile.png" />           
+            </ion-col>
+            <ion-col col-9 no-padding class="contentMessage">
+              <ion-row no-padding>
+                <ion-col col-10 no-padding >
+                  <span class="nameMessage">{{data.name}}</span>            
+                </ion-col>
+                <ion-col col-2 no-padding text-right>
+                  <span class="timeMessage">{{data.time}}</span>              
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <span class="previewMessage">{{data.prev_chat}}</span>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
 
 
-    <div class="messageCard" (click)="openMessage(2)">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/bukalapak.png" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Group PSBO (4)</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
+      <div *ngIf='data.size!="0"' class="messageCard" (click)="openMessage(2)">
+        <ion-grid no-padding>          
+          <ion-row no-padding>
+            <ion-col col-2 no-padding>
+              <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
+              <img  class="pictMessage" src="assets/imgs/bukalapak.png" />             
+            </ion-col>
+            <ion-col col-9 no-padding class="contentMessage">
+              <ion-row no-padding>
+                <ion-col col-10 no-padding >
+                  <span class="nameMessage">Group PSBO (4)</span>            
+                </ion-col>
+                <ion-col col-2 no-padding text-right>
+                  <span class="timeMessage">10:30</span>              
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
 
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-
-    <div class="messageCard">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
     </div>
   </div>
 
   <div *ngIf="statusSearch">
-    <div class="messageCard" (click)="openMessage(1)">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/alamanda.jpg" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Alamanda Shantika</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
+    <div *ngFor="let data of list_search">
+
+      <div *ngIf='data.size=="0"' class="messageCard" (click)="openMessage(data)">
+        <ion-grid no-padding>          
+          <ion-row no-padding>
+            <ion-col col-2 no-padding>
+              <img  class="pictMessage" *ngIf="data.photo" [src]="data.photo" />    
+              <img  class="pictMessage" *ngIf="!data.photo" src="assets/imgs/profile.png" />           
+            </ion-col>
+            <ion-col col-9 no-padding class="contentMessage">
+              <ion-row no-padding>
+                <ion-col col-10 no-padding >
+                  <span class="nameMessage">{{data.name}}</span>            
+                </ion-col>
+                <ion-col col-2 no-padding text-right>
+                  <span class="timeMessage">{{data.time}}</span>              
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <span class="previewMessage">{{data.prev_chat}}</span>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
 
 
-    <div class="messageCard" (click)="openMessage(2)">
-      <ion-grid no-padding>          
-        <ion-row no-padding>
-          <ion-col col-2 no-padding>
-            <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
-            <img  class="pictMessage" src="assets/imgs/bukalapak.png" />             
-          </ion-col>
-          <ion-col col-9 no-padding class="contentMessage">
-            <ion-row no-padding>
-              <ion-col col-10 no-padding >
-                <span class="nameMessage">Group PSBO (4)</span>            
-              </ion-col>
-              <ion-col col-2 no-padding text-right>
-                <span class="timeMessage">10:30</span>              
-              </ion-col>
-            </ion-row>
-            <ion-row no-padding>
-              <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
-            </ion-row>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      <div *ngIf='data.size!="0"' class="messageCard" (click)="openMessage(2)">
+        <ion-grid no-padding>          
+          <ion-row no-padding>
+            <ion-col col-2 no-padding>
+              <!-- <img *ngIf="data.img" class="pictHeader" src="http://156.67.218.250:81{{data.img}}"/> -->
+              <img  class="pictMessage" src="assets/imgs/bukalapak.png" />             
+            </ion-col>
+            <ion-col col-9 no-padding class="contentMessage">
+              <ion-row no-padding>
+                <ion-col col-10 no-padding >
+                  <span class="nameMessage">Group PSBO (4)</span>            
+                </ion-col>
+                <ion-col col-2 no-padding text-right>
+                  <span class="timeMessage">10:30</span>              
+                </ion-col>
+              </ion-row>
+              <ion-row no-padding>
+                <span class="previewMessage">Lorem ipsum dolor sit amet, testes adipiscing elit</span>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
     </div>
-  </div>
-  
+  </div>  
 
 </ion-content>

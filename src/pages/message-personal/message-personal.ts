@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Content, LoadingController, AlertController  } from 'ionic-angular';
 import { SuperTabsController } from 'ionic2-super-tabs';
+import { Data } from '../../providers/data';
+import { Http, Headers } from '@angular/http';
 
 @Component({
   selector: 'page-message-personal',
@@ -9,25 +11,48 @@ import { SuperTabsController } from 'ionic2-super-tabs';
 export class MessagePersonalPage {
   @ViewChild(Content) content:Content;
 
+  
+  sortTime: any = (new Date).getTime();
+  dateNow : any = new Date().toISOString();
+  timeNow: any = new Date().toLocaleTimeString();
+
   message:string;
   sender_name:any;
   chats:any;
   id_sender:any;
   id_receiver:any;
 
+  user_email:any;
+  user_id:any;
+  id:any;
+  photo:any;
+
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
+    private superTabsCtrl: SuperTabsController,
+    private data : Data,
     public navParams: NavParams,
-    private superTabsCtrl: SuperTabsController
-    // public data: Data,
-    // public authHttp: AuthHttp,
-    // public http: Http
+    public loadCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    public http: Http
   ) {
 
     let temp = this.navParams.data;
-    this.sender_name = temp.sender_name;
-    this.id_sender = temp.id_user;
-    this.id_receiver = temp.id_receiver;
+    console.log("temp", temp)
+    if(temp.origin == "contact"){
+      this.sender_name = temp.dataContact.user_name;
+      this.id_sender = temp.id_user;
+      this.id_receiver = temp.id_receiver;
+      this.id = temp.id;
+      this.photo = temp.photo;
+    }
+    else{
+      this.sender_name = temp.name;
+      // this.id_sender = temp.id_user;
+      // this.id_receiver = temp.id_receiver;
+      this.id = temp.id_prev;
+      this.photo = temp.photo;
+    }
 
     this.getChats();
 
@@ -36,6 +61,13 @@ export class MessagePersonalPage {
   ionViewWillEnter() {
     this.superTabsCtrl.enableTabsSwipe(false);
     this.superTabsCtrl.showToolbar(false);
+
+    this.data.getData().then((data) => {
+      this.user_email = data.user_email;
+      this.user_id = data.user_id;
+
+      this.getChats();
+    })
 
     this.scrollToBottom();
   }
@@ -74,44 +106,48 @@ export class MessagePersonalPage {
 
   getChats() {
 
-    console.log("id sender:" + this.id_sender);
+    let input = {
+      param1: this.user_id, 
+      param2: this.id
+    };
 
-    // this.authHttp.get(this.data.BASE_URL+"/getinboxbyidsender"+"/"+this.id_receiver).subscribe(data => {
-    //   let response = data.json();
-    //   console.log(response.inbox);
-    //   if(response.status==true){
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa("vitorizkiimanda@gmail.com" + ':' +"vitovito") });
+      this.http.post(this.data.BASE_URL+"auth/loadChat",input,{ headers: headers }).subscribe(data => {
+        let response = data.json();
+        this.chats = response;
+        console.log("chats",response);
 
-    //     this.chats=response.inbox;
-
-    //     this.scrollToBottom();
-    //   }
-    //   else{
-    //     //alert gagal fetch data
-    //     console.log("error");
-    //   }
-    // });
+      }, err => {     
+        console.log("error cui :",err);      
+      });
+    });   
   }
 
   postChat(data) {
-    console.log("id post new chat:" + this.id_receiver);
+    this.dateNow = String(this.dateNow).substr(0,10)
     let input = {
-      id_receiver: this.id_receiver, 
-      title: data,
-      description: ''
+      id_prev: this.id, 
+      sender: this.user_id,
+      message: data,
+      date: this.dateNow, 
+      time: this.timeNow, 
+      sort_time: this.sortTime
     };
-    // this.authHttp.post(this.data.BASE_URL+"/inbox", input).subscribe(data => {
-    //   let response = data.json();
-    //   console.log(response);
-    //   if(response.status==true){
 
-    //     this.getChats();
-        
-    //   }
-    //   else{
-    //     alert("Chat Error");
-    //     console.log("error");
-    //   }
-    // });
+    console.log("kirim chat", input)
+
+    this.data.getOriginalPassword().then((password) =>{
+      let headers = new Headers({'Authorization':'Basic ' +  btoa("vitorizkiimanda@gmail.com" + ':' +"vitovito") });
+      this.http.post(this.data.BASE_URL+"auth/sendMessage",input,{ headers: headers }).subscribe(data => {
+        let response = data.json();
+        console.log("chats",response);
+        this.getChats();
+
+      }, err => {     
+        console.log("error cui :",err);      
+      });
+    });   
   }
 
 }
