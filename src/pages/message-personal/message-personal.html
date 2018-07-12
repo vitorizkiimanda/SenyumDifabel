@@ -21,7 +21,8 @@
 
     <div *ngIf="data.sender!=user_id" id="chatMessages">
       <div class="message">
-        <img  class="pict" src="assets/imgs/alamanda.jpg" />
+        <img  class="pict" *ngIf="photo" [src]="photo" />    
+        <img  class="pict" *ngIf="!photo" src="assets/imgs/profile.png" />  
         <div class="innerMessage messageLeft">
           <div class="messageContent">{{data.message}}</div>
           <div text-right class="messageTimeLeft">{{data.date}}, {{data.time}}</div>

@@ -21,6 +21,8 @@ export class JobDetailPage {
   date: any;
   description: any;
 
+  jobData:any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -36,6 +38,7 @@ export class JobDetailPage {
     this.superTabsCtrl.showToolbar(false);
 
     let temp = this.navParams.data;      
+    this.jobData = temp;
     
     this.company_name = temp.company_name;
     this.name = temp.name;
@@ -85,7 +88,8 @@ export class JobDetailPage {
   }
 
   apply(){
-    this.navCtrl.push(JobApplyPage);
+    console.log("data apply mau kirim", this.jobData);
+    this.navCtrl.push(JobApplyPage, this.jobData );
   }
 
 }
