@@ -25,6 +25,7 @@ export class MessagePersonalPage {
   user_email:any;
   user_id:any;
   id:any;
+  photo:any;
 
   constructor(
     public navCtrl: NavController,
@@ -43,12 +44,14 @@ export class MessagePersonalPage {
       this.id_sender = temp.id_user;
       this.id_receiver = temp.id_receiver;
       this.id = temp.id;
+      this.photo = temp.photo;
     }
     else{
       this.sender_name = temp.name;
       // this.id_sender = temp.id_user;
       // this.id_receiver = temp.id_receiver;
       this.id = temp.id_prev;
+      this.photo = temp.photo;
     }
 
     this.getChats();
