@@ -25,6 +25,7 @@ export class ProfilePage {
   accomplishment = false;
   contact = false;
 
+  user:any;
   user_id: any;
   follower: any;
   following: any;
@@ -79,6 +80,7 @@ export class ProfilePage {
       let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
       this.http.get(this.data.BASE_URL+"auth/getuser/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
+        this.user = response;
         this.user_name = response.user_name;
         this.user_address = response.user_address;
         this.user_job = response.user_job;
@@ -140,26 +142,38 @@ export class ProfilePage {
     });
   }
 
-  open(data){
+  open(origin){
+    let data = this.user;
+    data.origin = origin;
     this.navCtrl.push(FollowPage, data);
   }
 
-  more(){
+  more(dataPost){
     let prompt = this.alertCtrl.create({
-      subTitle:"kutipan dari postingannya...",
+      subTitle:dataPost.timeline_description + "<br>" + dataPost.timeline_date,
       buttons: [
         {
           text: 'Delete',
           handler: data => {
-            // this.deleteJob(dataJob);
+            this.data.getOriginalPassword().then((password) =>{
+
+              let headers = new Headers({'Authorization':'Basic ' +  btoa(this.user_email + ':' +password) });
+              this.http.delete(this.data.BASE_URL+"auth/deleteTimeline/"+dataPost.timeline_id,{ headers: headers }).subscribe(data => {
+                this.getMyTimeline(this.user_id);
+                // alert(response)
+              }, err => {     
+                console.log("error cui :",err);
+                
+              });
+            });
           }
         },
-        {
-          text: 'Edit',
-          handler: data => {
-            // this.navCtrl.push(EditJobPage, dataJob);
-          }
-        }
+        // {
+        //   text: 'Edit',
+        //   handler: data => {
+        //     // this.navCtrl.push(EditJobPage, dataJob);
+        //   }
+        // }
       ]
     });
     prompt.present();
