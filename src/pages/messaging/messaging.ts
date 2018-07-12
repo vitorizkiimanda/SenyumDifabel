@@ -45,8 +45,10 @@ export class MessagingPage {
   }
 
   openMessage(data: any){
-    if(data == 1) this.navCtrl.push(MessagePersonalPage);
-    else this.navCtrl.push(MessageGroupPage);
+    console.log("data mau buka chat", data)
+    this.navCtrl.push(MessagePersonalPage, data);
+    // if(data.size == 0) this.navCtrl.push(MessagePersonalPage);
+    // else this.navCtrl.push(MessageGroupPage);
   }
 
   openCreateGroup(){
@@ -61,7 +63,7 @@ export class MessagingPage {
       this.http.get(this.data.BASE_URL+"auth/listChat/"+data,{ headers: headers }).timeout(5000).subscribe(data => {
         let response = data.json();
         console.log("chats",response);
-        this.chats = response;
+        this.chats = response.reverse();
         // alert(response)
 
       }, err => {     
@@ -95,9 +97,8 @@ export class MessagingPage {
     this.statusSearch=true;
 
     // Reset items back to all of the items
-    this.list_search = this.messages;
-
-    console.log('list:'+this.list_search);
+    this.list_search = this.chats;
+    console.log("list", this.list_search)
 
     // set val to the value of the ev target
     var val = ev.target.value;
@@ -105,18 +106,13 @@ export class MessagingPage {
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
-      // this.list_search = this.list_search.filter((item) => {
-      //   return (item.data.toLowerCase().indexOf(val.toLowerCase()) > -1);
-      // })
-
-
-      // this.list_search = this.list_search.filter((data) => {
-      //   return ((data.nama_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1) || (data.oleh_undangan.toLowerCase().indexOf(val.toLowerCase()) > -1));
-      // })
+      this.list_search = this.list_search.filter((data) => {
+        return ((data.name.toLowerCase().indexOf(val.toLowerCase()) > -1));
+      })
     }
     else {
       this.statusSearch=false;
-      // this.getInvitation();
+      this.getChats(this.user_id);
     }
 
     console.log(this.list_search);

@@ -21,6 +21,9 @@ export class PostPage {
   image:any;
   imageFinal:any;
 
+  user_photo:any;
+  
+
   loading:any;
 
   constructor(
@@ -38,6 +41,7 @@ export class PostPage {
       this.data.getData().then((data) => {
         this.user_id = data.user_id;
         this.user_email = data.user_email;
+        this.user_photo = data.user_photo;
         console.log(this.user_id);
       })
 
